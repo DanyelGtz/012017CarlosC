@@ -1,0 +1,58 @@
+@model LoComercio.Data.Cliente
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Estás seguro de eliminar éste Elemento?</h3>
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RFC)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RFC)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonoActual)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TelefonoActual)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonoContacto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TelefonoContacto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WhatssApp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WhatssApp)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

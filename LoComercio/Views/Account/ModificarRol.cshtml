@@ -1,0 +1,40 @@
+﻿@model LoComercio.Models.AccountViewModels.ModificarRolViewModel
+
+<h1>Modificar Rol de Usuario</h1>
+
+<form asp-controller="Account" asp-action="ModificarRol" method="post" class="form-horizontal">
+    <h4>Ingresa el Email del Usuario a Modificar.</h4>
+    <hr />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <div class="col-md-12">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label" asp-for="Rol"></label>
+        <div class="col-md-12">
+            <select class="form-control ns_" asp-for="Rol" class="col-md-2 control-label" name="tipoRolOption" id="tipoRolOption"
+                    required>
+
+                <option selected="selected">Seleccionar</option>
+                @foreach (var item in Model.ListaRoles)
+            {
+                    <option value=@item>
+                        @item
+                    </option>
+                }
+            </select>
+            <span asp-validation-for="Rol" class="text-danger" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Enviar</button>
+        </div>
+    </div>
+</form>

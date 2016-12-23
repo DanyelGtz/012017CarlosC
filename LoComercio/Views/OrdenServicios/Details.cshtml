@@ -1,0 +1,162 @@
+@model LoComercio.Data.OrdenServicio
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Orden de Servicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AceptaRiesgo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AceptaRiesgo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ColorDispositivo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ColorDispositivo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ColorPieza)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ColorPieza)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyaOrigen)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CompanyaOrigen)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DejaAccesorios)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DejaAccesorios)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DesactivoICloud)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DesactivoICloud)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionAccesorios)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionAccesorios)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionFalla)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionFalla)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DescripcionRevisionAdicional)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionRevisionAdicional)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EquipoApagado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EquipoApagado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EquipoMojado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EquipoMojado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaLlegada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaLlegada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPosibleSalida)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaPosibleSalida)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaSalida)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaSalida)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IMEI)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IMEI)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPersonalEntrega)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPersonalEntrega)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImplicaRiesgo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImplicaRiesgo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NotasReparaciones)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NotasReparaciones)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordDesbloqueo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PasswordDesbloqueo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PatronDesbloqueo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PatronDesbloqueo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReparadoAnteriormente)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReparadoAnteriormente)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RevisionAdicional)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RevisionAdicional)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioRecibe)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioRecibe)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

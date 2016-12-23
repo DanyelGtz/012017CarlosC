@@ -1,0 +1,42 @@
+﻿@using System.Collections.Generic
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Iniciar Sesion";
+}
+
+<div class="flag-banner" style="background-image: url(http://hibult-static.websplanetdemo.com/var/m_e/eb/eb6/35498/552486-servicio-tecnico-nokia-lumia-banner.png); /* margin-top:46px; */ min-height: 300px; background-size: cover;">
+    <img src="~/images/Logo.png" 
+         style="position: absolute;margin-left: auto;margin-right: auto;left:50%;right: 0;top:14%;">
+</div>
+<div class="container landing-wrapper">
+    <section class="about-landing">
+        <header>
+            <h2 class="top-buffer">Lo Comercio - Plataforma de Control</h2>
+            <hr class="red">
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-warning">
+                        <div class="panel-body">
+                            <a class="btn btn-default" asp-controller="Account" asp-action="Login"> INICIAR SESION </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <a class="btn btn-primary" asp-controller="Account" asp-action="Register"> REGISTRAR </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+<div class="body-background"></div>

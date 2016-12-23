@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using LoComercio.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><span class="icon-user"></span>@UserManager.GetUserName(User)!</a>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-sm btn-danger" style="margin-top:6px; margin-left:1rem">Salir</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-area="" asp-controller="Account" asp-action="Register" class="btn btn-sm">Registrar</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="Login" class="btn btn-sm">Iniciar Sesión</a></li>
+    </ul>
+}

@@ -1,0 +1,89 @@
+@model LoComercio.Data.Cliente
+
+@{
+    ViewData["Title"] = "Crear";
+}
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+</style>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Clientes</h3>
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h2>Registrar Cliente</h2>
+                <div class="row">
+
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label asp-for="Nombre"></label>
+                            <input asp-for="Nombre" class="form-control" />
+                            <span asp-validation-for="Nombre" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label asp-for="RFC"></label>
+                            <input asp-for="RFC" class="form-control" style="text-transform:uppercase;" onkeyup="Mayusculas()" maxlength="13" />
+                            <span asp-validation-for="RFC" class="text-danger" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label asp-for="TelefonoActual"></label>
+                            <input asp-for="TelefonoActual" id="tel" type="tel" class="form-control" />
+                            <span asp-validation-for="TelefonoActual" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label asp-for="TelefonoContacto"></label>
+                            <input asp-for="TelefonoContacto" id="tel0" type="tel" class="form-control" />
+                            <span asp-validation-for="TelefonoContacto" class="text-danger" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input asp-for="WhatssApp" />
+                                <label asp-for="WhatssApp"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <a asp-action="Index" class="btn btn-lg btn-danger">Regresar</a>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" value="Guardar" class="btn btn-lg btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

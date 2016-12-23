@@ -1,0 +1,188 @@
+@model IEnumerable<LoComercio.Data.OrdenServicio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Orden de Servicio</h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Busqueda</h2>
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <form>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="search" placeholder="Busqueda Rapida" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <input type="submit" class="form-control btn-info btn-sm" value="Buscar" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <a asp-action="Create" class="btn btn-primary alinearDerecha">Crear Nuevo</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AceptaRiesgo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DescripcionFalla)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DescripcionRevisionAdicional)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EquipoApagado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EquipoMojado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaLlegada)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaPosibleSalida)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaSalida)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IMEI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdPersonalEntrega)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImplicaRiesgo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotasReparaciones)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Observaciones)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PasswordDesbloqueo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatronDesbloqueo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReparadoAnteriormente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RevisionAdicional)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UsuarioRecibe)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AceptaRiesgo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ColorDispositivo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ColorPieza)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyaOrigen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DejaAccesorios)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DesactivoICloud)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DescripcionAccesorios)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DescripcionFalla)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DescripcionRevisionAdicional)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EquipoApagado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EquipoMojado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaLlegada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaPosibleSalida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaSalida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IMEI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdPersonalEntrega)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImplicaRiesgo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NotasReparaciones)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Observaciones)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PasswordDesbloqueo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PatronDesbloqueo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReparadoAnteriormente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RevisionAdicional)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UsuarioRecibe)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+@section Scripts {
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
