@@ -1,16 +1,22 @@
 @model LoComercio.Data.Servicio
 
 @{
-    ViewData["Title"] = "Crear";
+    ViewData["Title"] = "Create";
 }
 
-<h2>Crear</h2>
+<h2>Create</h2>
 
 <form asp-action="Create">
     <div class="form-horizontal">
         <h4>Servicio</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="IdModelo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="IdModelo" class ="form-control" asp-items="ViewBag.IdModelo"></select>
+            </div>
+        </div>
         <div class="form-group">
             <label asp-for="IdTipoServicio" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -25,10 +31,24 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Precio" class="col-md-2 control-label"></label>
+            <label asp-for="PrecioMaximo" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Precio" class="form-control" />
-                <span asp-validation-for="Precio" class="text-danger" />
+                <input asp-for="PrecioMaximo" class="form-control" />
+                <span asp-validation-for="PrecioMaximo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PrecioMinimo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PrecioMinimo" class="form-control" />
+                <span asp-validation-for="PrecioMinimo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PrecioSugerido" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PrecioSugerido" class="form-control" />
+                <span asp-validation-for="PrecioSugerido" class="text-danger" />
             </div>
         </div>
         <div class="form-group">

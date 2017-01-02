@@ -26,12 +26,12 @@ namespace LoComercio.Data
         public long? IdSolAccesorio { get; set; }
         public long? IdPersonalEntrega { get; set; }
 
-        [Required(ErrorMessage = "Campo obligatorio")]
+        //[Required(ErrorMessage = "Campo obligatorio")]
         public string IMEI { get; set; }
         [Display(Name = "Descripción de la Falla")]
-        [Required(ErrorMessage = "Campo obligatorio")]
+        //[Required(ErrorMessage = "Campo obligatorio")]
         public string DescripcionFalla { get; set; }
-        [Display(Name = "Deja Accesorios")]
+        [Display(Name = "Deja Accesorios?")]
         public bool DejaAccesorios { get; set; }
         [Display(Name = "Descripción de Accesorios")]
         public string DescripcionAccesorios { get; set; }
@@ -40,7 +40,7 @@ namespace LoComercio.Data
         [Display(Name = "Color de Pieza")]
         public string ColorPieza { get; set; }
         [Display(Name = "Compañía Origen")]
-        [Required(ErrorMessage = "Campo obligatorio")]
+        //[Required(ErrorMessage = "Campo obligatorio")]
         public string CompanyaOrigen { get; set; }
         [Display(Name = "Patrón de Desbloqueo")]
         public string PatronDesbloqueo { get; set; }
@@ -65,15 +65,15 @@ namespace LoComercio.Data
         [Display(Name = "Acepta Riesgo?")]
         public bool AceptaRiesgo { get; set; }
         [Display(Name = "Fecha de Llegada")]
-        [Required(ErrorMessage = "Campo obligatorio")]
+        //[Required(ErrorMessage = "Campo obligatorio")]
         public DateTime FechaLlegada { get; set; }
         [Display(Name = "Fecha Posible de Salida")]
-        [Required(ErrorMessage = "Campo obligatorio")]
+        //[Required(ErrorMessage = "Campo obligatorio")]
         public DateTime FechaPosibleSalida { get; set; }
         [Display(Name = "Fecha de Salida")]
         public DateTime FechaSalida { get; set; }
         [Display(Name = "Usuario que Recibe")]
-        [Required(ErrorMessage = "Campo obligatorio")]
+        //[Required(ErrorMessage = "Campo obligatorio")]
         public string UsuarioRecibe { get; set; }
         public string Observaciones { get; set; }
 
@@ -85,7 +85,7 @@ namespace LoComercio.Data
         public LugarAlmacenamiento LugarAlmacenamiento { get; set; }
         [ForeignKey("IdPago")]
         public Pago Pago { get; set; }
-        [ForeignKey("IdModeloTecnico")]
+        [ForeignKey("IdModelo")]
         public Modelo Modelo { get; set; }
         [ForeignKey("IdTipoServicio")]
         public TipoServicio TipoServicio { get; set; }

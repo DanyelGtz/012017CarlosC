@@ -5,184 +5,157 @@
 }
 
 <h2>Orden de Servicio</h2>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h2 class="panel-title">Busqueda</h2>
-    </div>
-    <div class="panel-body">
-        <div class="container">
-            <form>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input type="search" placeholder="Busqueda Rapida" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="form-group">
-                            <input type="submit" class="form-control btn-info btn-sm" value="Buscar" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <a asp-action="Create" class="btn btn-primary alinearDerecha">Crear Nuevo</a>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.AceptaRiesgo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DescripcionFalla)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DescripcionRevisionAdicional)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EquipoApagado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EquipoMojado)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaLlegada)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaPosibleSalida)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaSalida)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IMEI)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IdPersonalEntrega)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ImplicaRiesgo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NotasReparaciones)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Observaciones)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PasswordDesbloqueo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PatronDesbloqueo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReparadoAnteriormente)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.RevisionAdicional)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UsuarioRecibe)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
+<a asp-action="Create" class="btn btn-primary alinearDerecha">Crear Nuevo</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaLlegada)
+            </th>
+            <th>
+                Tipo de Servicio
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaPosibleSalida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstadoNotificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DejaAccesorios)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (item.EstadoNotificacion.Nombre.Equals("Normal"))
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AceptaRiesgo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ColorDispositivo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ColorPieza)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CompanyaOrigen)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DejaAccesorios)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DesactivoICloud)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DescripcionAccesorios)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DescripcionFalla)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DescripcionRevisionAdicional)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EquipoApagado)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EquipoMojado)
-                    </td>
+                <tr class="OrdenServicioNormal">
                     <td>
                         @Html.DisplayFor(modelItem => item.FechaLlegada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo.Nombre)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.FechaPosibleSalida)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FechaSalida)
+                        @Html.DisplayFor(modelItem => item.EstadoNotificacion.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IMEI)
+                        @Html.DisplayFor(modelItem => item.DejaAccesorios)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdPersonalEntrega)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ImplicaRiesgo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NotasReparaciones)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Observaciones)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PasswordDesbloqueo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PatronDesbloqueo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ReparadoAnteriormente)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RevisionAdicional)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UsuarioRecibe)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning btn-sm">Seguimiento</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
+
                     </td>
                 </tr>
             }
-        </tbody>
-    </table>
+            @if (item.EstadoNotificacion.Nombre.Equals("No Autorizado"))
+            {
+                <tr class="OrdenServicioNoAutorizado">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaLlegada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaPosibleSalida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EstadoNotificacion.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DejaAccesorios)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning btn-sm">Seguimiento</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
+
+                    </td>
+                </tr>
+            }
+            @if (item.EstadoNotificacion.Nombre.Equals("No Avisado"))
+            {
+                <tr class="OrdenServicioRetrazado">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaLlegada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaPosibleSalida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EstadoNotificacion.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DejaAccesorios)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning btn-sm">Seguimiento</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
+
+                    </td>
+                </tr>
+            }
+            @if (item.EstadoNotificacion.Nombre.Equals("Urgente"))
+            {
+                <tr class="OrdenServicioUrgente">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaLlegada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaPosibleSalida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EstadoNotificacion.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DejaAccesorios)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning btn-sm">Seguimiento</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm">Detalles</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
+
+                    </td>
+                </tr>
+            }
+        }
+
+
+    </tbody>
+</table>
 
 @section Scripts {
-    
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LoComercio.Data.Migrations
+namespace WebApplication1.Data.Migrations
 {
-    public partial class Modelo : Migration
+    public partial class ModeloV4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -147,27 +147,6 @@ namespace LoComercio.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Modelos",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
-                    IdMarca = table.Column<long>(nullable: true),
-                    ModeloComercial = table.Column<string>(nullable: false),
-                    Nombre = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Modelos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Modelos_Modelos_IdMarca",
-                        column: x => x.IdMarca,
-                        principalTable: "Modelos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Refacciones",
                 columns: table => new
                 {
@@ -287,6 +266,27 @@ namespace LoComercio.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Modelos",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    IdMarca = table.Column<long>(nullable: true),
+                    ModeloComercial = table.Column<string>(nullable: false),
+                    Nombre = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Modelos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Modelos_Marcas_IdMarca",
+                        column: x => x.IdMarca,
+                        principalTable: "Marcas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SolicitudRefacciones",
                 columns: table => new
                 {
@@ -362,27 +362,6 @@ namespace LoComercio.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Servicios",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
-                    IdTipoServicio = table.Column<long>(nullable: true),
-                    Nombre = table.Column<string>(nullable: false),
-                    Precio = table.Column<float>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Servicios", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Servicios_TiposServicio_IdTipoServicio",
-                        column: x => x.IdTipoServicio,
-                        principalTable: "TiposServicio",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tecnicos",
                 columns: table => new
                 {
@@ -403,27 +382,31 @@ namespace LoComercio.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrdenesServicioServicio",
+                name: "Servicios",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
-                    IdEdoServicio = table.Column<long>(nullable: true),
-                    IdServicio = table.Column<long>(nullable: true)
+                    IdModelo = table.Column<long>(nullable: true),
+                    IdTipoServicio = table.Column<long>(nullable: true),
+                    Nombre = table.Column<string>(nullable: false),
+                    PrecioMaximo = table.Column<float>(nullable: false),
+                    PrecioMinimo = table.Column<float>(nullable: false),
+                    PrecioSugerido = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrdenesServicioServicio", x => x.Id);
+                    table.PrimaryKey("PK_Servicios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrdenesServicioServicio_EstadosServicios_IdEdoServicio",
-                        column: x => x.IdEdoServicio,
-                        principalTable: "EstadosServicios",
+                        name: "FK_Servicios_Modelos_IdModelo",
+                        column: x => x.IdModelo,
+                        principalTable: "Modelos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OrdenesServicioServicio_Servicios_IdServicio",
-                        column: x => x.IdServicio,
-                        principalTable: "Servicios",
+                        name: "FK_Servicios_TiposServicio_IdTipoServicio",
+                        column: x => x.IdTipoServicio,
+                        principalTable: "TiposServicio",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -437,29 +420,30 @@ namespace LoComercio.Data.Migrations
                     AceptaRiesgo = table.Column<bool>(nullable: false),
                     ColorDispositivo = table.Column<string>(nullable: true),
                     ColorPieza = table.Column<string>(nullable: true),
-                    CompanyaOrigen = table.Column<string>(nullable: false),
+                    CompanyaOrigen = table.Column<string>(nullable: true),
                     DejaAccesorios = table.Column<bool>(nullable: false),
                     DesactivoICloud = table.Column<bool>(nullable: false),
                     DescripcionAccesorios = table.Column<string>(nullable: true),
-                    DescripcionFalla = table.Column<string>(nullable: false),
+                    DescripcionFalla = table.Column<string>(nullable: true),
                     DescripcionRevisionAdicional = table.Column<string>(nullable: true),
                     EquipoApagado = table.Column<bool>(nullable: false),
                     EquipoMojado = table.Column<bool>(nullable: false),
                     FechaLlegada = table.Column<DateTime>(nullable: false),
                     FechaPosibleSalida = table.Column<DateTime>(nullable: false),
                     FechaSalida = table.Column<DateTime>(nullable: false),
-                    IMEI = table.Column<string>(nullable: false),
+                    IMEI = table.Column<string>(nullable: true),
                     IdCliente = table.Column<long>(nullable: true),
                     IdEdoDispositivo = table.Column<long>(nullable: true),
                     IdEdoNotificacion = table.Column<long>(nullable: true),
                     IdLugarAlmacenamiento = table.Column<long>(nullable: true),
                     IdMarca = table.Column<long>(nullable: true),
-                    IdModeloTecnico = table.Column<long>(nullable: true),
+                    IdModelo = table.Column<long>(nullable: true),
                     IdPago = table.Column<long>(nullable: true),
                     IdPersonalEntrega = table.Column<long>(nullable: true),
                     IdSolAccesorio = table.Column<long>(nullable: true),
                     IdSolRefaccion = table.Column<long>(nullable: true),
                     IdTecnico = table.Column<long>(nullable: true),
+                    IdTipoServicio = table.Column<long>(nullable: true),
                     ImplicaRiesgo = table.Column<bool>(nullable: false),
                     NotasReparaciones = table.Column<string>(nullable: true),
                     Observaciones = table.Column<string>(nullable: true),
@@ -467,7 +451,7 @@ namespace LoComercio.Data.Migrations
                     PatronDesbloqueo = table.Column<string>(nullable: true),
                     ReparadoAnteriormente = table.Column<bool>(nullable: false),
                     RevisionAdicional = table.Column<bool>(nullable: false),
-                    UsuarioRecibe = table.Column<string>(nullable: false)
+                    UsuarioRecibe = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -497,8 +481,14 @@ namespace LoComercio.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OrdenesServicio_Modelos_IdModeloTecnico",
-                        column: x => x.IdModeloTecnico,
+                        name: "FK_OrdenesServicio_Marcas_IdMarca",
+                        column: x => x.IdMarca,
+                        principalTable: "Marcas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrdenesServicio_Modelos_IdModelo",
+                        column: x => x.IdModelo,
                         principalTable: "Modelos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -524,6 +514,12 @@ namespace LoComercio.Data.Migrations
                         name: "FK_OrdenesServicio_Tecnicos_IdTecnico",
                         column: x => x.IdTecnico,
                         principalTable: "Tecnicos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrdenesServicio_TiposServicio_IdTipoServicio",
+                        column: x => x.IdTipoServicio,
+                        principalTable: "TiposServicio",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -552,6 +548,40 @@ namespace LoComercio.Data.Migrations
                         name: "FK_Notificaciones_TiposNotificaciones_IdTipoNotificacion",
                         column: x => x.IdTipoNotificacion,
                         principalTable: "TiposNotificaciones",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrdenesServicioServicio",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    IdEdoServicio = table.Column<long>(nullable: true),
+                    IdOrdenServicio = table.Column<long>(nullable: true),
+                    IdServicio = table.Column<long>(nullable: true),
+                    PrecioServicio = table.Column<float>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrdenesServicioServicio", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrdenesServicioServicio_EstadosServicios_IdEdoServicio",
+                        column: x => x.IdEdoServicio,
+                        principalTable: "EstadosServicios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrdenesServicioServicio_OrdenesServicio_IdOrdenServicio",
+                        column: x => x.IdOrdenServicio,
+                        principalTable: "OrdenesServicio",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OrdenesServicioServicio_Servicios_IdServicio",
+                        column: x => x.IdServicio,
+                        principalTable: "Servicios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -602,9 +632,14 @@ namespace LoComercio.Data.Migrations
                 column: "IdLugarAlmacenamiento");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdenesServicio_IdModeloTecnico",
+                name: "IX_OrdenesServicio_IdMarca",
                 table: "OrdenesServicio",
-                column: "IdModeloTecnico");
+                column: "IdMarca");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrdenesServicio_IdModelo",
+                table: "OrdenesServicio",
+                column: "IdModelo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrdenesServicio_IdPago",
@@ -627,9 +662,19 @@ namespace LoComercio.Data.Migrations
                 column: "IdTecnico");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrdenesServicio_IdTipoServicio",
+                table: "OrdenesServicio",
+                column: "IdTipoServicio");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrdenesServicioServicio_IdEdoServicio",
                 table: "OrdenesServicioServicio",
                 column: "IdEdoServicio");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrdenesServicioServicio_IdOrdenServicio",
+                table: "OrdenesServicioServicio",
+                column: "IdOrdenServicio");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrdenesServicioServicio_IdServicio",
@@ -640,6 +685,11 @@ namespace LoComercio.Data.Migrations
                 name: "IX_Pagos_IdFormaPago",
                 table: "Pagos",
                 column: "IdFormaPago");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Servicios_IdModelo",
+                table: "Servicios",
+                column: "IdModelo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Servicios_IdTipoServicio",
@@ -681,9 +731,6 @@ namespace LoComercio.Data.Migrations
                 name: "BitacoraNotificaciones");
 
             migrationBuilder.DropTable(
-                name: "Marcas");
-
-            migrationBuilder.DropTable(
                 name: "Notificaciones");
 
             migrationBuilder.DropTable(
@@ -693,13 +740,13 @@ namespace LoComercio.Data.Migrations
                 name: "TiposCambio");
 
             migrationBuilder.DropTable(
-                name: "OrdenesServicio");
-
-            migrationBuilder.DropTable(
                 name: "TiposNotificaciones");
 
             migrationBuilder.DropTable(
                 name: "EstadosServicios");
+
+            migrationBuilder.DropTable(
+                name: "OrdenesServicio");
 
             migrationBuilder.DropTable(
                 name: "Servicios");
@@ -717,9 +764,6 @@ namespace LoComercio.Data.Migrations
                 name: "LugaresAlmacenamiento");
 
             migrationBuilder.DropTable(
-                name: "Modelos");
-
-            migrationBuilder.DropTable(
                 name: "Pagos");
 
             migrationBuilder.DropTable(
@@ -730,6 +774,9 @@ namespace LoComercio.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tecnicos");
+
+            migrationBuilder.DropTable(
+                name: "Modelos");
 
             migrationBuilder.DropTable(
                 name: "TiposServicio");
@@ -751,6 +798,9 @@ namespace LoComercio.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "TiposTecnico");
+
+            migrationBuilder.DropTable(
+                name: "Marcas");
         }
     }
 }

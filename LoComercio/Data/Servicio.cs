@@ -13,13 +13,22 @@ namespace LoComercio.Data
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
+        public long? IdModelo { get; set; }
         public long? IdTipoServicio { get; set; }
         [Required(ErrorMessage = "Campo obligatorio")]
         public string Nombre { get; set; }
         [Required(ErrorMessage = "Campo obligatorio")]
-        public float Precio { get; set; }
+        [Display(Name ="Precio Sugerido")]
+        public float PrecioSugerido { get; set; }
+        [Display(Name = "Precio Mínimo")]
+        public float PrecioMinimo { get; set; }
+        [Display(Name = "Precio Máximo")]
+        public float PrecioMaximo { get; set; }
 
         [ForeignKey("IdTipoServicio")]
         public TipoServicio TipoServicio { get; set; }
+
+        [ForeignKey("IdModelo")]
+        public Modelo Modelo { get; set; }
     }
 }

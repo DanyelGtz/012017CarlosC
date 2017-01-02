@@ -43,7 +43,7 @@
             <div class="col-sm-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Estado de Dispositivo</h3>
+                        <h3 class="panel-title">Estados de Dispositivos</h3>
                     </div>
                     <div class="panel-body">
                         <div class="container">
@@ -57,7 +57,7 @@
             <div class="col-sm-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Lugar de Almacenamiento</h3>
+                        <h3 class="panel-title">Lugares de Almacenamiento</h3>
                     </div>
                     <div class="panel-body">
                         <div class="container">
@@ -72,7 +72,7 @@
             <div class="col-sm-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Estado de Notificacion Cliente</h3>
+                        <h3 class="panel-title">Estados de Notificacion Cliente</h3>
                     </div>
                     <div class="panel-body">
                         <div class="container">
@@ -82,8 +82,77 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Tipos de Servicio</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="container">
+                            <a asp-controller="TipoServicios" asp-action="Create" class="btn btn-primary">Registrar</a>
+                            <a asp-controller="TipoServicios" asp-action="Index" class="btn btn-default">Ver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Tipos de Tecnicos</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="container">
+                            <a asp-controller="TipoTecnicos" asp-action="Create" class="btn btn-primary">Registrar</a>
+                            <a asp-controller="TipoTecnicos" asp-action="Index" class="btn btn-default">Ver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Tecnicos</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="container">
+                            <a asp-controller="Tecnicos" asp-action="Create" class="btn btn-primary">Registrar</a>
+                            <a asp-controller="Tecnicos" asp-action="Index" class="btn btn-default">Ver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-    </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Estados del Servicio</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <a asp-controller="EstadoServicios" asp-action="Create" class="btn btn-primary">Registrar</a>
+                                <a asp-controller="EstadoServicios" asp-action="Index" class="btn btn-default">Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Servicios</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <a asp-controller="Servicios" asp-action="Create" class="btn btn-primary">Registrar</a>
+                                <a asp-controller="Servicios" asp-action="Index" class="btn btn-default">Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
 </div>
     </div>
 

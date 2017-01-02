@@ -1,10 +1,10 @@
 @model LoComercio.Data.Servicio
 
 @{
-    ViewData["Title"] = "Detalles";
+    ViewData["Title"] = "Details";
 }
 
-<h2>Detalles</h2>
+<h2>Details</h2>
 
 <div>
     <h4>Servicio</h4>
@@ -17,10 +17,22 @@
             @Html.DisplayFor(model => model.Nombre)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Precio)
+            @Html.DisplayNameFor(model => model.PrecioMaximo)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Precio)
+            @Html.DisplayFor(model => model.PrecioMaximo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioMinimo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrecioMinimo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioSugerido)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrecioSugerido)
         </dd>
     </dl>
 </div>

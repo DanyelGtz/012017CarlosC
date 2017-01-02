@@ -39,24 +39,59 @@
 .alinearDerecha {
     float: right !important;
 }
-.body-content{
-    width:91%;
-}
-.navbar-inverse{
-    background-color:#061e54 !important;
+
+.body-content {
+    width: 91%;
 }
 
-.imgLogo{
-        width: 127px;
+.navbar-inverse {
+    background-color: #061e54 !important;
+}
+
+.imgLogo {
+    width: 127px;
     margin-top: -10px;
     height: 44px;
     margin-left: -40px;
 }
 
-.form-group{
-    margin-top:30px;
+.form-group {
+    margin-top: 30px;
 }
 
+.OrdenServicioEntregado {
+    background-color: limegreen;
+    -webkit-border-radius: 10px !important;
+    border-radius: 10px !important;
+    margin-top: 20px !important;
+}
+
+.OrdenServicioNormal {
+    background-color: limegreen;
+    -webkit-border-radius: 10px !important;
+    border-radius: 10px !important;
+    margin-top: 20px !important;
+}
+
+.OrdenServicioNoAutorizado {
+    background-color:gray;
+    -webkit-border-radius: 10px !important;
+    border-radius: 10px !important;
+    margin-top: 20px !important;
+}
+
+.OrdenServicioRetrazado {
+    background-color:orange;
+    -webkit-border-radius: 10px !important;
+    border-radius: 10px !important;
+    margin-top: 20px !important;
+}
+.OrdenServicioUrgente {
+    background-color:red;
+    -webkit-border-radius: 10px !important;
+    border-radius: 10px !important;
+    margin-top: 20px !important;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

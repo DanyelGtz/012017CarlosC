@@ -14,12 +14,13 @@
             <form asp-action="Create">
                 <h2>Registrar Orden de Servicio</h2>
                 <h3 class="panel-title">Datos Generales</h3>
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+               
 
                 <hr />
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
+                            <div asp-validation-summary="All" class="text-danger"></div>
                             <label asp-for="IdCliente" class="control-label">Cliente</label>
                             <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente"></select>
                         </div>
@@ -34,7 +35,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="FechaLlegada" class="control-label"></label>
-                            <input asp-for="FechaLlegada" value="@System.DateTime.Now.Date.ToString()" class="form-control" disabled />
+                            <input asp-for="FechaLlegada" type="datetime" value="@System.DateTime.Now.ToString()" class="form-control" disabled />
                             <span asp-validation-for="FechaLlegada" class="text-danger" />
                         </div>
                     </div>
@@ -215,7 +216,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label asp-for="FechaPosibleSalida" class="control-label"></label>
-                                <input asp-for="FechaPosibleSalida" class="form-control" />
+                                <input type="date" asp-for="FechaPosibleSalida" class="form-control" />
                                 <span asp-validation-for="FechaPosibleSalida" class="text-danger" />
                             </div>
                         </div>
@@ -239,7 +240,8 @@
 <div>
     <a asp-action="Index">Regresar</a>
 </div>
-
+        </div>
+    </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

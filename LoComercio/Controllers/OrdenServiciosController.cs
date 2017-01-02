@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LoComercio.Data;
+using LoComercio.Models.OrdenServicioViewModels;
 
 namespace LoComercio.Controllers
 {
@@ -21,7 +22,7 @@ namespace LoComercio.Controllers
         // GET: OrdenServicios
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.OrdenesServicio.Include(o => o.Cliente).Include(o => o.EstadoDispositivo).Include(o => o.EstadoNotificacion).Include(o => o.LugarAlmacenamiento).Include(o => o.Modelo).Include(o => o.Pago).Include(o => o.SolicitudAccesorio).Include(o => o.SolicitudRefaccion).Include(o => o.Tecnico);
+            var applicationDbContext = _context.OrdenesServicio.Include(o => o.Cliente).Include(o => o.EstadoDispositivo).Include(o => o.EstadoNotificacion).Include(o => o.LugarAlmacenamiento).Include(o => o.Pago).Include(o => o.SolicitudAccesorio).Include(o => o.SolicitudRefaccion).Include(o => o.Tecnico).Include(o=>o.TipoServicio).Include(o=>o.Modelo);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -64,8 +65,9 @@ namespace LoComercio.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AceptaRiesgo,ColorDispositivo,ColorPieza,CompanyaOrigen,DejaAccesorios,DesactivoICloud,DescripcionAccesorios,DescripcionFalla,DescripcionRevisionAdicional,EquipoApagado,EquipoMojado,FechaLlegada,FechaPosibleSalida,FechaSalida,IMEI,IdCliente,IdEdoDispositivo,IdEdoNotificacion,IdLugarAlmacenamiento,IdModeloTecnico,IdPago,IdPersonalEntrega,IdSolAccesorio,IdSolRefaccion,IdTecnico,ImplicaRiesgo,NotasReparaciones,Observaciones,PasswordDesbloqueo,PatronDesbloqueo,ReparadoAnteriormente,RevisionAdicional,UsuarioRecibe")] OrdenServicio ordenServicio)
+        public async Task<IActionResult> Create([Bind("Id,AceptaRiesgo,ColorDispositivo,ColorPieza,CompanyaOrigen,DejaAccesorios,DesactivoICloud,DescripcionAccesorios,DescripcionFalla,DescripcionRevisionAdicional,EquipoApagado,EquipoMojado,FechaLlegada,FechaPosibleSalida,FechaSalida,IMEI,IdCliente,IdEdoDispositivo,IdEdoNotificacion,IdLugarAlmacenamiento,IdModelo,IdMarca,IdPago,IdPersonalEntrega,IdSolAccesorio,IdSolRefaccion,IdTecnico,IdTipoServicio,ImplicaRiesgo,NotasReparaciones,Observaciones,PasswordDesbloqueo,PatronDesbloqueo,ReparadoAnteriormente,RevisionAdicional,UsuarioRecibe")] OrdenServicio ordenServicio)
         {
+            ordenServicio.FechaLlegada = System.DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Add(ordenServicio);
@@ -87,6 +89,7 @@ namespace LoComercio.Controllers
         }
 
         // GET: OrdenServicios/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -104,11 +107,17 @@ namespace LoComercio.Controllers
             ViewData["IdEdoNotificacion"] = new SelectList(_context.EstadosNotificaciones, "Id", "Nombre", ordenServicio.IdEdoNotificacion);
             ViewData["IdLugarAlmacenamiento"] = new SelectList(_context.LugaresAlmacenamiento, "Id", "Nombre", ordenServicio.IdLugarAlmacenamiento);
             ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloComercial", ordenServicio.IdModelo);
+            ViewData["IdMarca"] = new SelectList(_context.Marcas, "Id", "Nombre", ordenServicio.IdMarca);
+            ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre");
             ViewData["IdPago"] = new SelectList(_context.Pagos, "Id", "Id", ordenServicio.IdPago);
             ViewData["IdSolAccesorio"] = new SelectList(_context.SolicitudAccesorios, "Id", "Id", ordenServicio.IdSolAccesorio);
             ViewData["IdSolRefaccion"] = new SelectList(_context.SolicitudRefacciones, "Id", "Id", ordenServicio.IdSolRefaccion);
             ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre", ordenServicio.IdTecnico);
-            return View(ordenServicio);
+
+            OrdenServicioViewModel osVm = new OrdenServicioViewModel();
+            osVm.OrdenServicio = ordenServicio;
+            osVm.OrdenServicioServicios = new List<OrdenServicioServicio>();
+            return View(osVm);
         }
 
         // POST: OrdenServicios/Edit/5
@@ -116,9 +125,10 @@ namespace LoComercio.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,AceptaRiesgo,ColorDispositivo,ColorPieza,CompanyaOrigen,DejaAccesorios,DesactivoICloud,DescripcionAccesorios,DescripcionFalla,DescripcionRevisionAdicional,EquipoApagado,EquipoMojado,FechaLlegada,FechaPosibleSalida,FechaSalida,IMEI,IdCliente,IdEdoDispositivo,IdEdoNotificacion,IdLugarAlmacenamiento,IdModeloTecnico,IdPago,IdPersonalEntrega,IdSolAccesorio,IdSolRefaccion,IdTecnico,ImplicaRiesgo,NotasReparaciones,Observaciones,PasswordDesbloqueo,PatronDesbloqueo,ReparadoAnteriormente,RevisionAdicional,UsuarioRecibe")] OrdenServicio ordenServicio)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,AceptaRiesgo,ColorDispositivo,ColorPieza,CompanyaOrigen,DejaAccesorios,DesactivoICloud,DescripcionAccesorios,DescripcionFalla,DescripcionRevisionAdicional,EquipoApagado,EquipoMojado,FechaLlegada,FechaPosibleSalida,FechaSalida,IMEI,IdCliente,IdEdoDispositivo,IdEdoNotificacion,IdLugarAlmacenamiento,IdModelo,IdMarca,IdPago,IdPersonalEntrega,IdSolAccesorio,IdSolRefaccion,IdTecnico,IdTipoServicio,ImplicaRiesgo,NotasReparaciones,Observaciones,PasswordDesbloqueo,PatronDesbloqueo,ReparadoAnteriormente,RevisionAdicional,UsuarioRecibe")] OrdenServicio ordenServicio)
         {
-            if (id != ordenServicio.Id)
+            var OrdenS = _context.OrdenesServicio.SingleOrDefault(o => o.Id == id);
+            if (id != OrdenS.Id)
             {
                 return NotFound();
             }
@@ -127,7 +137,19 @@ namespace LoComercio.Controllers
             {
                 try
                 {
-                    _context.Update(ordenServicio);
+                    OrdenServicio os = _context.OrdenesServicio.SingleOrDefault(o => o.Id == id);
+                    os.AceptaRiesgo = ordenServicio.AceptaRiesgo;
+                    os.ImplicaRiesgo = ordenServicio.ImplicaRiesgo;
+                    os.ColorPieza = ordenServicio.ColorPieza;
+                    os.IdModelo = ordenServicio.IdModelo;
+                    os.IdEdoDispositivo = ordenServicio.IdEdoDispositivo;
+                    os.IdTipoServicio = ordenServicio.IdTipoServicio;
+                    os.IdTecnico = ordenServicio.IdTecnico;
+                    os.IdLugarAlmacenamiento = ordenServicio.IdLugarAlmacenamiento;
+                    os.IdEdoNotificacion = ordenServicio.IdEdoNotificacion;
+                    os.FechaPosibleSalida = ordenServicio.FechaPosibleSalida;
+                    os.Observaciones = ordenServicio.Observaciones;
+                    _context.Update(os);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -147,7 +169,9 @@ namespace LoComercio.Controllers
             ViewData["IdEdoDispositivo"] = new SelectList(_context.EstadosDispositivos, "Id", "Nombre", ordenServicio.IdEdoDispositivo);
             ViewData["IdEdoNotificacion"] = new SelectList(_context.EstadosNotificaciones, "Id", "Nombre", ordenServicio.IdEdoNotificacion);
             ViewData["IdLugarAlmacenamiento"] = new SelectList(_context.LugaresAlmacenamiento, "Id", "Nombre", ordenServicio.IdLugarAlmacenamiento);
-            ViewData["IdModeloTecnico"] = new SelectList(_context.Modelos, "Id", "ModeloComercial", ordenServicio.IdModelo);
+            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloComercial", ordenServicio.IdModelo);
+            ViewData["IdMarca"] = new SelectList(_context.Marcas, "Id", "Nombre", ordenServicio.IdMarca);
+            ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre");
             ViewData["IdPago"] = new SelectList(_context.Pagos, "Id", "Id", ordenServicio.IdPago);
             ViewData["IdSolAccesorio"] = new SelectList(_context.SolicitudAccesorios, "Id", "Id", ordenServicio.IdSolAccesorio);
             ViewData["IdSolRefaccion"] = new SelectList(_context.SolicitudRefacciones, "Id", "Id", ordenServicio.IdSolRefaccion);

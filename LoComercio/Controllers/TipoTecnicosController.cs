@@ -9,23 +9,22 @@ using LoComercio.Data;
 
 namespace LoComercio.Controllers
 {
-    public class ServiciosController : Controller
+    public class TipoTecnicosController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ServiciosController(ApplicationDbContext context)
+        public TipoTecnicosController(ApplicationDbContext context)
         {
             _context = context;    
         }
 
-        // GET: Servicios
+        // GET: TipoTecnicos
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Servicios.Include(s => s.Modelo).Include(s => s.TipoServicio);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.TiposTecnico.ToListAsync());
         }
 
-        // GET: Servicios/Details/5
+        // GET: TipoTecnicos/Details/5
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -33,42 +32,38 @@ namespace LoComercio.Controllers
                 return NotFound();
             }
 
-            var servicio = await _context.Servicios.SingleOrDefaultAsync(m => m.Id == id);
-            if (servicio == null)
+            var tipoTecnico = await _context.TiposTecnico.SingleOrDefaultAsync(m => m.Id == id);
+            if (tipoTecnico == null)
             {
                 return NotFound();
             }
 
-            return View(servicio);
+            return View(tipoTecnico);
         }
 
-        // GET: Servicios/Create
+        // GET: TipoTecnicos/Create
         public IActionResult Create()
         {
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloComercial");
-            ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre");
             return View();
         }
 
-        // POST: Servicios/Create
+        // POST: TipoTecnicos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdModelo,IdTipoServicio,Nombre,PrecioMaximo,PrecioMinimo,PrecioSugerido")] Servicio servicio)
+        public async Task<IActionResult> Create([Bind("Id,Nombre")] TipoTecnico tipoTecnico)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(servicio);
+                _context.Add(tipoTecnico);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloComercial", servicio.IdModelo);
-            ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre", servicio.IdTipoServicio);
-            return View(servicio);
+            return View(tipoTecnico);
         }
 
-        // GET: Servicios/Edit/5
+        // GET: TipoTecnicos/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -76,24 +71,22 @@ namespace LoComercio.Controllers
                 return NotFound();
             }
 
-            var servicio = await _context.Servicios.SingleOrDefaultAsync(m => m.Id == id);
-            if (servicio == null)
+            var tipoTecnico = await _context.TiposTecnico.SingleOrDefaultAsync(m => m.Id == id);
+            if (tipoTecnico == null)
             {
                 return NotFound();
             }
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloComercial", servicio.IdModelo);
-            ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre", servicio.IdTipoServicio);
-            return View(servicio);
+            return View(tipoTecnico);
         }
 
-        // POST: Servicios/Edit/5
+        // POST: TipoTecnicos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,IdModelo,IdTipoServicio,Nombre,PrecioMaximo,PrecioMinimo,PrecioSugerido")] Servicio servicio)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Nombre")] TipoTecnico tipoTecnico)
         {
-            if (id != servicio.Id)
+            if (id != tipoTecnico.Id)
             {
                 return NotFound();
             }
@@ -102,12 +95,12 @@ namespace LoComercio.Controllers
             {
                 try
                 {
-                    _context.Update(servicio);
+                    _context.Update(tipoTecnico);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ServicioExists(servicio.Id))
+                    if (!TipoTecnicoExists(tipoTecnico.Id))
                     {
                         return NotFound();
                     }
@@ -118,12 +111,10 @@ namespace LoComercio.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloComercial", servicio.IdModelo);
-            ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre", servicio.IdTipoServicio);
-            return View(servicio);
+            return View(tipoTecnico);
         }
 
-        // GET: Servicios/Delete/5
+        // GET: TipoTecnicos/Delete/5
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -131,29 +122,29 @@ namespace LoComercio.Controllers
                 return NotFound();
             }
 
-            var servicio = await _context.Servicios.SingleOrDefaultAsync(m => m.Id == id);
-            if (servicio == null)
+            var tipoTecnico = await _context.TiposTecnico.SingleOrDefaultAsync(m => m.Id == id);
+            if (tipoTecnico == null)
             {
                 return NotFound();
             }
 
-            return View(servicio);
+            return View(tipoTecnico);
         }
 
-        // POST: Servicios/Delete/5
+        // POST: TipoTecnicos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var servicio = await _context.Servicios.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Servicios.Remove(servicio);
+            var tipoTecnico = await _context.TiposTecnico.SingleOrDefaultAsync(m => m.Id == id);
+            _context.TiposTecnico.Remove(tipoTecnico);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool ServicioExists(long id)
+        private bool TipoTecnicoExists(long id)
         {
-            return _context.Servicios.Any(e => e.Id == id);
+            return _context.TiposTecnico.Any(e => e.Id == id);
         }
     }
 }

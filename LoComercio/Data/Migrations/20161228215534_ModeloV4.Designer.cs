@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using LoComercio.Data;
 
-namespace LoComercio.Data.Migrations
+namespace WebApplication1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20161222170140_ModeloV2")]
-    partial class ModeloV2
+    [Migration("20161228215534_ModeloV4")]
+    partial class ModeloV4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -268,8 +268,7 @@ namespace LoComercio.Data.Migrations
 
                     b.Property<string>("ColorPieza");
 
-                    b.Property<string>("CompanyaOrigen")
-                        .IsRequired();
+                    b.Property<string>("CompanyaOrigen");
 
                     b.Property<bool>("DejaAccesorios");
 
@@ -277,8 +276,7 @@ namespace LoComercio.Data.Migrations
 
                     b.Property<string>("DescripcionAccesorios");
 
-                    b.Property<string>("DescripcionFalla")
-                        .IsRequired();
+                    b.Property<string>("DescripcionFalla");
 
                     b.Property<string>("DescripcionRevisionAdicional");
 
@@ -292,8 +290,7 @@ namespace LoComercio.Data.Migrations
 
                     b.Property<DateTime>("FechaSalida");
 
-                    b.Property<string>("IMEI")
-                        .IsRequired();
+                    b.Property<string>("IMEI");
 
                     b.Property<long?>("IdCliente");
 
@@ -306,8 +303,6 @@ namespace LoComercio.Data.Migrations
                     b.Property<long?>("IdMarca");
 
                     b.Property<long?>("IdModelo");
-
-                    b.Property<long?>("IdModeloTecnico");
 
                     b.Property<long?>("IdPago");
 
@@ -335,8 +330,7 @@ namespace LoComercio.Data.Migrations
 
                     b.Property<bool>("RevisionAdicional");
 
-                    b.Property<string>("UsuarioRecibe")
-                        .IsRequired();
+                    b.Property<string>("UsuarioRecibe");
 
                     b.HasKey("Id");
 
@@ -350,7 +344,7 @@ namespace LoComercio.Data.Migrations
 
                     b.HasIndex("IdMarca");
 
-                    b.HasIndex("IdModeloTecnico");
+                    b.HasIndex("IdModelo");
 
                     b.HasIndex("IdPago");
 
@@ -372,11 +366,17 @@ namespace LoComercio.Data.Migrations
 
                     b.Property<long?>("IdEdoServicio");
 
+                    b.Property<long?>("IdOrdenServicio");
+
                     b.Property<long?>("IdServicio");
+
+                    b.Property<float>("PrecioServicio");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IdEdoServicio");
+
+                    b.HasIndex("IdOrdenServicio");
 
                     b.HasIndex("IdServicio");
 
@@ -427,14 +427,22 @@ namespace LoComercio.Data.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<long?>("IdModelo");
+
                     b.Property<long?>("IdTipoServicio");
 
                     b.Property<string>("Nombre")
                         .IsRequired();
 
-                    b.Property<float>("Precio");
+                    b.Property<float>("PrecioMaximo");
+
+                    b.Property<float>("PrecioMinimo");
+
+                    b.Property<float>("PrecioSugerido");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdModelo");
 
                     b.HasIndex("IdTipoServicio");
 
@@ -730,7 +738,7 @@ namespace LoComercio.Data.Migrations
 
             modelBuilder.Entity("LoComercio.Data.Modelo", b =>
                 {
-                    b.HasOne("LoComercio.Data.Modelo", "Marca")
+                    b.HasOne("LoComercio.Data.Marca", "Marca")
                         .WithMany()
                         .HasForeignKey("IdMarca");
                 });
@@ -770,7 +778,7 @@ namespace LoComercio.Data.Migrations
 
                     b.HasOne("LoComercio.Data.Modelo", "Modelo")
                         .WithMany()
-                        .HasForeignKey("IdModeloTecnico");
+                        .HasForeignKey("IdModelo");
 
                     b.HasOne("LoComercio.Data.Pago", "Pago")
                         .WithMany()
@@ -799,6 +807,10 @@ namespace LoComercio.Data.Migrations
                         .WithMany()
                         .HasForeignKey("IdEdoServicio");
 
+                    b.HasOne("LoComercio.Data.OrdenServicio", "OrdenServicio")
+                        .WithMany()
+                        .HasForeignKey("IdOrdenServicio");
+
                     b.HasOne("LoComercio.Data.Servicio", "Servicio")
                         .WithMany()
                         .HasForeignKey("IdServicio");
@@ -813,6 +825,10 @@ namespace LoComercio.Data.Migrations
 
             modelBuilder.Entity("LoComercio.Data.Servicio", b =>
                 {
+                    b.HasOne("LoComercio.Data.Modelo", "Modelo")
+                        .WithMany()
+                        .HasForeignKey("IdModelo");
+
                     b.HasOne("LoComercio.Data.TipoServicio", "TipoServicio")
                         .WithMany()
                         .HasForeignKey("IdTipoServicio");

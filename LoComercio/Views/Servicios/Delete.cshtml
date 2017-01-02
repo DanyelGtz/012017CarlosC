@@ -1,12 +1,12 @@
 @model LoComercio.Data.Servicio
 
 @{
-    ViewData["Title"] = "Eliminar";
+    ViewData["Title"] = "Delete";
 }
 
-<h2>Eliminar</h2>
+<h2>Delete</h2>
 
-<h3>Estás seguro de eliminar éste Elemento?</h3>
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>Servicio</h4>
     <hr />
@@ -18,10 +18,22 @@
             @Html.DisplayFor(model => model.Nombre)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Precio)
+            @Html.DisplayNameFor(model => model.PrecioMaximo)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Precio)
+            @Html.DisplayFor(model => model.PrecioMaximo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioMinimo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrecioMinimo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioSugerido)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrecioSugerido)
         </dd>
     </dl>
     

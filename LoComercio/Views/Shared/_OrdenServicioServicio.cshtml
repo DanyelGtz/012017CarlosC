@@ -1,0 +1,48 @@
+@model IEnumerable<LoComercio.Data.OrdenServicioServicio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="col-md-12 col-centered">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h2 class="panel-title">Servicios</h2>
+        </div>
+        <div class="panel-body">
+            <div class="container">
+                <form asp-controller="OrdenServicioServicios" asp-action="Create">
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PrecioServicio)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PrecioServicio)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <input type="submit" class="btn btn-primary" value="Agregar"/>
+                    </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>

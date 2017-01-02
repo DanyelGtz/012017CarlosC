@@ -1,268 +1,254 @@
-@model LoComercio.Data.OrdenServicio
+@model LoComercio.Models.OrdenServicioViewModels.OrdenServicioViewModel
 
 @{
     ViewData["Title"] = "Editar";
 }
+@inject UserManager<ApplicationUser> UserManager
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Orden de Servicio</h3>
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <form asp-action="Edit">
+                <h2>Seguimiento de Orden de Servicio</h2>
+                <h3 class="panel-title">Datos Generales</h3>
 
-<h2>Editar</h2>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <label asp-for="OrdenServicio.IdCliente" class="control-label">Cliente</label>
+                            <select asp-for="OrdenServicio.IdCliente" class="form-control" asp-items="ViewBag.IdCliente" disabled></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.UsuarioRecibe" class="control-label"></label>
+                            <input asp-for="OrdenServicio.UsuarioRecibe" class="form-control" disabled />
+                            <span asp-validation-for="OrdenServicio.UsuarioRecibe" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.FechaLlegada" class="control-label"></label>
+                            <input asp-for="OrdenServicio.FechaLlegada" class="form-control" disabled />
+                            <span asp-validation-for="OrdenServicio.FechaLlegada" class="text-danger" />
+                        </div>
+                    </div>
+                </div>
 
-<form asp-action="Edit">
-    <div class="form-horizontal">
-        <h4>OrdenServicio</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Id" />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="AceptaRiesgo" />
-                    <label asp-for="AceptaRiesgo"></label>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.IdMarca" class="control-label">Marca</label>
+                            <select asp-for="OrdenServicio.IdMarca" class="form-control" asp-items="ViewBag.IdMarca" disabled></select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.IdModelo" class="control-label">Modelo Tecnico</label>
+                            <select asp-for="OrdenServicio.IdModelo" class="form-control" asp-items="ViewBag.IdModelo"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.IMEI" class="control-label"></label>
+                            <input asp-for="OrdenServicio.IMEI" class="form-control" maxlength="16" disabled/>
+                            <span asp-validation-for="OrdenServicio.IMEI" class="text-danger" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ColorDispositivo" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="ColorDispositivo" class="form-control" />
-                <span asp-validation-for="ColorDispositivo" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ColorPieza" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="ColorPieza" class="form-control" />
-                <span asp-validation-for="ColorPieza" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="CompanyaOrigen" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="CompanyaOrigen" class="form-control" />
-                <span asp-validation-for="CompanyaOrigen" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="DejaAccesorios" />
-                    <label asp-for="DejaAccesorios"></label>
+                <div class="form-group"></div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.IdEdoDispositivo" class="control-label">Estado de Dispositivo</label>
+                            <select asp-for="OrdenServicio.IdEdoDispositivo" class="form-control" asp-items="ViewBag.IdEdoDispositivo"></select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.CompanyaOrigen" class="control-label"></label>
+                            <input asp-for="OrdenServicio.CompanyaOrigen" class="form-control" disabled/>
+                            <span asp-validation-for="OrdenServicio.CompanyaOrigen" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.ColorDispositivo" class="control-label"></label>
+                            <input asp-for="OrdenServicio.ColorDispositivo" class="form-control" disabled/>
+                            <span asp-validation-for="OrdenServicio.ColorDispositivo" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.ColorPieza" class="control-label"></label>
+                            <input asp-for="OrdenServicio.ColorPieza" class="form-control" />
+                            <span asp-validation-for="OrdenServicio.ColorPieza" class="text-danger" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="DesactivoICloud" />
-                    <label asp-for="DesactivoICloud"></label>
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <input asp-for="OrdenServicio.DejaAccesorios" disabled/>
+                                <label asp-for="OrdenServicio.DejaAccesorios"></label>
+                            </div>
+                            <input asp-for="OrdenServicio.DescripcionAccesorios" class="form-control" disabled />
+                            <span asp-validation-for="OrdenServicio.DescripcionAccesorios" class="text-danger" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="DescripcionAccesorios" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="DescripcionAccesorios" class="form-control" />
-                <span asp-validation-for="DescripcionAccesorios" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="DescripcionFalla" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="DescripcionFalla" class="form-control" />
-                <span asp-validation-for="DescripcionFalla" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="DescripcionRevisionAdicional" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="DescripcionRevisionAdicional" class="form-control" />
-                <span asp-validation-for="DescripcionRevisionAdicional" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="EquipoApagado" />
-                    <label asp-for="EquipoApagado"></label>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.DescripcionFalla" class="control-label"></label>
+                            <textarea asp-for="OrdenServicio.DescripcionFalla" class="form-control" disabled></textarea>
+                            <span asp-validation-for="OrdenServicio.DescripcionFalla" class="text-danger" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="EquipoMojado" />
-                    <label asp-for="EquipoMojado"></label>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.IdTipoServicio" class="control-label">Tipo de Servicio</label>
+                            <select asp-for="OrdenServicio.IdTipoServicio" class="form-control" asp-items="ViewBag.IdTipoServicio"></select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.IdTecnico" class="control-label">Tecnico</label>
+                            <select asp-for="OrdenServicio.IdTecnico" class="form-control" asp-items="ViewBag.IdTecnico"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-5">
+                            <div class="checkbox">
+                                <input asp-for="OrdenServicio.DesactivoICloud" disabled/>
+                                <label asp-for="OrdenServicio.DesactivoICloud"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-offset-1 col-md-5">
+                            <div class="checkbox">
+                                <input asp-for="OrdenServicio.ImplicaRiesgo"/>
+                                <label asp-for="OrdenServicio.ImplicaRiesgo"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-5">
+                                <div class="checkbox">
+                                    <input asp-for="OrdenServicio.ReparadoAnteriormente" disabled/>
+                                    <label asp-for="OrdenServicio.ReparadoAnteriormente"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-offset-1 col-md-5">
+                            <div class="checkbox">
+                                <input asp-for="OrdenServicio.AceptaRiesgo" />
+                                <label asp-for="OrdenServicio.AceptaRiesgo"></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-5">
+                                <div class="checkbox">
+                                    <input asp-for="OrdenServicio.EquipoMojado" disabled/>
+                                    <label asp-for="OrdenServicio.EquipoMojado"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-5">
+                                <div class="checkbox">
+                                    <input asp-for="OrdenServicio.EquipoApagado" disabled/>
+                                    <label asp-for="OrdenServicio.EquipoApagado"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-md-10">
+                                <div class="checkbox">
+                                    <input asp-for="OrdenServicio.RevisionAdicional" disabled/>
+                                    <label asp-for="OrdenServicio.RevisionAdicional"></label>
+                                    <input asp-for="OrdenServicio.DescripcionRevisionAdicional" class="form-control" disabled />
+                                    <span asp-validation-for="OrdenServicio.DescripcionRevisionAdicional" class="text-danger" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="OrdenServicio.PasswordDesbloqueo" class="control-label"></label>
+                                <input asp-for="OrdenServicio.PasswordDesbloqueo" class="form-control" disabled/>
+                                <span asp-validation-for="OrdenServicio.PasswordDesbloqueo" class="text-danger" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="OrdenServicio.PatronDesbloqueo" class="control-label"></label>
+                                <input asp-for="OrdenServicio.PatronDesbloqueo" class="form-control" disabled/>
+                                <span asp-validation-for="OrdenServicio.PatronDesbloqueo" class="text-danger" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="OrdenServicio.IdLugarAlmacenamiento" class="control-label">Lugar de Almacenamiento</label>
+                                <select asp-for="OrdenServicio.IdLugarAlmacenamiento" class="form-control" asp-items="ViewBag.IdLugarAlmacenamiento"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="OrdenServicio.IdEdoNotificacion" class="control-label">Estado de Notificacion al Cliente</label>
+                                <select asp-for="OrdenServicio.IdEdoNotificacion" class="form-control" asp-items="ViewBag.IdEdoNotificacion"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="OrdenServicio.FechaPosibleSalida" class="control-label"></label>
+                                <input type="date" asp-for="OrdenServicio.FechaPosibleSalida" class="form-control" />
+                                <span asp-validation-for="OrdenServicio.FechaPosibleSalida" class="text-danger" />
+                            </div>
+                        </div>
+                        <hr />
+                        <br />
+                        @Html.Partial("_OrdenServicioServicio",Model.OrdenServicioServicios)
+
+                        <br />
+                        <hr />
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label asp-for="OrdenServicio.Observaciones" class="control-label"></label>
+                                <textarea asp-for="OrdenServicio.Observaciones" class="form-control"></textarea>
+                                <span asp-validation-for="OrdenServicio.Observaciones" class="text-danger" />
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <a asp-controller="OrdenServicio" asp-action="Liberar" value="Liberar" class="btn btn-warning">Liberar</a>
+                                    <div class="col-md-10">
+                                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label asp-for="FechaLlegada" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="FechaLlegada" class="form-control" />
-                <span asp-validation-for="FechaLlegada" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="FechaPosibleSalida" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="FechaPosibleSalida" class="form-control" />
-                <span asp-validation-for="FechaPosibleSalida" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="FechaSalida" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="FechaSalida" class="form-control" />
-                <span asp-validation-for="FechaSalida" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IMEI" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="IMEI" class="form-control" />
-                <span asp-validation-for="IMEI" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdCliente" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente"></select>
-                <span asp-validation-for="IdCliente" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdEdoDispositivo" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="IdEdoDispositivo" class="form-control" asp-items="ViewBag.IdEdoDispositivo"></select>
-                <span asp-validation-for="IdEdoDispositivo" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdEdoNotificacion" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="IdEdoNotificacion" class="form-control" asp-items="ViewBag.IdEdoNotificacion"></select>
-                <span asp-validation-for="IdEdoNotificacion" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdLugarAlmacenamiento" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="IdLugarAlmacenamiento" class="form-control" asp-items="ViewBag.IdLugarAlmacenamiento"></select>
-                <span asp-validation-for="IdLugarAlmacenamiento" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdModeloTecnico" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="IdModeloTecnico" class="form-control" asp-items="ViewBag.IdModeloTecnico"></select>
-                <span asp-validation-for="IdModeloTecnico" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdPago" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="IdPago" class="form-control" asp-items="ViewBag.IdPago"></select>
-                <span asp-validation-for="IdPago" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdPersonalEntrega" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="IdPersonalEntrega" class="form-control" />
-                <span asp-validation-for="IdPersonalEntrega" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdSolAccesorio" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="IdSolAccesorio" class="form-control" asp-items="ViewBag.IdSolAccesorio"></select>
-                <span asp-validation-for="IdSolAccesorio" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdSolRefaccion" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="IdSolRefaccion" class="form-control" asp-items="ViewBag.IdSolRefaccion"></select>
-                <span asp-validation-for="IdSolRefaccion" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdTecnico" class="control-label col-md-2"></label>
-            <div class="col-md-10">
-                <select asp-for="IdTecnico" class="form-control" asp-items="ViewBag.IdTecnico"></select>
-                <span asp-validation-for="IdTecnico" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="ImplicaRiesgo" />
-                    <label asp-for="ImplicaRiesgo"></label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="NotasReparaciones" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="NotasReparaciones" class="form-control" />
-                <span asp-validation-for="NotasReparaciones" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Observaciones" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Observaciones" class="form-control" />
-                <span asp-validation-for="Observaciones" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="PasswordDesbloqueo" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="PasswordDesbloqueo" class="form-control" />
-                <span asp-validation-for="PasswordDesbloqueo" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="PatronDesbloqueo" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="PatronDesbloqueo" class="form-control" />
-                <span asp-validation-for="PatronDesbloqueo" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="ReparadoAnteriormente" />
-                    <label asp-for="ReparadoAnteriormente"></label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="RevisionAdicional" />
-                    <label asp-for="RevisionAdicional"></label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="UsuarioRecibe" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="UsuarioRecibe" class="form-control" />
-                <span asp-validation-for="UsuarioRecibe" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+        <div>
+            <a asp-action="Index">Regresar</a>
         </div>
     </div>
-</form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
