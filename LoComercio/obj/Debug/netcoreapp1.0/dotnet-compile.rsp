@@ -145,12 +145,15 @@
 --reference:C:\Users\danielgutierrez\.nuget\packages\NuGet.RuntimeModel\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.RuntimeModel.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\NuGet.Versioning\3.5.0-beta2-1484\lib\netstandard1.0\NuGet.Versioning.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\Remotion.Linq\2.1.1\lib\netstandard1.0\Remotion.Linq.dll
+--reference:C:\Users\danielgutierrez\.nuget\packages\SapientGuardian.EntityFrameworkCore.MySql\7.1.15\lib\netstandard1.3\SapientGuardian.EntityFrameworkCore.MySql.dll
+--reference:C:\Users\danielgutierrez\.nuget\packages\SapientGuardian.MySql.Data\6.9.813\lib\netstandard1.3\SapientGuardian.MySql.Data.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.AppContext\4.1.0\ref\netstandard1.6\System.AppContext.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Buffers\4.0.0\lib\netstandard1.1\System.Buffers.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Collections\4.0.11\ref\netstandard1.3\System.Collections.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Collections.Concurrent\4.0.12\ref\netstandard1.3\System.Collections.Concurrent.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Collections.Immutable\1.2.0\lib\netstandard1.0\System.Collections.Immutable.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Collections.NonGeneric\4.0.1\ref\netstandard1.3\System.Collections.NonGeneric.dll
+--reference:C:\Users\danielgutierrez\.nuget\packages\System.Collections.Specialized\4.0.1\ref\netstandard1.3\System.Collections.Specialized.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.ComponentModel\4.0.1\ref\netstandard1.0\System.ComponentModel.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.ComponentModel.Annotations\4.1.0\ref\netstandard1.4\System.ComponentModel.Annotations.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.ComponentModel.Primitives\4.1.0\ref\netstandard1.0\System.ComponentModel.Primitives.dll
@@ -206,6 +209,7 @@
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Reflection.TypeExtensions\4.1.0\ref\netstandard1.5\System.Reflection.TypeExtensions.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Resources.Reader\4.0.0\lib\netstandard1.0\System.Resources.Reader.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Resources.ResourceManager\4.0.1\ref\netstandard1.0\System.Resources.ResourceManager.dll
+--reference:C:\Users\danielgutierrez\.nuget\packages\System.Resources.Writer\4.0.0\lib\netstandard1.3\System.Resources.Writer.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Runtime\4.1.0\ref\netstandard1.5\System.Runtime.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Runtime.Extensions\4.1.0\ref\netstandard1.5\System.Runtime.Extensions.dll
 --reference:C:\Users\danielgutierrez\.nuget\packages\System.Runtime.Handles\4.0.1\ref\netstandard1.3\System.Runtime.Handles.dll
