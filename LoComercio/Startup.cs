@@ -12,8 +12,7 @@ using Microsoft.Extensions.Logging;
 using LoDesbloqueo.Data;
 using LoDesbloqueo.Models;
 using LoDesbloqueo.Services;
-using MySQL.Data.EntityFrameworkCore.Extensions;
-
+using MySQL.Data.Entity.Extensions;
 
 namespace LoDesbloqueo
 {

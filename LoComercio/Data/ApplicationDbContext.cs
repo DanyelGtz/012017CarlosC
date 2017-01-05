@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using LoDesbloqueo.Models;
-using MySQL.Data.EntityFrameworkCore.Extensions;
 
 namespace LoDesbloqueo.Data
 {
