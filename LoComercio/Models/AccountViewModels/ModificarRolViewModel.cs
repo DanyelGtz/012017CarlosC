@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LoComercio.Models.AccountViewModels
+namespace LoDesbloqueo.Models.AccountViewModels
 {
     public class ModificarRolViewModel
     {

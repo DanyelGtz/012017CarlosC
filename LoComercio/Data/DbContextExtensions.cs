@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LoComercio.Data
+namespace LoDesbloqueo.Data
 {
     public static class DbContextExtensions
     {

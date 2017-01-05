@@ -1,4 +1,4 @@
-@model IEnumerable<LoComercio.Data.OrdenServicioServicio>
+@model IEnumerable<LoDesbloqueo.Data.OrdenServicioServicio>
 
 @{
     ViewData["Title"] = "Index";
@@ -18,30 +18,42 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        @Html.DisplayNameFor(model => model.IdServicio)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.IdEdoServicio)
+                                    </th>
+                                    <th>
                                         @Html.DisplayNameFor(model => model.PrecioServicio)
                                     </th>
-                                    <th></th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
+                                        @foreach (var servicio in ViewBag.IdServicio)
+                                        {
+                                            if (int.Parse(servicio.Value)==item.IdServicio)
+                                            {
+                                                <td>
+                                                    @servicio.Text
+                                                </td>
+                                            }
+                                        }
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.PrecioServicio)
+                                            @Html.DisplayFor(modelItem => item.EstadoServicio.Nombre)
                                         </td>
                                         <td>
-                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                            @Html.DisplayFor(modelItem => item.PrecioServicio)
                                         </td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
-                        <input type="submit" class="btn btn-primary" value="Agregar"/>
                     </div>
-                    </form>
+                </form>
             </div>
         </div>
     </div>

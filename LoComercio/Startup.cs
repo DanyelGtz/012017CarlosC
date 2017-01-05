@@ -9,13 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using LoComercio.Data;
-using LoComercio.Models;
-using LoComercio.Services;
+using LoDesbloqueo.Data;
+using LoDesbloqueo.Models;
+using LoDesbloqueo.Services;
 using MySQL.Data.EntityFrameworkCore.Extensions;
 
 
-namespace LoComercio
+namespace LoDesbloqueo
 {
     public class Startup
     {

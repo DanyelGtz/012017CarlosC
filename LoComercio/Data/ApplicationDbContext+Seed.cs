@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LoComercio.Data;
+using LoDesbloqueo.Data;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace LoComercio.Data
+namespace LoDesbloqueo.Data
 {
     public partial class ApplicationDbContext
     {

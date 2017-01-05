@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using LoComercio.Data;
+using LoDesbloqueo.Data;
 
 namespace LoComercio.Controllers
 {
@@ -21,7 +21,7 @@ namespace LoComercio.Controllers
         // GET: OrdenServicioServicios
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.OrdenesServicioServicio.Include(o => o.EstadoServicio).Include(o => o.Servicio);
+            var applicationDbContext = _context.OrdenesServicioServicio.Include(o => o.EstadoServicio).Include(o => o.OrdenServicio).Include(o => o.Servicio);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -47,6 +47,11 @@ namespace LoComercio.Controllers
         {
             ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");
             ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
+            OrdenServicioServicio os = new OrdenServicioServicio();
+                //os.IdOrdenServicio = long.Parse(Request.["IdOrdenServicio"]);
+                ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");
+                ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
+            
             return View();
         }
 
@@ -55,15 +60,26 @@ namespace LoComercio.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdEdoServicio,IdServicio,PrecioServicio")] OrdenServicioServicio ordenServicioServicio)
+        public async Task<IActionResult> Create([Bind("IdEdoServicio,IdOrdenServicio,IdServicio,PrecioServicio")] OrdenServicioServicio ordenServicioServicio, long id)
         {
             if (ModelState.IsValid)
             {
+
                 _context.Add(ordenServicioServicio);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "OrdenServicios", new { @id=ordenServicioServicio.IdOrdenServicio });
             }
+            else
+            {
+                ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre", ordenServicioServicio.IdEdoServicio);
+                ViewData["IdOrdenServicio"] = new SelectList(_context.OrdenesServicio, "Id", "Id", ordenServicioServicio.IdOrdenServicio);
+                ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre", ordenServicioServicio.IdServicio);
+                ordenServicioServicio.IdOrdenServicio = id;
+                return View(ordenServicioServicio);
+            }
+                    
             ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre", ordenServicioServicio.IdEdoServicio);
+            ViewData["IdOrdenServicio"] = new SelectList(_context.OrdenesServicio, "Id", "Id", ordenServicioServicio.IdOrdenServicio);
             ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre", ordenServicioServicio.IdServicio);
             return View(ordenServicioServicio);
         }
@@ -82,6 +98,7 @@ namespace LoComercio.Controllers
                 return NotFound();
             }
             ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre", ordenServicioServicio.IdEdoServicio);
+            ViewData["IdOrdenServicio"] = new SelectList(_context.OrdenesServicio, "Id", "Id", ordenServicioServicio.IdOrdenServicio);
             ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre", ordenServicioServicio.IdServicio);
             return View(ordenServicioServicio);
         }
@@ -91,7 +108,7 @@ namespace LoComercio.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,IdEdoServicio,IdServicio,PrecioServicio")] OrdenServicioServicio ordenServicioServicio)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,IdEdoServicio,IdOrdenServicio,IdServicio,PrecioServicio")] OrdenServicioServicio ordenServicioServicio)
         {
             if (id != ordenServicioServicio.Id)
             {
@@ -119,6 +136,7 @@ namespace LoComercio.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre", ordenServicioServicio.IdEdoServicio);
+            ViewData["IdOrdenServicio"] = new SelectList(_context.OrdenesServicio, "Id", "Id", ordenServicioServicio.IdOrdenServicio);
             ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre", ordenServicioServicio.IdServicio);
             return View(ordenServicioServicio);
         }

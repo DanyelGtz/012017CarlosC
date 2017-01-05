@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using LoComercio.Data;
+using LoDesbloqueo.Data;
 
-namespace LoComercio.Controllers
+namespace LoDesbloqueo.Controllers
 {
     public class TipoNotificacionsController : Controller
     {

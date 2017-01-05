@@ -1,4 +1,4 @@
-@model LoComercio.Models.OrdenServicioViewModels.OrdenServicioViewModel
+@model LoDesbloqueo.Models.OrdenServicioViewModels.OrdenServicioViewModel
 
 @{
     ViewData["Title"] = "Editar";
@@ -221,7 +221,10 @@
                         <hr />
                         <br />
                         @Html.Partial("_OrdenServicioServicio",Model.OrdenServicioServicios)
+                        <form asp-controller="OrdenServicioServicios" asp-action="Create" asp-route-id="@Model.OrdenServicio.Id" method="post">
+                            <input type="submit" class="btn btn-primary" value="Agregar">
 
+                        </form>
                         <br />
                         <hr />
                         <div class="col-md-12">

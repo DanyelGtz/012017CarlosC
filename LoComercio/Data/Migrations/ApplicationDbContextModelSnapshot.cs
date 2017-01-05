@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using LoComercio.Data;
+using LoDesbloqueo.Data;
 
 namespace WebApplication1.Data.Migrations
 {
@@ -15,7 +15,7 @@ namespace WebApplication1.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1");
 
-            modelBuilder.Entity("LoComercio.Data.Accesorio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Accesorio", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -35,7 +35,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("Accesorios");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.BitacoraEstados", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.BitacoraEstados", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -59,7 +59,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("BitacoraEstados");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.BitacoraNotifiaciones", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.BitacoraNotifiaciones", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -83,7 +83,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("BitacoraNotificaciones");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Cliente", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Cliente", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -110,7 +110,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.EstadoAccesorio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.EstadoAccesorio", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -123,7 +123,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("EstadosAccesorios");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.EstadoDispositivo", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.EstadoDispositivo", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -136,7 +136,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("EstadosDispositivos");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.EstadoNotificacion", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.EstadoNotificacion", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -149,7 +149,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("EstadosNotificaciones");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.EstadoRefaccion", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.EstadoRefaccion", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -162,7 +162,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("EstadosRefacciones");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.EstadoServicio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.EstadoServicio", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -175,7 +175,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("EstadosServicios");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.FormaPago", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.FormaPago", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -188,7 +188,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("FormasPagos");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.LugarAlmacenamiento", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.LugarAlmacenamiento", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -201,7 +201,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("LugaresAlmacenamiento");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Marca", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Marca", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -214,7 +214,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("Marcas");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Modelo", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Modelo", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -234,7 +234,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("Modelos");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Notificacion", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Notificacion", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -256,7 +256,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("Notificaciones");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.OrdenServicio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.OrdenServicio", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -358,7 +358,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("OrdenesServicio");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.OrdenServicioServicio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.OrdenServicioServicio", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -382,7 +382,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("OrdenesServicioServicio");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Pago", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Pago", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -402,7 +402,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("Pagos");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Refaccion", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Refaccion", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -421,7 +421,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("Refacciones");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Servicio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Servicio", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -448,7 +448,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("Servicios");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.SolicitudAccesorio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.SolicitudAccesorio", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -472,7 +472,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("SolicitudAccesorios");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.SolicitudRefaccion", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.SolicitudRefaccion", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -496,7 +496,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("SolicitudRefacciones");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Tecnico", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Tecnico", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -513,7 +513,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("Tecnicos");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.TipoCambio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.TipoCambio", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -526,7 +526,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("TiposCambio");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.TipoNotificacion", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.TipoNotificacion", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -539,7 +539,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("TiposNotificaciones");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.TipoServicio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.TipoServicio", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -552,7 +552,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("TiposServicio");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.TipoTecnico", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.TipoTecnico", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
@@ -565,7 +565,7 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("TiposTecnico");
                 });
 
-            modelBuilder.Entity("LoComercio.Models.ApplicationUser", b =>
+            modelBuilder.Entity("LoDesbloqueo.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
 
@@ -721,143 +721,143 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.BitacoraEstados", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.BitacoraEstados", b =>
                 {
-                    b.HasOne("LoComercio.Data.TipoCambio", "TipoCambio")
+                    b.HasOne("LoDesbloqueo.Data.TipoCambio", "TipoCambio")
                         .WithMany()
                         .HasForeignKey("IdTipoCambio");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.BitacoraNotifiaciones", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.BitacoraNotifiaciones", b =>
                 {
-                    b.HasOne("LoComercio.Data.TipoCambio", "TipoCambio")
+                    b.HasOne("LoDesbloqueo.Data.TipoCambio", "TipoCambio")
                         .WithMany()
                         .HasForeignKey("IdTipoCambio");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Modelo", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Modelo", b =>
                 {
-                    b.HasOne("LoComercio.Data.Marca", "Marca")
+                    b.HasOne("LoDesbloqueo.Data.Marca", "Marca")
                         .WithMany()
                         .HasForeignKey("IdMarca");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Notificacion", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Notificacion", b =>
                 {
-                    b.HasOne("LoComercio.Data.OrdenServicio", "OrdenServicio")
+                    b.HasOne("LoDesbloqueo.Data.OrdenServicio", "OrdenServicio")
                         .WithMany()
                         .HasForeignKey("IdOrdenServicio");
 
-                    b.HasOne("LoComercio.Data.TipoNotificacion", "TipoNotificacion")
+                    b.HasOne("LoDesbloqueo.Data.TipoNotificacion", "TipoNotificacion")
                         .WithMany()
                         .HasForeignKey("IdTipoNotificacion");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.OrdenServicio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.OrdenServicio", b =>
                 {
-                    b.HasOne("LoComercio.Data.Cliente", "Cliente")
+                    b.HasOne("LoDesbloqueo.Data.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("IdCliente");
 
-                    b.HasOne("LoComercio.Data.EstadoDispositivo", "EstadoDispositivo")
+                    b.HasOne("LoDesbloqueo.Data.EstadoDispositivo", "EstadoDispositivo")
                         .WithMany()
                         .HasForeignKey("IdEdoDispositivo");
 
-                    b.HasOne("LoComercio.Data.EstadoNotificacion", "EstadoNotificacion")
+                    b.HasOne("LoDesbloqueo.Data.EstadoNotificacion", "EstadoNotificacion")
                         .WithMany()
                         .HasForeignKey("IdEdoNotificacion");
 
-                    b.HasOne("LoComercio.Data.LugarAlmacenamiento", "LugarAlmacenamiento")
+                    b.HasOne("LoDesbloqueo.Data.LugarAlmacenamiento", "LugarAlmacenamiento")
                         .WithMany()
                         .HasForeignKey("IdLugarAlmacenamiento");
 
-                    b.HasOne("LoComercio.Data.Marca", "Marca")
+                    b.HasOne("LoDesbloqueo.Data.Marca", "Marca")
                         .WithMany()
                         .HasForeignKey("IdMarca");
 
-                    b.HasOne("LoComercio.Data.Modelo", "Modelo")
+                    b.HasOne("LoDesbloqueo.Data.Modelo", "Modelo")
                         .WithMany()
                         .HasForeignKey("IdModelo");
 
-                    b.HasOne("LoComercio.Data.Pago", "Pago")
+                    b.HasOne("LoDesbloqueo.Data.Pago", "Pago")
                         .WithMany()
                         .HasForeignKey("IdPago");
 
-                    b.HasOne("LoComercio.Data.SolicitudAccesorio", "SolicitudAccesorio")
+                    b.HasOne("LoDesbloqueo.Data.SolicitudAccesorio", "SolicitudAccesorio")
                         .WithMany()
                         .HasForeignKey("IdSolAccesorio");
 
-                    b.HasOne("LoComercio.Data.SolicitudRefaccion", "SolicitudRefaccion")
+                    b.HasOne("LoDesbloqueo.Data.SolicitudRefaccion", "SolicitudRefaccion")
                         .WithMany()
                         .HasForeignKey("IdSolRefaccion");
 
-                    b.HasOne("LoComercio.Data.Tecnico", "Tecnico")
+                    b.HasOne("LoDesbloqueo.Data.Tecnico", "Tecnico")
                         .WithMany()
                         .HasForeignKey("IdTecnico");
 
-                    b.HasOne("LoComercio.Data.TipoServicio", "TipoServicio")
+                    b.HasOne("LoDesbloqueo.Data.TipoServicio", "TipoServicio")
                         .WithMany()
                         .HasForeignKey("IdTipoServicio");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.OrdenServicioServicio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.OrdenServicioServicio", b =>
                 {
-                    b.HasOne("LoComercio.Data.EstadoServicio", "EstadoServicio")
+                    b.HasOne("LoDesbloqueo.Data.EstadoServicio", "EstadoServicio")
                         .WithMany()
                         .HasForeignKey("IdEdoServicio");
 
-                    b.HasOne("LoComercio.Data.OrdenServicio", "OrdenServicio")
+                    b.HasOne("LoDesbloqueo.Data.OrdenServicio", "OrdenServicio")
                         .WithMany()
                         .HasForeignKey("IdOrdenServicio");
 
-                    b.HasOne("LoComercio.Data.Servicio", "Servicio")
+                    b.HasOne("LoDesbloqueo.Data.Servicio", "Servicio")
                         .WithMany()
                         .HasForeignKey("IdServicio");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Pago", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Pago", b =>
                 {
-                    b.HasOne("LoComercio.Data.FormaPago", "FormaPago")
+                    b.HasOne("LoDesbloqueo.Data.FormaPago", "FormaPago")
                         .WithMany()
                         .HasForeignKey("IdFormaPago");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Servicio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Servicio", b =>
                 {
-                    b.HasOne("LoComercio.Data.Modelo", "Modelo")
+                    b.HasOne("LoDesbloqueo.Data.Modelo", "Modelo")
                         .WithMany()
                         .HasForeignKey("IdModelo");
 
-                    b.HasOne("LoComercio.Data.TipoServicio", "TipoServicio")
+                    b.HasOne("LoDesbloqueo.Data.TipoServicio", "TipoServicio")
                         .WithMany()
                         .HasForeignKey("IdTipoServicio");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.SolicitudAccesorio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.SolicitudAccesorio", b =>
                 {
-                    b.HasOne("LoComercio.Data.Accesorio", "Accesorio")
+                    b.HasOne("LoDesbloqueo.Data.Accesorio", "Accesorio")
                         .WithMany()
                         .HasForeignKey("IdAccesorio");
 
-                    b.HasOne("LoComercio.Data.EstadoAccesorio", "EstadoAccesorio")
+                    b.HasOne("LoDesbloqueo.Data.EstadoAccesorio", "EstadoAccesorio")
                         .WithMany()
                         .HasForeignKey("IdEdoAccesorio");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.SolicitudRefaccion", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.SolicitudRefaccion", b =>
                 {
-                    b.HasOne("LoComercio.Data.EstadoRefaccion", "EstadoRefaccion")
+                    b.HasOne("LoDesbloqueo.Data.EstadoRefaccion", "EstadoRefaccion")
                         .WithMany()
                         .HasForeignKey("IdEdoRefaccion");
 
-                    b.HasOne("LoComercio.Data.Refaccion", "Refaccion")
+                    b.HasOne("LoDesbloqueo.Data.Refaccion", "Refaccion")
                         .WithMany()
                         .HasForeignKey("IdRefaccion");
                 });
 
-            modelBuilder.Entity("LoComercio.Data.Tecnico", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Tecnico", b =>
                 {
-                    b.HasOne("LoComercio.Data.TipoTecnico", "TipoTecnico")
+                    b.HasOne("LoDesbloqueo.Data.TipoTecnico", "TipoTecnico")
                         .WithMany()
                         .HasForeignKey("IdTipoTecnico");
                 });
@@ -872,7 +872,7 @@ namespace WebApplication1.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("LoComercio.Models.ApplicationUser")
+                    b.HasOne("LoDesbloqueo.Models.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -880,7 +880,7 @@ namespace WebApplication1.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("LoComercio.Models.ApplicationUser")
+                    b.HasOne("LoDesbloqueo.Models.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -893,7 +893,7 @@ namespace WebApplication1.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("LoComercio.Models.ApplicationUser")
+                    b.HasOne("LoDesbloqueo.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

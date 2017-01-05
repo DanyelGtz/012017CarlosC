@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using LoComercio.Data;
-using LoComercio.Models.OrdenServicioViewModels;
+using LoDesbloqueo.Models.OrdenServicioViewModels;
+using LoDesbloqueo.Data;
 
-namespace LoComercio.Controllers
+namespace LoDesbloqueo.Controllers
 {
     public class OrdenServiciosController : Controller
     {
@@ -116,7 +116,10 @@ namespace LoComercio.Controllers
 
             OrdenServicioViewModel osVm = new OrdenServicioViewModel();
             osVm.OrdenServicio = ordenServicio;
-            osVm.OrdenServicioServicios = new List<OrdenServicioServicio>();
+            osVm.OrdenServicioServicios = _context.OrdenesServicioServicio.Include(o => o.EstadoServicio).Include(o => o.OrdenServicio).Where(os=>os.IdOrdenServicio==id).ToList();
+            ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");
+            ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
+
             return View(osVm);
         }
 
@@ -135,9 +138,10 @@ namespace LoComercio.Controllers
 
             if (ModelState.IsValid)
             {
+                OrdenServicio os = _context.OrdenesServicio.SingleOrDefault(o => o.Id == id);
                 try
                 {
-                    OrdenServicio os = _context.OrdenesServicio.SingleOrDefault(o => o.Id == id);
+                    
                     os.AceptaRiesgo = ordenServicio.AceptaRiesgo;
                     os.ImplicaRiesgo = ordenServicio.ImplicaRiesgo;
                     os.ColorPieza = ordenServicio.ColorPieza;
@@ -163,7 +167,12 @@ namespace LoComercio.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index");
+                OrdenServicioViewModel osVm = new OrdenServicioViewModel();
+                osVm.OrdenServicio = os;
+                osVm.OrdenServicioServicios = _context.OrdenesServicioServicio.Include(o => o.EstadoServicio).Include(o => o.OrdenServicio).ToList();
+                ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");
+                ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
+                return View(osVm);
             }
             ViewData["IdCliente"] = new SelectList(_context.Clientes, "Id", "Email", ordenServicio.IdCliente);
             ViewData["IdEdoDispositivo"] = new SelectList(_context.EstadosDispositivos, "Id", "Nombre", ordenServicio.IdEdoDispositivo);

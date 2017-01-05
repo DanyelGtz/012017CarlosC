@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LoComercio.Data
+namespace LoDesbloqueo.Data
 {
     [Table("EdoRefaccion")]
     public class EstadoRefaccion

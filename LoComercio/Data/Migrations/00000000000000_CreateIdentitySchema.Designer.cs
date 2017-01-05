@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using LoComercio.Data;
+using LoDesbloqueo.Data;
 
 namespace WebApplication1.Data.Migrations
 {

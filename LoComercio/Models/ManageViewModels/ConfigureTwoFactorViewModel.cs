@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace LoComercio.Models.ManageViewModels
+namespace LoDesbloqueo.Models.ManageViewModels
 {
     public class ConfigureTwoFactorViewModel
     {

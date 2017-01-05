@@ -1,10 +1,10 @@
-﻿using LoComercio.Data;
+﻿using LoDesbloqueo.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LoComercio.Models.OrdenServicioViewModels
+namespace LoDesbloqueo.Models.OrdenServicioViewModels
 {
     public class OrdenServicioViewModel
     {

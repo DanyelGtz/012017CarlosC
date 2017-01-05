@@ -7,62 +7,66 @@
 @{
     ViewData["Title"] = "Iniciar Sesion";
 }
-
-<h2>@ViewData["Title"].</h2>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Inicio de Sesion</h3>
-    </div>
-    <div class="panel-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <section>
-                        <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                            <h4>Porfavor ingresa tus datos.</h4>
-                            <hr />
-                            <div asp-validation-summary="All" class="text-danger"></div>
-                            <div class="form-group">
-                                <div class="col-md-offset-4 col-md-10">
-                                    <input asp-for="Email" class="form-control"  placeholder="Email"/>
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </div>
+<link rel="stylesheet" href="~/css/main.css">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 ">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Inicio de Sesion</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <section>
+                                    <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                                        <h4>Porfavor ingresa tus datos.</h4>
+                                        <hr />
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input asp-for="Email" class="form-control" placeholder="Email" />
+                                                <span asp-validation-for="Email" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input asp-for="Password" class="form-control" placeholder="Password" />
+                                                <span asp-validation-for="Password" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <div class="checkbox">
+                                                    <label asp-for="RememberMe">
+                                                        <input asp-for="RememberMe" />
+                                                        @Html.DisplayNameFor(m => m.RememberMe)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <button type="submit" class="btn btn-primary">Ingresar</button>
+                                            </div>
+                                        </div>
+                                        <p>
+                                            <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Eres nuevo por aquí, registrate en 2 minutos!</a>
+                                        </p>
+                                        <p>
+                                            <a asp-action="ForgotPassword">Olvidaste tu Password?</a>
+                                        </p>
+                                    </form>
+                                </section>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-4 col-md-10">
-                                    <input asp-for="Password" class="form-control" placeholder="Password" />
-                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <div class="checkbox">
-                                        <label asp-for="RememberMe">
-                                            <input asp-for="RememberMe" />
-                                            @Html.DisplayNameFor(m => m.RememberMe)
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <button type="submit" class="btn btn-default">Ingresar</button>
-                                </div>
-                            </div>
-                            <p>
-                                <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Eres nuevo por aquí, registrate en 2 minutos!</a>
-                            </p>
-                            <p>
-                                <a asp-action="ForgotPassword">Olvidaste tu Password?</a>
-                            </p>
-                        </form>
-                    </section>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-@section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-}
+    </div>
+    @section Scripts {
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }

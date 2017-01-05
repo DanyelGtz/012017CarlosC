@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using LoComercio.Models;
+using LoDesbloqueo.Models;
 using MySQL.Data.EntityFrameworkCore.Extensions;
 
-namespace LoComercio.Data
+namespace LoDesbloqueo.Data
 {
     public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

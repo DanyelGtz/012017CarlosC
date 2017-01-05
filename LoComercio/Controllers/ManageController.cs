@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using LoComercio.Models;
-using LoComercio.Models.ManageViewModels;
-using LoComercio.Services;
+using LoDesbloqueo.Models;
+using LoDesbloqueo.Models.ManageViewModels;
+using LoDesbloqueo.Services;
 
-namespace LoComercio.Controllers
+namespace LoDesbloqueo.Controllers
 {
     [Authorize]
     public class ManageController : Controller

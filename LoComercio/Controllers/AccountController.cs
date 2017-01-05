@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using LoComercio.Models;
-using LoComercio.Models.AccountViewModels;
-using LoComercio.Services;
+using LoDesbloqueo.Models;
+using LoDesbloqueo.Models.AccountViewModels;
+using LoDesbloqueo.Services;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using LoComercio.Data;
+using LoDesbloqueo.Data;
 
-namespace LoComercio.Controllers
+namespace LoDesbloqueo.Controllers
 {
     [Authorize]
     public class AccountController : Controller
