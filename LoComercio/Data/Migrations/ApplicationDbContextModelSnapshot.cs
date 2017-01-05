@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -13,606 +16,8 @@ namespace WebApplication1.Data.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.1");
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Accesorio", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CantMax");
-
-                    b.Property<int>("CantMin");
-
-                    b.Property<int>("Existencia");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 255);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Accesorios");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.BitacoraEstados", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired();
-
-                    b.Property<DateTime>("Fecha");
-
-                    b.Property<long?>("IdTipoCambio");
-
-                    b.Property<long?>("IdUsuario");
-
-                    b.Property<string>("Observacion")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdTipoCambio");
-
-                    b.ToTable("BitacoraEstados");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.BitacoraNotifiaciones", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Descripcion")
-                        .IsRequired();
-
-                    b.Property<DateTime>("Fecha");
-
-                    b.Property<long?>("IdTipoCambio");
-
-                    b.Property<long?>("IdUsuario");
-
-                    b.Property<string>("Observacion")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdTipoCambio");
-
-                    b.ToTable("BitacoraNotificaciones");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Cliente", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.Property<string>("RFC")
-                        .IsRequired();
-
-                    b.Property<string>("TelefonoActual")
-                        .IsRequired();
-
-                    b.Property<string>("TelefonoContacto")
-                        .IsRequired();
-
-                    b.Property<bool>("WhatssApp");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clientes");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.EstadoAccesorio", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EstadosAccesorios");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.EstadoDispositivo", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EstadosDispositivos");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.EstadoNotificacion", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EstadosNotificaciones");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.EstadoRefaccion", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EstadosRefacciones");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.EstadoServicio", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EstadosServicios");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.FormaPago", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FormasPagos");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.LugarAlmacenamiento", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LugaresAlmacenamiento");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Marca", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Marcas");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Modelo", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<long?>("IdMarca");
-
-                    b.Property<string>("ModeloComercial")
-                        .IsRequired();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdMarca");
-
-                    b.ToTable("Modelos");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Notificacion", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Fecha");
-
-                    b.Property<long?>("IdOrdenServicio");
-
-                    b.Property<long?>("IdTipoNotificacion");
-
-                    b.Property<bool>("NotificacionActiva");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdOrdenServicio");
-
-                    b.HasIndex("IdTipoNotificacion");
-
-                    b.ToTable("Notificaciones");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.OrdenServicio", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("AceptaRiesgo");
-
-                    b.Property<string>("ColorDispositivo");
-
-                    b.Property<string>("ColorPieza");
-
-                    b.Property<string>("CompanyaOrigen");
-
-                    b.Property<bool>("DejaAccesorios");
-
-                    b.Property<bool>("DesactivoICloud");
-
-                    b.Property<string>("DescripcionAccesorios");
-
-                    b.Property<string>("DescripcionFalla");
-
-                    b.Property<string>("DescripcionRevisionAdicional");
-
-                    b.Property<bool>("EquipoApagado");
-
-                    b.Property<bool>("EquipoMojado");
-
-                    b.Property<DateTime>("FechaLlegada");
-
-                    b.Property<DateTime>("FechaPosibleSalida");
-
-                    b.Property<DateTime>("FechaSalida");
-
-                    b.Property<string>("IMEI");
-
-                    b.Property<long?>("IdCliente");
-
-                    b.Property<long?>("IdEdoDispositivo");
-
-                    b.Property<long?>("IdEdoNotificacion");
-
-                    b.Property<long?>("IdLugarAlmacenamiento");
-
-                    b.Property<long?>("IdMarca");
-
-                    b.Property<long?>("IdModelo");
-
-                    b.Property<long?>("IdPago");
-
-                    b.Property<long?>("IdPersonalEntrega");
-
-                    b.Property<long?>("IdSolAccesorio");
-
-                    b.Property<long?>("IdSolRefaccion");
-
-                    b.Property<long?>("IdTecnico");
-
-                    b.Property<long?>("IdTipoServicio");
-
-                    b.Property<bool>("ImplicaRiesgo");
-
-                    b.Property<string>("NotasReparaciones");
-
-                    b.Property<string>("Observaciones");
-
-                    b.Property<string>("PasswordDesbloqueo");
-
-                    b.Property<string>("PatronDesbloqueo");
-
-                    b.Property<bool>("ReparadoAnteriormente");
-
-                    b.Property<bool>("RevisionAdicional");
-
-                    b.Property<string>("UsuarioRecibe");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdCliente");
-
-                    b.HasIndex("IdEdoDispositivo");
-
-                    b.HasIndex("IdEdoNotificacion");
-
-                    b.HasIndex("IdLugarAlmacenamiento");
-
-                    b.HasIndex("IdMarca");
-
-                    b.HasIndex("IdModelo");
-
-                    b.HasIndex("IdPago");
-
-                    b.HasIndex("IdSolAccesorio");
-
-                    b.HasIndex("IdSolRefaccion");
-
-                    b.HasIndex("IdTecnico");
-
-                    b.HasIndex("IdTipoServicio");
-
-                    b.ToTable("OrdenesServicio");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.OrdenServicioServicio", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<long?>("IdEdoServicio");
-
-                    b.Property<long?>("IdOrdenServicio");
-
-                    b.Property<long?>("IdServicio");
-
-                    b.Property<float>("PrecioServicio");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdEdoServicio");
-
-                    b.HasIndex("IdOrdenServicio");
-
-                    b.HasIndex("IdServicio");
-
-                    b.ToTable("OrdenesServicioServicio");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Pago", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<float>("Anticipo");
-
-                    b.Property<DateTime>("Fecha");
-
-                    b.Property<long?>("IdFormaPago");
-
-                    b.Property<float>("Monto");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdFormaPago");
-
-                    b.ToTable("Pagos");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Refaccion", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CantMax");
-
-                    b.Property<int>("CantMin");
-
-                    b.Property<int>("Existencia");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Refacciones");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Servicio", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<long?>("IdModelo");
-
-                    b.Property<long?>("IdTipoServicio");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.Property<float>("PrecioMaximo");
-
-                    b.Property<float>("PrecioMinimo");
-
-                    b.Property<float>("PrecioSugerido");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdModelo");
-
-                    b.HasIndex("IdTipoServicio");
-
-                    b.ToTable("Servicios");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.SolicitudAccesorio", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Cantidad");
-
-                    b.Property<DateTime>("Fecha");
-
-                    b.Property<long?>("IdAccesorio");
-
-                    b.Property<long?>("IdEdoAccesorio");
-
-                    b.Property<long?>("IdUsuario");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdAccesorio");
-
-                    b.HasIndex("IdEdoAccesorio");
-
-                    b.ToTable("SolicitudAccesorios");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.SolicitudRefaccion", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Cantidad");
-
-                    b.Property<DateTime>("Fecha");
-
-                    b.Property<long?>("IdEdoRefaccion");
-
-                    b.Property<long?>("IdRefaccion");
-
-                    b.Property<long?>("IdUsuario");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdEdoRefaccion");
-
-                    b.HasIndex("IdRefaccion");
-
-                    b.ToTable("SolicitudRefacciones");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Tecnico", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<long?>("IdTipoTecnico");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdTipoTecnico");
-
-                    b.ToTable("Tecnicos");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.TipoCambio", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TiposCambio");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.TipoNotificacion", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TiposNotificaciones");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.TipoServicio", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TiposServicio");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.TipoTecnico", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TiposTecnico");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Models.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id");
-
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Email")
-                        .HasAnnotation("MaxLength", 256);
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasAnnotation("MaxLength", 256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasAnnotation("MaxLength", 256);
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName")
-                        .HasAnnotation("MaxLength", 256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers");
-                });
+                .HasAnnotation("ProductVersion", "1.0.0-rc3")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
                 {
@@ -721,145 +126,53 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("LoDesbloqueo.Data.BitacoraEstados", b =>
+            modelBuilder.Entity("WebApplication1.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("LoDesbloqueo.Data.TipoCambio", "TipoCambio")
-                        .WithMany()
-                        .HasForeignKey("IdTipoCambio");
-                });
+                    b.Property<string>("Id");
 
-            modelBuilder.Entity("LoDesbloqueo.Data.BitacoraNotifiaciones", b =>
-                {
-                    b.HasOne("LoDesbloqueo.Data.TipoCambio", "TipoCambio")
-                        .WithMany()
-                        .HasForeignKey("IdTipoCambio");
-                });
+                    b.Property<int>("AccessFailedCount");
 
-            modelBuilder.Entity("LoDesbloqueo.Data.Modelo", b =>
-                {
-                    b.HasOne("LoDesbloqueo.Data.Marca", "Marca")
-                        .WithMany()
-                        .HasForeignKey("IdMarca");
-                });
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
 
-            modelBuilder.Entity("LoDesbloqueo.Data.Notificacion", b =>
-                {
-                    b.HasOne("LoDesbloqueo.Data.OrdenServicio", "OrdenServicio")
-                        .WithMany()
-                        .HasForeignKey("IdOrdenServicio");
+                    b.Property<string>("Email")
+                        .HasAnnotation("MaxLength", 256);
 
-                    b.HasOne("LoDesbloqueo.Data.TipoNotificacion", "TipoNotificacion")
-                        .WithMany()
-                        .HasForeignKey("IdTipoNotificacion");
-                });
+                    b.Property<bool>("EmailConfirmed");
 
-            modelBuilder.Entity("LoDesbloqueo.Data.OrdenServicio", b =>
-                {
-                    b.HasOne("LoDesbloqueo.Data.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("IdCliente");
+                    b.Property<bool>("LockoutEnabled");
 
-                    b.HasOne("LoDesbloqueo.Data.EstadoDispositivo", "EstadoDispositivo")
-                        .WithMany()
-                        .HasForeignKey("IdEdoDispositivo");
+                    b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.HasOne("LoDesbloqueo.Data.EstadoNotificacion", "EstadoNotificacion")
-                        .WithMany()
-                        .HasForeignKey("IdEdoNotificacion");
+                    b.Property<string>("NormalizedEmail")
+                        .HasAnnotation("MaxLength", 256);
 
-                    b.HasOne("LoDesbloqueo.Data.LugarAlmacenamiento", "LugarAlmacenamiento")
-                        .WithMany()
-                        .HasForeignKey("IdLugarAlmacenamiento");
+                    b.Property<string>("NormalizedUserName")
+                        .HasAnnotation("MaxLength", 256);
 
-                    b.HasOne("LoDesbloqueo.Data.Marca", "Marca")
-                        .WithMany()
-                        .HasForeignKey("IdMarca");
+                    b.Property<string>("PasswordHash");
 
-                    b.HasOne("LoDesbloqueo.Data.Modelo", "Modelo")
-                        .WithMany()
-                        .HasForeignKey("IdModelo");
+                    b.Property<string>("PhoneNumber");
 
-                    b.HasOne("LoDesbloqueo.Data.Pago", "Pago")
-                        .WithMany()
-                        .HasForeignKey("IdPago");
+                    b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.HasOne("LoDesbloqueo.Data.SolicitudAccesorio", "SolicitudAccesorio")
-                        .WithMany()
-                        .HasForeignKey("IdSolAccesorio");
+                    b.Property<string>("SecurityStamp");
 
-                    b.HasOne("LoDesbloqueo.Data.SolicitudRefaccion", "SolicitudRefaccion")
-                        .WithMany()
-                        .HasForeignKey("IdSolRefaccion");
+                    b.Property<bool>("TwoFactorEnabled");
 
-                    b.HasOne("LoDesbloqueo.Data.Tecnico", "Tecnico")
-                        .WithMany()
-                        .HasForeignKey("IdTecnico");
+                    b.Property<string>("UserName")
+                        .HasAnnotation("MaxLength", 256);
 
-                    b.HasOne("LoDesbloqueo.Data.TipoServicio", "TipoServicio")
-                        .WithMany()
-                        .HasForeignKey("IdTipoServicio");
-                });
+                    b.HasKey("Id");
 
-            modelBuilder.Entity("LoDesbloqueo.Data.OrdenServicioServicio", b =>
-                {
-                    b.HasOne("LoDesbloqueo.Data.EstadoServicio", "EstadoServicio")
-                        .WithMany()
-                        .HasForeignKey("IdEdoServicio");
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
 
-                    b.HasOne("LoDesbloqueo.Data.OrdenServicio", "OrdenServicio")
-                        .WithMany()
-                        .HasForeignKey("IdOrdenServicio");
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex");
 
-                    b.HasOne("LoDesbloqueo.Data.Servicio", "Servicio")
-                        .WithMany()
-                        .HasForeignKey("IdServicio");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Pago", b =>
-                {
-                    b.HasOne("LoDesbloqueo.Data.FormaPago", "FormaPago")
-                        .WithMany()
-                        .HasForeignKey("IdFormaPago");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Servicio", b =>
-                {
-                    b.HasOne("LoDesbloqueo.Data.Modelo", "Modelo")
-                        .WithMany()
-                        .HasForeignKey("IdModelo");
-
-                    b.HasOne("LoDesbloqueo.Data.TipoServicio", "TipoServicio")
-                        .WithMany()
-                        .HasForeignKey("IdTipoServicio");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.SolicitudAccesorio", b =>
-                {
-                    b.HasOne("LoDesbloqueo.Data.Accesorio", "Accesorio")
-                        .WithMany()
-                        .HasForeignKey("IdAccesorio");
-
-                    b.HasOne("LoDesbloqueo.Data.EstadoAccesorio", "EstadoAccesorio")
-                        .WithMany()
-                        .HasForeignKey("IdEdoAccesorio");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.SolicitudRefaccion", b =>
-                {
-                    b.HasOne("LoDesbloqueo.Data.EstadoRefaccion", "EstadoRefaccion")
-                        .WithMany()
-                        .HasForeignKey("IdEdoRefaccion");
-
-                    b.HasOne("LoDesbloqueo.Data.Refaccion", "Refaccion")
-                        .WithMany()
-                        .HasForeignKey("IdRefaccion");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.Tecnico", b =>
-                {
-                    b.HasOne("LoDesbloqueo.Data.TipoTecnico", "TipoTecnico")
-                        .WithMany()
-                        .HasForeignKey("IdTipoTecnico");
+                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
@@ -872,7 +185,7 @@ namespace WebApplication1.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("LoDesbloqueo.Models.ApplicationUser")
+                    b.HasOne("WebApplication1.Models.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -880,7 +193,7 @@ namespace WebApplication1.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("LoDesbloqueo.Models.ApplicationUser")
+                    b.HasOne("WebApplication1.Models.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -893,7 +206,7 @@ namespace WebApplication1.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("LoDesbloqueo.Models.ApplicationUser")
+                    b.HasOne("WebApplication1.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
