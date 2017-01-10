@@ -52,7 +52,7 @@ namespace LoDesbloqueo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,Nombre,RFC,TelefonoActual,TelefonoContacto,WhatssApp")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("Id,Email,Nombre,RFC,TelefonoActual,TelefonoContacto,WhatssApp,WhatssApp2")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace LoDesbloqueo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Email,Nombre,RFC,TelefonoActual,TelefonoContacto,WhatssApp")] Cliente cliente)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Email,Nombre,RFC,TelefonoActual,TelefonoContacto,WhatssApp,WhatssApp2")] Cliente cliente)
         {
             if (id != cliente.Id)
             {

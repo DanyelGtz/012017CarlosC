@@ -8,9 +8,10 @@ using LoDesbloqueo.Data;
 namespace WebApplication1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170110024415_ModeloV1")]
+    partial class ModeloV1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1");
@@ -109,19 +110,6 @@ namespace WebApplication1.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cliente");
-                });
-
-            modelBuilder.Entity("LoDesbloqueo.Data.EmpresaTelefonica", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Nombre")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EmpresaTelefonica");
                 });
 
             modelBuilder.Entity("LoDesbloqueo.Data.EstadoAccesorio", b =>

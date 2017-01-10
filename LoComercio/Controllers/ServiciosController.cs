@@ -45,7 +45,7 @@ namespace LoDesbloqueo.Controllers
         // GET: Servicios/Create
         public IActionResult Create()
         {
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloComercial");
+            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico");
             ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre");
             return View();
         }
@@ -63,7 +63,7 @@ namespace LoDesbloqueo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloComercial", servicio.IdModelo);
+            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", servicio.IdModelo);
             ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre", servicio.IdTipoServicio);
             return View(servicio);
         }
@@ -81,7 +81,7 @@ namespace LoDesbloqueo.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloComercial", servicio.IdModelo);
+            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", servicio.IdModelo);
             ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre", servicio.IdTipoServicio);
             return View(servicio);
         }
@@ -118,7 +118,7 @@ namespace LoDesbloqueo.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloComercial", servicio.IdModelo);
+            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", servicio.IdModelo);
             ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre", servicio.IdTipoServicio);
             return View(servicio);
         }

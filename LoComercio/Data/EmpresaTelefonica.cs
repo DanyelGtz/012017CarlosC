@@ -7,22 +7,13 @@ using System.Threading.Tasks;
 
 namespace LoDesbloqueo.Data
 {
-    [Table("Modelo")]
-    public class Modelo
+    public class EmpresaTelefonica
     {
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public long Id { get; set; }
         [Required(ErrorMessage = "Campo obligatorio")]
-        [Display(Name = "Marca")]
-        public long? IdMarca { get; set; }
-        [Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name = "Compañia Telefónica")]
         public string Nombre { get; set; }
-        [Display(Name = "Modelo Tecnico")]
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string ModeloTecnico { get; set; }
-
-        [ForeignKey("IdMarca")]
-        public Marca Marca { get; set; }
     }
 }

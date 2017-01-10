@@ -3,45 +3,23 @@
 @{
     ViewData["Title"] = "Clientes";
 }
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a asp-controller="Organizacion" asp-action="Dashboard"><i class="icon icon-home"></i> Inicio</a>
+        <li><i class="glyphicon glyphicon-briefcase"></i> Clientes</li>
+    </ol>
+</div>
+<h2 class="titulo">
+   Clientes
+</h2>
+<hr class="red" />
 
-<p>
+<div class="container">
 
-</p>
-<div class="col-md-12 col-centered">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h2 class="panel-title">Clientes</h2>
-        </div>
-        <div class="panel-body">
-            <div class="container">
-                <form>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input type="search" placeholder="Busqueda Rapida" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <input type="submit" class="form-control btn-info btn-sm" value="Buscar" />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <a asp-action="Create" asp-controller="Clientes" class="btn btn-primary alinearDerecha">Crear Nuevo</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="panel">
-        <div class="panel-heading">
-        </div>
-        <div class="panel-body">
-            <div class="container">
-                <table class="table">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body table-responsive">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>
@@ -57,6 +35,9 @@
                                 @Html.DisplayNameFor(model => model.TelefonoActual)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.WhatssApp)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.TelefonoContacto)
                             </th>
                             <th>
@@ -68,39 +49,46 @@
                     <tbody>
                         @foreach (var item in Model)
             {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RFC)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TelefonoActual)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TelefonoContacto)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.WhatssApp)
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning btn-sm">Editar</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm">Detalles</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RFC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TelefonoActual)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WhatssApp)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TelefonoContacto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WhatssApp2)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-xs btn-primary">Editar</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-xs btn-default">Ver</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-xs btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-    </div>
+            <div class="panel-footer text-right">
+                <a asp-action="Create" class="btn btn-primary">Nuevo</a>
 
+            </div>
+        </div>
+
+    </div>
+</div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

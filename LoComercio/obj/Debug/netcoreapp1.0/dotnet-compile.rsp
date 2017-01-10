@@ -273,6 +273,7 @@ C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\BitacoraEstados.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\BitacoraNotifiaciones.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\Cliente.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\DbContextExtensions.cs
+C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\EmpresaTelefonica.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\EstadoAccesorio.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\EstadoDispositivo.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\EstadoNotificacion.cs
@@ -297,8 +298,10 @@ C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\TipoServicio.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\TipoTecnico.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\Migrations\00000000000000_CreateIdentitySchema.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs
-C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\Migrations\20161228215534_ModeloV4.cs
-C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\Migrations\20161228215534_ModeloV4.Designer.cs
+C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\Migrations\20170110024415_ModeloV1.cs
+C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\Migrations\20170110024415_ModeloV1.Designer.cs
+C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\Migrations\20170110031053_ModeloV2.cs
+C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\Migrations\20170110031053_ModeloV2.Designer.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Data\Migrations\ApplicationDbContextModelSnapshot.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Models\ApplicationUser.cs
 C:\LOCOMERCIOGit\012017CarlosC\LoComercio\Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs

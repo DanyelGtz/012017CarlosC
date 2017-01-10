@@ -15,7 +15,6 @@ namespace LoDesbloqueo.Data
         public long Id { get; set; }
         [Required(ErrorMessage = "Campo obligatorio")]
         public string Nombre { get; set; }
-        [Required(ErrorMessage = "Campo obligatorio")]
         
         public string RFC { get; set; }
         [Display(Name = "e-Mail")]
@@ -29,5 +28,6 @@ namespace LoDesbloqueo.Data
         [Required(ErrorMessage = "Campo obligatorio")]
         public string TelefonoContacto { get; set; }
         public bool WhatssApp { get; set; }
+        public bool WhatssApp2 { get; set; }
     }
 }

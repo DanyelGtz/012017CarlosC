@@ -22,6 +22,7 @@ namespace LoDesbloqueo.Data
                 EnsureSeedTipoTecnico();
                 EnsureSeedFormaDePago();
                 EnsureSeedTipoServicio();
+                EnsureSeedEmpresasTelefonicas();
 
             }
         }
@@ -138,6 +139,21 @@ namespace LoDesbloqueo.Data
                     new TipoTecnico { Id = 1, Nombre = "De Reparaciones" },
                     new TipoTecnico { Id = 2, Nombre = "De Liberaciones" },
                     new TipoTecnico { Id = 3, Nombre = "De MicroComponentes" }
+                );
+                SaveChanges();
+            }
+        }
+
+        private void EnsureSeedEmpresasTelefonicas()
+        {
+            if (!EmpresasTelefonicas.Any())
+            {
+                EmpresasTelefonicas.AddRange(
+                    new EmpresaTelefonica { Id = 1, Nombre = "Telcel" },
+                    new EmpresaTelefonica { Id = 2, Nombre = "Movistar" },
+                    new EmpresaTelefonica { Id = 3, Nombre = "At&t" },
+                    new EmpresaTelefonica { Id = 4, Nombre = "Nextel" },
+                    new EmpresaTelefonica { Id = 5, Nombre = "Iusacell" }
                 );
                 SaveChanges();
             }

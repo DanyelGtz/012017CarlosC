@@ -18,7 +18,7 @@
         <div class="container">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <h2>Registrar Cliente</h2>
+                <h2 class="titulo">Registrar Cliente</h2>
                 <div class="row">
 
                     <div class="col-sm-8">
@@ -48,6 +48,10 @@
                         <div class="form-group">
                             <label asp-for="TelefonoActual"></label>
                             <input asp-for="TelefonoActual" id="tel" type="tel" class="form-control" />
+                            <div id="txtwhatss1" class="checkbox">
+                                <input  asp-for="WhatssApp" />
+                                <label asp-for="WhatssApp"></label>
+                            </div>
                             <span asp-validation-for="TelefonoActual" class="text-danger" />
                         </div>
                     </div>
@@ -55,27 +59,22 @@
                         <div class="form-group">
                             <label asp-for="TelefonoContacto"></label>
                             <input asp-for="TelefonoContacto" id="tel0" type="tel" class="form-control" />
+                            <div id="txtwhatss2" class="checkbox">
+                                <input  asp-for="WhatssApp2" />
+                                <label asp-for="WhatssApp"></label>
+                            </div>
                             <span asp-validation-for="TelefonoContacto" class="text-danger" />
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <input asp-for="WhatssApp" />
-                                <label asp-for="WhatssApp"></label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-10">
-                            <a asp-action="Index" class="btn btn-lg btn-danger">Regresar</a>
+                            <a asp-action="Index" class="btn btn-sm btn-danger">Regresar</a>
                         </div>
                         <div class="col-md-2">
-                            <input type="submit" value="Guardar" class="btn btn-lg btn-primary" />
+                            <input type="submit" value="Guardar" class="btn btn-sm btn-primary" />
                         </div>
                     </div>
                 </div>

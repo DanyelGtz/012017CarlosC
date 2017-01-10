@@ -14,6 +14,7 @@ namespace LoDesbloqueo.Data
         public DbSet<BitacoraEstados> BitacoraEstados { get; set; }
         public DbSet<BitacoraNotifiaciones> BitacoraNotificaciones { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<EmpresaTelefonica> EmpresasTelefonicas { get; set; }
         public DbSet<EstadoAccesorio> EstadosAccesorios { get; set;}
         public DbSet<EstadoDispositivo> EstadosDispositivos { get; set; }
         public DbSet<EstadoNotificacion> EstadosNotificaciones { get; set; }
@@ -52,13 +53,13 @@ namespace LoDesbloqueo.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+            
+
         }
 
         protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder)
         {
+
             //optionsBuilder.UseMySql(Configuration.GetConnectionString("MySQLConnection"));
         }
     }

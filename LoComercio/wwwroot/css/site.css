@@ -97,6 +97,20 @@
     border-radius: 10px !important;
     margin-top: 20px !important;
 }
+
+#txtwhatss1{
+        top: -50px;
+    left: 60%;
+}
+
+#txtwhatss2{
+        top: -50px;
+    left: 60%;
+}
+
+.titulo{
+    color:black;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

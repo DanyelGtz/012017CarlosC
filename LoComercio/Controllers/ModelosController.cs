@@ -54,7 +54,7 @@ namespace LoDesbloqueo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdMarca,ModeloComercial,Nombre")] Modelo modelo)
+        public async Task<IActionResult> Create([Bind("Id,IdMarca,ModeloTecnico,Nombre")] Modelo modelo)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace LoDesbloqueo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,IdMarca,ModeloComercial,Nombre")] Modelo modelo)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,IdMarca,ModeloTecnico,Nombre")] Modelo modelo)
         {
             if (id != modelo.Id)
             {
