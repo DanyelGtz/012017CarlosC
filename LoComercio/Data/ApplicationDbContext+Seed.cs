@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LoDesbloqueo.Data;
 using Microsoft.EntityFrameworkCore;
+using LoDesbloqueo.Models;
 
 
 namespace LoDesbloqueo.Data
@@ -23,10 +24,55 @@ namespace LoDesbloqueo.Data
                 EnsureSeedFormaDePago();
                 EnsureSeedTipoServicio();
                 EnsureSeedEmpresasTelefonicas();
+                EnsureSeedMarcas();
+                EnsureSeedModelos();
+                EnsureSeedLugaresAlmacenamiento();
+            }
+        }
+        private void EnsureSeedMarcas()
+        {
+            if (!Marcas.Any())
+            {
+                Marcas.AddRange(
+                    new Marca { Id = 1, Nombre = "Samsung" },
+                    new Marca { Id = 2, Nombre = "Apple" },
+                    new Marca { Id = 3, Nombre = "Sony" },
+                    new Marca { Id = 4, Nombre = "LG" },
+                    new Marca { Id = 5, Nombre = "Lenovo" },
+                    new Marca { Id = 6, Nombre = "Nokia" }
 
+                );
+
+                SaveChanges();
+            }
+        }
+        private void EnsureSeedLugaresAlmacenamiento()
+        {
+            if (!LugaresAlmacenamiento.Any())
+            {
+                LugaresAlmacenamiento.AddRange(
+                    new LugarAlmacenamiento { Id = 1, Nombre = "S-120" },
+                    new LugarAlmacenamiento { Id = 2, Nombre = "W-220" },
+                    new LugarAlmacenamiento { Id = 3, Nombre = "T-120" }
+                );
+
+                SaveChanges();
             }
         }
 
+        private void EnsureSeedModelos()
+        {
+            if (!Modelos.Any())
+            {
+                Modelos.AddRange(
+                    new Modelo { IdMarca=1, ModeloTecnico="T-440S", Nombre = "S5" },
+                    new Modelo { IdMarca = 1, ModeloTecnico = "T-440T", Nombre = "S5" },
+                    new Modelo { IdMarca = 1, ModeloTecnico = "T-550S", Nombre = "S6" }
+                );
+
+                SaveChanges();
+            }
+        }
         private void EnsureSeedTipoServicio()
         {
             if (!TiposServicio.Any())
@@ -76,11 +122,12 @@ namespace LoDesbloqueo.Data
             if (!EstadosDispositivos.Any())
             {
                 EstadosDispositivos.AddRange(
-                    new EstadoDispositivo { Id = 1, Nombre = "Dar Entrada" },
+                    new EstadoDispositivo { Id = 1, Nombre = "Ingresando (Dar Entrada)" },
                     new EstadoDispositivo { Id = 2, Nombre = "En Proceso" },
-                    new EstadoDispositivo { Id = 3, Nombre = "Finalizado Exitosamente" },
-                    new EstadoDispositivo { Id = 4, Nombre = "Finalizado Parcialmente" },
-                    new EstadoDispositivo { Id = 5, Nombre = "No Completado" }
+                    new EstadoDispositivo { Id = 3, Nombre = "Finalizado" },
+                    new EstadoDispositivo { Id = 4, Nombre = "Notificado" },
+                    new EstadoDispositivo { Id = 5, Nombre = "No Notificado" },
+                    new EstadoDispositivo { Id = 6, Nombre = "Entregado" }
                 );
 
                 SaveChanges();
@@ -92,11 +139,10 @@ namespace LoDesbloqueo.Data
             if (!EstadosServicios.Any())
             {
                 EstadosServicios.AddRange(
-                    new EstadoServicio { Id = 1, Nombre = "Entregado" },
-                    new EstadoServicio { Id = 2, Nombre = "No Entregado" },
-                    new EstadoServicio { Id = 3, Nombre = "Notificado" },
-                    new EstadoServicio { Id = 4, Nombre = "No Notificado" },
-                    new EstadoServicio { Id = 5, Nombre = "No Encontrado, Comunicarse mas Tarde" }
+                    new EstadoServicio { Id = 1, Nombre = "En Proceso" },
+                    new EstadoServicio { Id = 2, Nombre = "Completado" },
+                    new EstadoServicio { Id = 3, Nombre = "Completado Parcialmente" },
+                    new EstadoServicio { Id = 4, Nombre = "No Completado" }
                 );
                 SaveChanges();
             }
@@ -108,7 +154,9 @@ namespace LoDesbloqueo.Data
             {
                 EstadosAccesorios.AddRange(
                     new EstadoAccesorio { Id = 1, Nombre = "Instalado" },
-                    new EstadoAccesorio { Id = 2, Nombre = "No Instalado" }
+                    new EstadoAccesorio { Id = 2, Nombre = "No Instalado" },
+                    new EstadoAccesorio { Id = 3, Nombre = "Esperando Autorizacion" },
+                    new EstadoAccesorio { Id = 4, Nombre = "Autorizado" }
                 );
 
                 SaveChanges();
@@ -120,11 +168,10 @@ namespace LoDesbloqueo.Data
             if (!EstadosRefacciones.Any())
             {
                 EstadosRefacciones.AddRange(
-                    new EstadoRefaccion { Id = 1, Nombre = "Instalada" },
-                    new EstadoRefaccion { Id = 2, Nombre = "En Espera de Autorizacion" },
-                    new EstadoRefaccion { Id = 3, Nombre = "Autorizada" },
-                    new EstadoRefaccion { Id = 4, Nombre = "No Autorizada" },
-                    new EstadoRefaccion { Id = 5, Nombre = "No Instalada" }
+                    new EstadoRefaccion { Id = 1, Nombre = "Instalado" },
+                    new EstadoRefaccion { Id = 2, Nombre = "No Instalado" },
+                    new EstadoRefaccion { Id = 3, Nombre = "Esperando Autorizacion" },
+                    new EstadoRefaccion { Id = 4, Nombre = "Autorizado" }
                 );
 
                 SaveChanges();
@@ -136,9 +183,9 @@ namespace LoDesbloqueo.Data
             if (!TiposTecnico.Any())
             {
                 TiposTecnico.AddRange(
-                    new TipoTecnico { Id = 1, Nombre = "De Reparaciones" },
-                    new TipoTecnico { Id = 2, Nombre = "De Liberaciones" },
-                    new TipoTecnico { Id = 3, Nombre = "De MicroComponentes" }
+                    new TipoTecnico { Id = 1, Nombre = "Reparaciones" },
+                    new TipoTecnico { Id = 2, Nombre = "Liberaciones" },
+                    new TipoTecnico { Id = 3, Nombre = "MicroComponentes" }
                 );
                 SaveChanges();
             }
@@ -158,5 +205,7 @@ namespace LoDesbloqueo.Data
                 SaveChanges();
             }
         }
+
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

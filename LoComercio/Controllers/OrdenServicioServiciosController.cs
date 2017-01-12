@@ -21,7 +21,7 @@ namespace LoComercio.Controllers
         // GET: OrdenServicioServicios
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.OrdenesServicioServicio.Include(o => o.EstadoServicio).Include(o => o.OrdenServicio).Include(o => o.Servicio);
+            var applicationDbContext = _context.OrdenesServicioServicio.Include(o => o.EstadoServicio).Include(o => o.OrdenServicio).Include(o => o.Servicio).Include(t=>t.Tecnico);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -51,7 +51,7 @@ namespace LoComercio.Controllers
                 //os.IdOrdenServicio = long.Parse(Request.["IdOrdenServicio"]);
                 ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");
                 ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
-            
+            ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace LoComercio.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdEdoServicio,IdOrdenServicio,IdServicio,PrecioServicio")] OrdenServicioServicio ordenServicioServicio, long id)
+        public async Task<IActionResult> Create([Bind("IdEdoServicio,IdOrdenServicio,IdServicio,IdTecnico,PrecioServicio,Observaciones")] OrdenServicioServicio ordenServicioServicio, long id)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +74,7 @@ namespace LoComercio.Controllers
                 ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre", ordenServicioServicio.IdEdoServicio);
                 ViewData["IdOrdenServicio"] = new SelectList(_context.OrdenesServicio, "Id", "Id", ordenServicioServicio.IdOrdenServicio);
                 ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre", ordenServicioServicio.IdServicio);
+                ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
                 ordenServicioServicio.IdOrdenServicio = id;
                 return View(ordenServicioServicio);
             }
@@ -100,6 +101,7 @@ namespace LoComercio.Controllers
             ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre", ordenServicioServicio.IdEdoServicio);
             ViewData["IdOrdenServicio"] = new SelectList(_context.OrdenesServicio, "Id", "Id", ordenServicioServicio.IdOrdenServicio);
             ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre", ordenServicioServicio.IdServicio);
+            ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
             return View(ordenServicioServicio);
         }
 
@@ -108,7 +110,7 @@ namespace LoComercio.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,IdEdoServicio,IdOrdenServicio,IdServicio,PrecioServicio")] OrdenServicioServicio ordenServicioServicio)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,IdEdoServicio,IdOrdenServicio,IdServicio,PrecioServicio,IdTecnico,Observaciones")] OrdenServicioServicio ordenServicioServicio)
         {
             if (id != ordenServicioServicio.Id)
             {
@@ -133,11 +135,12 @@ namespace LoComercio.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "OrdenServicios", new { @id = ordenServicioServicio.IdOrdenServicio });
             }
             ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre", ordenServicioServicio.IdEdoServicio);
             ViewData["IdOrdenServicio"] = new SelectList(_context.OrdenesServicio, "Id", "Id", ordenServicioServicio.IdOrdenServicio);
             ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre", ordenServicioServicio.IdServicio);
+            ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
             return View(ordenServicioServicio);
         }
 
@@ -166,7 +169,7 @@ namespace LoComercio.Controllers
             var ordenServicioServicio = await _context.OrdenesServicioServicio.SingleOrDefaultAsync(m => m.Id == id);
             _context.OrdenesServicioServicio.Remove(ordenServicioServicio);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", "OrdenServicios", new { @id = ordenServicioServicio.IdOrdenServicio });
         }
 
         private bool OrdenServicioServicioExists(long id)

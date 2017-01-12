@@ -18,15 +18,18 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.IdServicio)
+                                        Servicio
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.IdEdoServicio)
+                                        Edo Servicio
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.PrecioServicio)
+                                        Precio
                                     </th>
-
+                                    <th>
+                                        Tecnico
+                                    </th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,9 +48,15 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.EstadoServicio.Nombre)
                                         </td>
+
                                         <td>
                                             @Html.DisplayFor(modelItem => item.PrecioServicio)
                                         </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Tecnico.Nombre)
+                                        </td>
+                                        <td><a asp-controller="OrdenServicioServicios" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-xs btn-warning">Modificar</a> |
+                                            <a asp-controller="OrdenServicioServicios" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-xs btn-danger">Eliminar</a></td>
                                     </tr>
                                 }
                             </tbody>

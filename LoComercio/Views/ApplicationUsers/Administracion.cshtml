@@ -1,0 +1,58 @@
+﻿
+<h2 class="titulo">Administración de Usuarios</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Administración de Usuarios</h3>
+    </div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Usuarios</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <a asp-controller="ApplicationUsers" asp-action="Index" class="btn btn-primary">Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Roles</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <a asp-controller="ApplicationUsers" asp-action="ModificarRol" class="btn btn-primary">Modificar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-sm-3">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Lugares de Almacenamiento</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <a asp-controller="LugarAlmacenamientos" asp-action="Create" class="btn btn-primary">Registrar</a>
+                                <a asp-controller="LugarAlmacenamientos" asp-action="Index" class="btn btn-default">Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

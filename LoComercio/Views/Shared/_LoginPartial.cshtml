@@ -8,19 +8,26 @@
 {
     <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav">
-            <li><a asp-area="" asp-controller="Clientes">Clientes</a></li>
-            <li><a asp-area="" asp-controller="OrdenServicios">Ordenes de Servicio</a></li>
-            <li><a asp-area="" asp-controller="Tecnicos">Tecnicos</a></li>
+            <li><a asp-controller="Clientes" asp-action="Index">Clientes</a></li>
+            <li><a asp-controller="OrdenServicios" asp-action="Index">Ordenes de Servicio</a></li>
+            <li><a asp-controller="Tecnicos" asp-action="Index">Tecnicos</a></li>
             <li><a asp-action="index" asp-controller="Manage">Administración</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><span class="icon-user"></span>@UserManager.GetUserName(User)!</a>
+                <a><span class="icon-user"></span>@UserManager.GetUserName(User)!</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-sm btn-danger" style="margin-top:6px; margin-left:1rem">Salir</button>
             </li>
         </ul>
     </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a class="btn btn-primary" asp-controller="Account" asp-action="Login"> INICIAR SESION </a></li>
+        <li><a class="" asp-controller="Account" asp-action="Register"> REGISTRAR </a></li>
+    </ul>
 }
 

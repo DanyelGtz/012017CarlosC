@@ -19,6 +19,11 @@ namespace LoDesbloqueo.Data
         public long? IdServicio { get; set; }
         [Required(ErrorMessage = "El Estado del Servicio es requerido")]
         public long? IdEdoServicio { get; set; }
+        public long? IdTecnico { get; set; }
+        public string Observaciones { get; set; }
+
+        [ForeignKey("IdTecnico")]
+        public Tecnico Tecnico { get; set; }
 
         [ForeignKey("IdServicio")]
         public Servicio Servicio { get; set; }

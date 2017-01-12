@@ -14,14 +14,12 @@ namespace LoDesbloqueo.Data
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         public long? IdCliente { get; set; }
-        public long? IdTecnico { get; set; }
         public long? IdLugarAlmacenamiento { get; set; }
         public long? IdPago { get; set; }
         public long? IdMarca { get; set; }
         public long? IdTipoServicio { get; set; }
         public long? IdModelo { get; set; }
         public long? IdEdoDispositivo { get; set; }
-        public long? IdEdoNotificacion { get; set; }
         public long? IdSolRefaccion { get; set; }
         public long? IdSolAccesorio { get; set; }
         public long? IdPersonalEntrega { get; set; }
@@ -35,8 +33,6 @@ namespace LoDesbloqueo.Data
         public bool DejaAccesorios { get; set; }
         [Display(Name = "Descripción de Accesorios")]
         public string DescripcionAccesorios { get; set; }
-        [Display(Name = "Color del Dispositivo")]
-        public string ColorDispositivo { get; set; }
         [Display(Name = "Color de Pieza")]
         public string ColorPieza { get; set; }
         [Display(Name = "Compañía Origen")]
@@ -79,8 +75,7 @@ namespace LoDesbloqueo.Data
 
         [ForeignKey("IdCliente")]
         public Cliente Cliente { get; set; }
-        [ForeignKey("IdTecnico")]
-        public Tecnico Tecnico { get; set; }
+        
         [ForeignKey("IdLugarAlmacenamiento")]
         public LugarAlmacenamiento LugarAlmacenamiento { get; set; }
         [ForeignKey("IdPago")]
@@ -93,8 +88,6 @@ namespace LoDesbloqueo.Data
         public Marca Marca { get; set; }
         [ForeignKey("IdEdoDispositivo")]
         public EstadoDispositivo EstadoDispositivo { get; set; }
-        [ForeignKey("IdEdoNotificacion")]
-        public EstadoNotificacion EstadoNotificacion { get; set; }
         [ForeignKey("IdSolRefaccion")]
         public SolicitudRefaccion SolicitudRefaccion { get; set; }
         [ForeignKey("IdSolAccesorio")]

@@ -4,29 +4,36 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2 class="titulo">Agregar Servicio a Orden</h2>
 
 <form asp-action="Create">
     <div class="form-horizontal">
-        <h4>OrdenServicioServicio</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="IdEdoServicio" class="col-md-2 control-label"></label>
+            <label asp-for="IdOrdenServicio" class="col-md-2 control-label">Orden de Servicio</label>
             <div class="col-md-10">
-                <select asp-for="IdEdoServicio" class ="form-control" asp-items="ViewBag.IdEdoServicio"></select>
+                <input asp-for="IdOrdenServicio" class="form-control" readonly/>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="IdOrdenServicio" class="col-md-2 control-label"></label>
+            <label asp-for="IdServicio" class="col-md-2 control-label">Servicio</label>
             <div class="col-md-10">
-            <input asp-for="IdOrdenServicio" class="form-control" required/>
+                <select asp-for="IdServicio" class="form-control" asp-items="ViewBag.IdServicio" required></select>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="IdServicio" class="col-md-2 control-label"></label>
+            <label asp-for="IdTecnico" class="col-md-2 control-label">Tecnico</label>
             <div class="col-md-10">
-                <select asp-for="IdServicio" class ="form-control" asp-items="ViewBag.IdServicio" required></select>
+                <select asp-for="IdTecnico" class="form-control" asp-items="ViewBag.IdTecnico" required></select>
+            </div>
+        </div>
+        
+        
+        <div class="form-group">
+            <label class="col-md-2 control-label">Precio Sugerido</label>
+            <div class="col-md-10">
+                <input id="precioSugerido" class="form-control" readonly />
             </div>
         </div>
         <div class="form-group">
@@ -36,9 +43,23 @@
                 <span asp-validation-for="PrecioServicio" class="text-danger" />
             </div>
         </div>
+
+        <div class="form-group">
+            <label asp-for="IdEdoServicio" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="IdEdoServicio" class="form-control" asp-items="ViewBag.IdEdoServicio" readonly></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Observaciones" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Observaciones" class="form-control" />
+                <span asp-validation-for="Observaciones" class="text-danger" />
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Registrar" class="btn btn-default" />
             </div>
         </div>
     </div>

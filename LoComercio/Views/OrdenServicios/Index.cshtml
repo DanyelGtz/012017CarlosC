@@ -1,160 +1,141 @@
 @model IEnumerable<LoDesbloqueo.Data.OrdenServicio>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ordenes de Servicio";
 }
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a asp-controller="Organizacion" asp-action="Dashboard"><i class="icon icon-home"></i> Inicio</a>
+        <li><i class="glyphicon glyphicon-briefcase"></i> Ordenes de Servicio</li>
+    </ol>
+</div>
+<h2 class="titulo">
+    Ordenes de Servicio
+</h2>
+<hr class="red" />
+<div class="container">
+    <div class="panel-heading text-left">
+        <a asp-action="Create" class="btn btn-primary">Nuevo</a>
 
-<h2>Orden de Servicio</h2>
-<a asp-action="Create" class="btn btn-primary alinearDerecha">Crear Nuevo</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaLlegada)
-            </th>
-            <th>
-                Tipo de Servicio
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Modelo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaPosibleSalida)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EstadoNotificacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DejaAccesorios)
-            </th>
+    </div>
+    <br />
+    @foreach (var item in Model)
+    {
+        <div class="row">
 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            @if (item.EstadoNotificacion.Nombre.Equals("Normal"))
+            @if (item.EstadoDispositivo.Nombre.Equals("Ingresando (Dar Entrada)"))
             {
-                <tr class="OrdenServicioNormal">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaLlegada)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Modelo.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaPosibleSalida)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EstadoNotificacion.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DejaAccesorios)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning btn-sm">Seguimiento</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
-
-                    </td>
-                </tr>
+                <div class="progress-bar progress-bar-striped active" role="progressbar"
+                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                    @item.EstadoDispositivo.Nombre
+                </div>
             }
-            @if (item.EstadoNotificacion.Nombre.Equals("No Autorizado"))
+            @if (item.EstadoDispositivo.Nombre.Equals("En Proceso"))
             {
-                <tr class="OrdenServicioNoAutorizado">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaLlegada)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Modelo.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaPosibleSalida)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EstadoNotificacion.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DejaAccesorios)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning btn-sm">Seguimiento</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
-
-                    </td>
-                </tr>
+                <div class="progress-bar progress-bar-striped active" role="progressbar"
+                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                    @item.EstadoDispositivo.Nombre
+                </div>
             }
-            @if (item.EstadoNotificacion.Nombre.Equals("No Avisado"))
+            @if (item.EstadoDispositivo.Nombre.Equals("Entregado"))
             {
-                <tr class="OrdenServicioRetrazado">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaLlegada)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Modelo.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaPosibleSalida)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EstadoNotificacion.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DejaAccesorios)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning btn-sm">Seguimiento</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
-
-                    </td>
-                </tr>
+                <div class="progress-bar progress-bar-striped progress-bar-success" role="progressbar"
+                     aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                    @item.EstadoDispositivo.Nombre
+                </div>
             }
-            @if (item.EstadoNotificacion.Nombre.Equals("Urgente"))
+            @if (item.EstadoDispositivo.Nombre.Equals("Finalizado"))
             {
-                <tr class="OrdenServicioUrgente">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaLlegada)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Modelo.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaPosibleSalida)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EstadoNotificacion.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DejaAccesorios)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning btn-sm">Seguimiento</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm">Detalles</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
-
-                    </td>
-                </tr>
+                <div class="progress-bar progress-bar-striped progress-bar-success active" role="progressbar"
+                     aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                    @item.EstadoDispositivo.Nombre
+                </div>
             }
-            
-        }
+            @if (item.EstadoDispositivo.Nombre.Equals("Notificado"))
+            {
+                <div class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar"
+                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                    @item.EstadoDispositivo.Nombre
+                </div>
+
+            }
+            @if (item.EstadoDispositivo.Nombre.Equals("No Notificado"))
+            {
+                <div class="progress-bar progress-bar-striped progress-bar-danger active" role="progressbar"
+                     aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                    @item.EstadoDispositivo.Nombre
+                </div>
+            }
 
 
-    </tbody>
-</table>
+            </div>
+            <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FechaLlegada)
+                                </th>
+                                <th>
+                                    Tipo de Servicio
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Modelo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FechaPosibleSalida)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.EstadoDispositivo.Nombre)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DejaAccesorios)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaLlegada)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Modelo.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaPosibleSalida)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DejaAccesorios)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-primary btn-sm">Finalizar Servicio</a>
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer text-right">
+
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning btn-sm">Seguimiento</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
 
 @section Scripts {
 

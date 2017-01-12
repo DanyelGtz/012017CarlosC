@@ -12,7 +12,7 @@ using LoDesbloqueo.Models;
 using LoDesbloqueo.Models.AccountViewModels;
 using LoDesbloqueo.Services;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using LoDesbloqueo.Data;
+
 
 namespace LoDesbloqueo.Controllers
 {
@@ -40,63 +40,7 @@ namespace LoDesbloqueo.Controllers
             _roleManager = roleManager;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
-
-
         }
-
-        public IActionResult Administracion()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult ModificarRol()
-        {
-            ModificarRolViewModel ModificarRolViewModel = new ModificarRolViewModel();
-            ModificarRolViewModel.ListaRoles = new List<string>();
-            using (var dbProvider = new ApplicationDbContext())
-            {
-                var roles = _roleManager.Roles.ToList();
-                foreach (var item in roles)
-                {
-                    ModificarRolViewModel.ListaRoles.Add(item.Name);
-                }
-            }
-            return View(ModificarRolViewModel);
-        }
-        [HttpPost]
-        public async Task<IActionResult> ModificarRol(ModificarRolViewModel ModificarViewModel)
-        {
-            var roles = _roleManager.Roles.ToList();
-            ModificarViewModel.Rol = (Request.Form["tipoRolOption"]);
-            foreach (var item in roles)
-            {
-                try
-                {
-                    if (item.Name.Equals(ModificarViewModel.Rol))
-                    {
-                        ApplicationUser usuario = await _userManager.FindByNameAsync(ModificarViewModel.Email);
-                        var ListaRolesActuales = await _userManager.GetRolesAsync(usuario);
-                        //Elimina Roles actuales
-                        await _userManager.RemoveFromRolesAsync(usuario, ListaRolesActuales);
-                        //Agrego Rol Seleccionado
-                        await _userManager.AddToRoleAsync(usuario, item.Name);
-                        break;
-                    }
-                }
-                catch (Exception)
-                {
-                    return RedirectToAction("Fallido", "General");
-                }
-            }
-            return RedirectToAction("Exitoso", "General");
-        }
-
-        public IActionResult AgregarRol()
-        {
-            return View();
-        }
-
         //
         // GET: /Account/Login
         [HttpGet]
@@ -128,6 +72,7 @@ namespace LoDesbloqueo.Controllers
                 await _roleManager.CreateAsync(Rol);
 
             }
+            
             if (!_roleManager.RoleExistsAsync("AtnClientes").Result)
             {
                 var Rol = new IdentityRole();
@@ -622,6 +567,7 @@ namespace LoDesbloqueo.Controllers
             }
         }
 
+        
         #region Helpers
 
         private void AddErrors(IdentityResult result)

@@ -22,7 +22,7 @@ namespace LoDesbloqueo.Controllers
         // GET: OrdenServicios
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.OrdenesServicio.Include(o => o.Cliente).Include(o => o.EstadoDispositivo).Include(o => o.EstadoNotificacion).Include(o => o.LugarAlmacenamiento).Include(o => o.Pago).Include(o => o.SolicitudAccesorio).Include(o => o.SolicitudRefaccion).Include(o => o.Tecnico).Include(o=>o.TipoServicio).Include(o=>o.Modelo);
+            var applicationDbContext = _context.OrdenesServicio.Include(o => o.Cliente).Include(o => o.EstadoDispositivo).Include(o => o.LugarAlmacenamiento).Include(o => o.Pago).Include(o => o.SolicitudAccesorio).Include(o => o.SolicitudRefaccion).Include(o=>o.TipoServicio).Include(o=>o.Modelo);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -58,6 +58,7 @@ namespace LoDesbloqueo.Controllers
             ViewData["IdSolAccesorio"] = new SelectList(_context.SolicitudAccesorios, "Id", "Id");
             ViewData["IdSolRefaccion"] = new SelectList(_context.SolicitudRefacciones, "Id", "Id");
             ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
+
             return View();
         }
 
@@ -77,7 +78,6 @@ namespace LoDesbloqueo.Controllers
             }
             ViewData["IdCliente"] = new SelectList(_context.Clientes, "Id", "Email", ordenServicio.IdCliente);
             ViewData["IdEdoDispositivo"] = new SelectList(_context.EstadosDispositivos, "Id", "Nombre", ordenServicio.IdEdoDispositivo);
-            ViewData["IdEdoNotificacion"] = new SelectList(_context.EstadosNotificaciones, "Id", "Nombre", ordenServicio.IdEdoNotificacion);
             ViewData["IdLugarAlmacenamiento"] = new SelectList(_context.LugaresAlmacenamiento, "Id", "Nombre", ordenServicio.IdLugarAlmacenamiento);
             ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", ordenServicio.IdModelo);
             ViewData["IdMarca"] = new SelectList(_context.Marcas, "Id", "Nombre", ordenServicio.IdMarca);
@@ -85,7 +85,7 @@ namespace LoDesbloqueo.Controllers
             ViewData["IdPago"] = new SelectList(_context.Pagos, "Id", "Id", ordenServicio.IdPago);
             ViewData["IdSolAccesorio"] = new SelectList(_context.SolicitudAccesorios, "Id", "Id", ordenServicio.IdSolAccesorio);
             ViewData["IdSolRefaccion"] = new SelectList(_context.SolicitudRefacciones, "Id", "Id", ordenServicio.IdSolRefaccion);
-            ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre", ordenServicio.IdTecnico);
+            ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
             return View(ordenServicio);
         }
 
@@ -105,7 +105,6 @@ namespace LoDesbloqueo.Controllers
             }
             ViewData["IdCliente"] = new SelectList(_context.Clientes, "Id", "Email", ordenServicio.IdCliente);
             ViewData["IdEdoDispositivo"] = new SelectList(_context.EstadosDispositivos, "Id", "Nombre", ordenServicio.IdEdoDispositivo);
-            ViewData["IdEdoNotificacion"] = new SelectList(_context.EstadosNotificaciones, "Id", "Nombre", ordenServicio.IdEdoNotificacion);
             ViewData["IdLugarAlmacenamiento"] = new SelectList(_context.LugaresAlmacenamiento, "Id", "Nombre", ordenServicio.IdLugarAlmacenamiento);
             ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", ordenServicio.IdModelo);
             ViewData["IdMarca"] = new SelectList(_context.Marcas, "Id", "Nombre", ordenServicio.IdMarca);
@@ -113,11 +112,11 @@ namespace LoDesbloqueo.Controllers
             ViewData["IdPago"] = new SelectList(_context.Pagos, "Id", "Id", ordenServicio.IdPago);
             ViewData["IdSolAccesorio"] = new SelectList(_context.SolicitudAccesorios, "Id", "Id", ordenServicio.IdSolAccesorio);
             ViewData["IdSolRefaccion"] = new SelectList(_context.SolicitudRefacciones, "Id", "Id", ordenServicio.IdSolRefaccion);
-            ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre", ordenServicio.IdTecnico);
+            ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
 
             OrdenServicioViewModel osVm = new OrdenServicioViewModel();
             osVm.OrdenServicio = ordenServicio;
-            osVm.OrdenServicioServicios = _context.OrdenesServicioServicio.Include(o => o.EstadoServicio).Include(o => o.OrdenServicio).Where(os=>os.IdOrdenServicio==id).ToList();
+            osVm.OrdenServicioServicios = _context.OrdenesServicioServicio.Include(o => o.EstadoServicio).Include(o => o.OrdenServicio).Include(o=>o.Tecnico).Where(os=>os.IdOrdenServicio==id).ToList();
             ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");
             ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
 
@@ -149,11 +148,10 @@ namespace LoDesbloqueo.Controllers
                     os.IdModelo = ordenServicio.IdModelo;
                     os.IdEdoDispositivo = ordenServicio.IdEdoDispositivo;
                     os.IdTipoServicio = ordenServicio.IdTipoServicio;
-                    os.IdTecnico = ordenServicio.IdTecnico;
                     os.IdLugarAlmacenamiento = ordenServicio.IdLugarAlmacenamiento;
-                    os.IdEdoNotificacion = ordenServicio.IdEdoNotificacion;
                     os.FechaPosibleSalida = ordenServicio.FechaPosibleSalida;
                     os.Observaciones = ordenServicio.Observaciones;
+                    os.UsuarioRecibe = ordenServicio.UsuarioRecibe;
                     _context.Update(os);
                     await _context.SaveChangesAsync();
                 }
@@ -168,16 +166,28 @@ namespace LoDesbloqueo.Controllers
                         throw;
                     }
                 }
+               
                 OrdenServicioViewModel osVm = new OrdenServicioViewModel();
                 osVm.OrdenServicio = os;
-                osVm.OrdenServicioServicios = _context.OrdenesServicioServicio.Include(o => o.EstadoServicio).Include(o => o.OrdenServicio).ToList();
+                osVm.OrdenServicioServicios = _context.OrdenesServicioServicio.Include(o => o.EstadoServicio).Include(o => o.OrdenServicio).Include(o=>o.Tecnico).ToList();
                 ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");
                 ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
+                ViewData["IdCliente"] = new SelectList(_context.Clientes, "Id", "Email", ordenServicio.IdCliente);
+                ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
+                ViewData["IdEdoDispositivo"] = new SelectList(_context.EstadosDispositivos, "Id", "Nombre", ordenServicio.IdEdoDispositivo);
+                ViewData["IdLugarAlmacenamiento"] = new SelectList(_context.LugaresAlmacenamiento, "Id", "Nombre", ordenServicio.IdLugarAlmacenamiento);
+                ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", ordenServicio.IdModelo);
+                ViewData["IdMarca"] = new SelectList(_context.Marcas, "Id", "Nombre", ordenServicio.IdMarca);
+                ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre");
+                ViewData["IdPago"] = new SelectList(_context.Pagos, "Id", "Id", ordenServicio.IdPago);
+                ViewData["IdSolAccesorio"] = new SelectList(_context.SolicitudAccesorios, "Id", "Id", ordenServicio.IdSolAccesorio);
+                ViewData["IdSolRefaccion"] = new SelectList(_context.SolicitudRefacciones, "Id", "Id", ordenServicio.IdSolRefaccion);
                 return View(osVm);
             }
+            ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");
+            ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
             ViewData["IdCliente"] = new SelectList(_context.Clientes, "Id", "Email", ordenServicio.IdCliente);
             ViewData["IdEdoDispositivo"] = new SelectList(_context.EstadosDispositivos, "Id", "Nombre", ordenServicio.IdEdoDispositivo);
-            ViewData["IdEdoNotificacion"] = new SelectList(_context.EstadosNotificaciones, "Id", "Nombre", ordenServicio.IdEdoNotificacion);
             ViewData["IdLugarAlmacenamiento"] = new SelectList(_context.LugaresAlmacenamiento, "Id", "Nombre", ordenServicio.IdLugarAlmacenamiento);
             ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", ordenServicio.IdModelo);
             ViewData["IdMarca"] = new SelectList(_context.Marcas, "Id", "Nombre", ordenServicio.IdMarca);
@@ -185,7 +195,7 @@ namespace LoDesbloqueo.Controllers
             ViewData["IdPago"] = new SelectList(_context.Pagos, "Id", "Id", ordenServicio.IdPago);
             ViewData["IdSolAccesorio"] = new SelectList(_context.SolicitudAccesorios, "Id", "Id", ordenServicio.IdSolAccesorio);
             ViewData["IdSolRefaccion"] = new SelectList(_context.SolicitudRefacciones, "Id", "Id", ordenServicio.IdSolRefaccion);
-            ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre", ordenServicio.IdTecnico);
+            ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
             return View(ordenServicio);
         }
 

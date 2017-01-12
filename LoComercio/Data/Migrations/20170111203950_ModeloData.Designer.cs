@@ -8,8 +8,8 @@ using LoDesbloqueo.Data;
 namespace WebApplication1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170110031053_ModeloV2")]
-    partial class ModeloV2
+    [Migration("20170111203950_ModeloData")]
+    partial class ModeloData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -279,8 +279,6 @@ namespace WebApplication1.Data.Migrations
 
                     b.Property<bool>("AceptaRiesgo");
 
-                    b.Property<string>("ColorDispositivo");
-
                     b.Property<string>("ColorPieza");
 
                     b.Property<string>("CompanyaOrigen");
@@ -311,8 +309,6 @@ namespace WebApplication1.Data.Migrations
 
                     b.Property<long?>("IdEdoDispositivo");
 
-                    b.Property<long?>("IdEdoNotificacion");
-
                     b.Property<long?>("IdLugarAlmacenamiento");
 
                     b.Property<long?>("IdMarca");
@@ -326,8 +322,6 @@ namespace WebApplication1.Data.Migrations
                     b.Property<long?>("IdSolAccesorio");
 
                     b.Property<long?>("IdSolRefaccion");
-
-                    b.Property<long?>("IdTecnico");
 
                     b.Property<long?>("IdTipoServicio");
 
@@ -353,8 +347,6 @@ namespace WebApplication1.Data.Migrations
 
                     b.HasIndex("IdEdoDispositivo");
 
-                    b.HasIndex("IdEdoNotificacion");
-
                     b.HasIndex("IdLugarAlmacenamiento");
 
                     b.HasIndex("IdMarca");
@@ -366,8 +358,6 @@ namespace WebApplication1.Data.Migrations
                     b.HasIndex("IdSolAccesorio");
 
                     b.HasIndex("IdSolRefaccion");
-
-                    b.HasIndex("IdTecnico");
 
                     b.HasIndex("IdTipoServicio");
 
@@ -388,6 +378,10 @@ namespace WebApplication1.Data.Migrations
                     b.Property<long?>("IdServicio")
                         .IsRequired();
 
+                    b.Property<long?>("IdTecnico");
+
+                    b.Property<string>("Observaciones");
+
                     b.Property<float>("PrecioServicio");
 
                     b.HasKey("Id");
@@ -397,6 +391,8 @@ namespace WebApplication1.Data.Migrations
                     b.HasIndex("IdOrdenServicio");
 
                     b.HasIndex("IdServicio");
+
+                    b.HasIndex("IdTecnico");
 
                     b.ToTable("OrdenServicioServicio");
                 });
@@ -783,10 +779,6 @@ namespace WebApplication1.Data.Migrations
                         .WithMany()
                         .HasForeignKey("IdEdoDispositivo");
 
-                    b.HasOne("LoDesbloqueo.Data.EstadoNotificacion", "EstadoNotificacion")
-                        .WithMany()
-                        .HasForeignKey("IdEdoNotificacion");
-
                     b.HasOne("LoDesbloqueo.Data.LugarAlmacenamiento", "LugarAlmacenamiento")
                         .WithMany()
                         .HasForeignKey("IdLugarAlmacenamiento");
@@ -811,10 +803,6 @@ namespace WebApplication1.Data.Migrations
                         .WithMany()
                         .HasForeignKey("IdSolRefaccion");
 
-                    b.HasOne("LoDesbloqueo.Data.Tecnico", "Tecnico")
-                        .WithMany()
-                        .HasForeignKey("IdTecnico");
-
                     b.HasOne("LoDesbloqueo.Data.TipoServicio", "TipoServicio")
                         .WithMany()
                         .HasForeignKey("IdTipoServicio");
@@ -836,6 +824,10 @@ namespace WebApplication1.Data.Migrations
                         .WithMany()
                         .HasForeignKey("IdServicio")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("LoDesbloqueo.Data.Tecnico", "Tecnico")
+                        .WithMany()
+                        .HasForeignKey("IdTecnico");
                 });
 
             modelBuilder.Entity("LoDesbloqueo.Data.Pago", b =>

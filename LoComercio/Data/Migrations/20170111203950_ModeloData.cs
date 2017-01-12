@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplication1.Data.Migrations
 {
-    public partial class ModeloV1 : Migration
+    public partial class ModeloData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,6 +41,19 @@ namespace WebApplication1.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cliente", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmpresaTelefonica",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    Nombre = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmpresaTelefonica", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -419,7 +432,6 @@ namespace WebApplication1.Data.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
                     AceptaRiesgo = table.Column<bool>(nullable: false),
-                    ColorDispositivo = table.Column<string>(nullable: true),
                     ColorPieza = table.Column<string>(nullable: true),
                     CompanyaOrigen = table.Column<string>(nullable: true),
                     DejaAccesorios = table.Column<bool>(nullable: false),
@@ -435,7 +447,6 @@ namespace WebApplication1.Data.Migrations
                     IMEI = table.Column<string>(nullable: true),
                     IdCliente = table.Column<long>(nullable: true),
                     IdEdoDispositivo = table.Column<long>(nullable: true),
-                    IdEdoNotificacion = table.Column<long>(nullable: true),
                     IdLugarAlmacenamiento = table.Column<long>(nullable: true),
                     IdMarca = table.Column<long>(nullable: true),
                     IdModelo = table.Column<long>(nullable: true),
@@ -443,7 +454,6 @@ namespace WebApplication1.Data.Migrations
                     IdPersonalEntrega = table.Column<long>(nullable: true),
                     IdSolAccesorio = table.Column<long>(nullable: true),
                     IdSolRefaccion = table.Column<long>(nullable: true),
-                    IdTecnico = table.Column<long>(nullable: true),
                     IdTipoServicio = table.Column<long>(nullable: true),
                     ImplicaRiesgo = table.Column<bool>(nullable: false),
                     NotasReparaciones = table.Column<string>(nullable: true),
@@ -467,12 +477,6 @@ namespace WebApplication1.Data.Migrations
                         name: "FK_OrdenServicio_EstadoDispositivo_IdEdoDispositivo",
                         column: x => x.IdEdoDispositivo,
                         principalTable: "EstadoDispositivo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_OrdenServicio_EstadoNotificacion_IdEdoNotificacion",
-                        column: x => x.IdEdoNotificacion,
-                        principalTable: "EstadoNotificacion",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -509,12 +513,6 @@ namespace WebApplication1.Data.Migrations
                         name: "FK_OrdenServicio_SolicitudRefaccion_IdSolRefaccion",
                         column: x => x.IdSolRefaccion,
                         principalTable: "SolicitudRefaccion",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_OrdenServicio_Tecnico_IdTecnico",
-                        column: x => x.IdTecnico,
-                        principalTable: "Tecnico",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -562,6 +560,8 @@ namespace WebApplication1.Data.Migrations
                     IdEdoServicio = table.Column<long>(nullable: false),
                     IdOrdenServicio = table.Column<long>(nullable: false),
                     IdServicio = table.Column<long>(nullable: false),
+                    IdTecnico = table.Column<long>(nullable: true),
+                    Observaciones = table.Column<string>(nullable: true),
                     PrecioServicio = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
@@ -585,6 +585,12 @@ namespace WebApplication1.Data.Migrations
                         principalTable: "Servicio",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrdenServicioServicio_Tecnico_IdTecnico",
+                        column: x => x.IdTecnico,
+                        principalTable: "Tecnico",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -623,11 +629,6 @@ namespace WebApplication1.Data.Migrations
                 column: "IdEdoDispositivo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdenServicio_IdEdoNotificacion",
-                table: "OrdenServicio",
-                column: "IdEdoNotificacion");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_OrdenServicio_IdLugarAlmacenamiento",
                 table: "OrdenServicio",
                 column: "IdLugarAlmacenamiento");
@@ -658,11 +659,6 @@ namespace WebApplication1.Data.Migrations
                 column: "IdSolRefaccion");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrdenServicio_IdTecnico",
-                table: "OrdenServicio",
-                column: "IdTecnico");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_OrdenServicio_IdTipoServicio",
                 table: "OrdenServicio",
                 column: "IdTipoServicio");
@@ -681,6 +677,11 @@ namespace WebApplication1.Data.Migrations
                 name: "IX_OrdenServicioServicio_IdServicio",
                 table: "OrdenServicioServicio",
                 column: "IdServicio");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrdenServicioServicio_IdTecnico",
+                table: "OrdenServicioServicio",
+                column: "IdTecnico");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pago_IdFormaPago",
@@ -732,6 +733,12 @@ namespace WebApplication1.Data.Migrations
                 name: "BitacoraNotifiaciones");
 
             migrationBuilder.DropTable(
+                name: "EmpresaTelefonica");
+
+            migrationBuilder.DropTable(
+                name: "EstadoNotificacion");
+
+            migrationBuilder.DropTable(
                 name: "Notificacion");
 
             migrationBuilder.DropTable(
@@ -753,13 +760,13 @@ namespace WebApplication1.Data.Migrations
                 name: "Servicio");
 
             migrationBuilder.DropTable(
+                name: "Tecnico");
+
+            migrationBuilder.DropTable(
                 name: "Cliente");
 
             migrationBuilder.DropTable(
                 name: "EstadoDispositivo");
-
-            migrationBuilder.DropTable(
-                name: "EstadoNotificacion");
 
             migrationBuilder.DropTable(
                 name: "LugarAlmacenamiento");
@@ -774,13 +781,13 @@ namespace WebApplication1.Data.Migrations
                 name: "SolicitudRefaccion");
 
             migrationBuilder.DropTable(
-                name: "Tecnico");
-
-            migrationBuilder.DropTable(
                 name: "Modelo");
 
             migrationBuilder.DropTable(
                 name: "TipoServicio");
+
+            migrationBuilder.DropTable(
+                name: "TipoTecnico");
 
             migrationBuilder.DropTable(
                 name: "FormaPago");
@@ -796,9 +803,6 @@ namespace WebApplication1.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Refaccion");
-
-            migrationBuilder.DropTable(
-                name: "TipoTecnico");
 
             migrationBuilder.DropTable(
                 name: "Marca");

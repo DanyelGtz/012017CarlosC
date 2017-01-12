@@ -11,47 +11,56 @@
         <h4>OrdenServicioServicio</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="IdOrdenServicio"/>
         <div class="form-group">
-            <label asp-for="IdEdoServicio" class="control-label col-md-2"></label>
+            <label asp-for="IdServicio" class="col-md-2 control-label">Servicio</label>
             <div class="col-md-10">
-                <select asp-for="IdEdoServicio" class="form-control" asp-items="ViewBag.IdEdoServicio"></select>
-                <span asp-validation-for="IdEdoServicio" class="text-danger" />
+                <select asp-for="IdServicio" class="form-control" asp-items="ViewBag.IdServicio" required></select>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="IdOrdenServicio" class="control-label col-md-2"></label>
+            <label asp-for="IdTecnico" class="col-md-2 control-label">Tecnico</label>
             <div class="col-md-10">
-                <select asp-for="IdOrdenServicio" class="form-control" asp-items="ViewBag.IdOrdenServicio"></select>
-                <span asp-validation-for="IdOrdenServicio" class="text-danger" />
+                <select asp-for="IdTecnico" class="form-control" asp-items="ViewBag.IdTecnico" required></select>
             </div>
         </div>
+
+
         <div class="form-group">
-            <label asp-for="IdServicio" class="control-label col-md-2"></label>
+            <label class="col-md-2 control-label">Precio Sugerido</label>
             <div class="col-md-10">
-                <select asp-for="IdServicio" class="form-control" asp-items="ViewBag.IdServicio"></select>
-                <span asp-validation-for="IdServicio" class="text-danger" />
+                <input id="precioSugerido" class="form-control" readonly />
             </div>
         </div>
         <div class="form-group">
             <label asp-for="PrecioServicio" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="PrecioServicio" class="form-control" />
+                <input asp-for="PrecioServicio" class="form-control" required />
                 <span asp-validation-for="PrecioServicio" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="IdEdoServicio" class="col-md-2 control-label">Edo Servicio</label>
+            <div class="col-md-10">
+                <select asp-for="IdEdoServicio" class="form-control" asp-items="ViewBag.IdEdoServicio" readonly></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Observaciones" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Observaciones" class="form-control" />
+                <span asp-validation-for="Observaciones" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
     </div>
 </form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
