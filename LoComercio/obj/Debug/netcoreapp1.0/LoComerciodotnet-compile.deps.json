@@ -14,7 +14,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v1.0": {
-      "LoComercio/1.0.0": {
+      "LocOMERCIO/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.App": "1.0.1",
           "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
@@ -39,7 +39,7 @@
           "SapientGuardian.EntityFrameworkCore.MySql": "7.1.15"
         },
         "compile": {
-          "LoComercio.dll": {}
+          "LocOMERCIO.dll": {}
         }
       },
       "Libuv/1.9.0": {
@@ -2958,7 +2958,7 @@
       }
     },
     ".NETCoreApp,Version=v1.0/": {
-      "LoComercio/1.0.0": {
+      "LocOMERCIO/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.App": "1.0.1",
           "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
@@ -2983,7 +2983,7 @@
           "SapientGuardian.EntityFrameworkCore.MySql": "7.1.15"
         },
         "runtime": {
-          "LoComercio.dll": {}
+          "LocOMERCIO.dll": {}
         }
       },
       "Libuv/1.9.0": {
@@ -5795,7 +5795,7 @@
     }
   },
   "libraries": {
-    "LoComercio/1.0.0": {
+    "LocOMERCIO/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
