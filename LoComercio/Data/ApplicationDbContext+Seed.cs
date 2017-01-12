@@ -34,13 +34,28 @@ namespace LoDesbloqueo.Data
             if (!Marcas.Any())
             {
                 Marcas.AddRange(
-                    new Marca { Id = 1, Nombre = "Samsung" },
-                    new Marca { Id = 2, Nombre = "Apple" },
-                    new Marca { Id = 3, Nombre = "Sony" },
-                    new Marca { Id = 4, Nombre = "LG" },
-                    new Marca { Id = 5, Nombre = "Lenovo" },
-                    new Marca { Id = 6, Nombre = "Nokia" }
-
+                    new Marca { Id = 1, Nombre = "NOKIA" },
+                    new Marca { Id = 2, Nombre = "LG" },
+                    new Marca { Id = 3, Nombre = "SAMSUNG" },
+                    new Marca { Id = 4, Nombre = "HUAWEI" },
+                    new Marca { Id = 5, Nombre = "MOTOROLA" },
+                    new Marca { Id = 6, Nombre = "HTC" },
+                    new Marca { Id = 7, Nombre = "APPLE" },
+                    new Marca { Id = 8, Nombre = "BLACKBERRY" },
+                    new Marca { Id = 9, Nombre = "SONY" },
+                    new Marca { Id = 10, Nombre = "LENOVO" },
+                    new Marca { Id = 11, Nombre = "XIAOMI" },
+                    new Marca { Id = 12, Nombre = "ZTE" },
+                    new Marca { Id = 13, Nombre = "LANIX" },
+                    new Marca { Id = 14, Nombre = "OPPO" },
+                    new Marca { Id = 15, Nombre = "MEIZU" },
+                    new Marca { Id = 16, Nombre = "AZUS" },
+                    new Marca { Id = 17, Nombre = "ALCATEL" },
+                    new Marca { Id = 18, Nombre = "SKY" },
+                    new Marca { Id = 19, Nombre = "BLU" },
+                    new Marca { Id = 20, Nombre = "PANTECH" },
+                    new Marca { Id = 21, Nombre = "KIOCERA" },
+                    new Marca { Id = 22, Nombre = "M4TEL" }
                 );
 
                 SaveChanges();
@@ -183,9 +198,9 @@ namespace LoDesbloqueo.Data
             if (!TiposTecnico.Any())
             {
                 TiposTecnico.AddRange(
-                    new TipoTecnico { Id = 1, Nombre = "Reparaciones" },
-                    new TipoTecnico { Id = 2, Nombre = "Liberaciones" },
-                    new TipoTecnico { Id = 3, Nombre = "MicroComponentes" }
+                    new TipoTecnico { Id = 1, Nombre = "TECNICO DE REPARACION" },
+                    new TipoTecnico { Id = 2, Nombre = "TECNICO DE LIBERACION" },
+                    new TipoTecnico { Id = 3, Nombre = "TECNICO DE MICROCOMPONENTE" }
                 );
                 SaveChanges();
             }
