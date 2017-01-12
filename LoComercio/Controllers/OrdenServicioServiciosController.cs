@@ -33,13 +33,21 @@ namespace LoComercio.Controllers
                 return NotFound();
             }
 
-            var ordenServicioServicio = await _context.OrdenesServicioServicio.SingleOrDefaultAsync(m => m.Id == id);
+            var ordenServicioServicio = await _context.OrdenesServicioServicio.Include(os=>os.EstadoServicio).Include(os=>os.Servicio).Include(os=>os.Tecnico).SingleOrDefaultAsync(m => m.Id == id);
             if (ordenServicioServicio == null)
             {
                 return NotFound();
             }
 
             return View(ordenServicioServicio);
+        }
+        [HttpPost]
+        public IActionResult Details(long id)
+        {
+            var ordenServicioServicio = _context.OrdenesServicioServicio.SingleOrDefault(os => os.Id == id);
+            
+            return RedirectToAction("Edit", "OrdenServicios", new { @id = ordenServicioServicio.IdOrdenServicio });
+
         }
 
         // GET: OrdenServicioServicios/Create

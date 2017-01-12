@@ -77,6 +77,7 @@ namespace LoDesbloqueo.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["IdCliente"] = new SelectList(_context.Clientes, "Id", "Email", ordenServicio.IdCliente);
+            ViewData["IdEmpresaTelefonica"] = new SelectList(_context.EmpresasTelefonicas, "Id", "Nombre");
             ViewData["IdEdoDispositivo"] = new SelectList(_context.EstadosDispositivos, "Id", "Nombre", ordenServicio.IdEdoDispositivo);
             ViewData["IdLugarAlmacenamiento"] = new SelectList(_context.LugaresAlmacenamiento, "Id", "Nombre", ordenServicio.IdLugarAlmacenamiento);
             ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", ordenServicio.IdModelo);
@@ -105,6 +106,7 @@ namespace LoDesbloqueo.Controllers
             }
             ViewData["IdCliente"] = new SelectList(_context.Clientes, "Id", "Email", ordenServicio.IdCliente);
             ViewData["IdEdoDispositivo"] = new SelectList(_context.EstadosDispositivos, "Id", "Nombre", ordenServicio.IdEdoDispositivo);
+            ViewData["IdEmpresaTelefonica"] = new SelectList(_context.EmpresasTelefonicas, "Id", "Nombre");
             ViewData["IdLugarAlmacenamiento"] = new SelectList(_context.LugaresAlmacenamiento, "Id", "Nombre", ordenServicio.IdLugarAlmacenamiento);
             ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", ordenServicio.IdModelo);
             ViewData["IdMarca"] = new SelectList(_context.Marcas, "Id", "Nombre", ordenServicio.IdMarca);
@@ -174,6 +176,7 @@ namespace LoDesbloqueo.Controllers
                 ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
                 ViewData["IdCliente"] = new SelectList(_context.Clientes, "Id", "Email", ordenServicio.IdCliente);
                 ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
+                ViewData["IdEmpresaTelefonica"] = new SelectList(_context.EmpresasTelefonicas, "Id", "Nombre");
                 ViewData["IdEdoDispositivo"] = new SelectList(_context.EstadosDispositivos, "Id", "Nombre", ordenServicio.IdEdoDispositivo);
                 ViewData["IdLugarAlmacenamiento"] = new SelectList(_context.LugaresAlmacenamiento, "Id", "Nombre", ordenServicio.IdLugarAlmacenamiento);
                 ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", ordenServicio.IdModelo);

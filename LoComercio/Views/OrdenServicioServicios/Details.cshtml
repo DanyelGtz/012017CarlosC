@@ -7,18 +7,44 @@
 <h2>Details</h2>
 
 <div>
-    <h4>OrdenServicioServicio</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.PrecioServicio)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PrecioServicio)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <form asp-controller="OrdenServicioServicios" asp-action="Details" method="post">
+        <h4>OrdenServicioServicio</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Servicio
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Servicio.Nombre)
+            </dd>
+            <dt>
+                Tecnico
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Tecnico.Nombre)
+            </dd>
+            <dt>
+                Edo Servicio
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EstadoServicio.Nombre)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PrecioServicio)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PrecioServicio)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Observaciones)
+            </dd>
+        </dl>
+
+        <div>
+            <input type="submit" class="btn btn-sm btn-primary" value="Regresar"/>
+        </div>
+    </form>
 </div>

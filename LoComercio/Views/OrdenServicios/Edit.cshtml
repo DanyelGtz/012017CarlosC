@@ -86,7 +86,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="OrdenServicio.CompanyaOrigen" class="control-label"></label>
-                            <input asp-for="OrdenServicio.CompanyaOrigen" class="form-control" disabled />
+                            <select asp-for="OrdenServicio.CompanyaOrigen" class="form-control chosen-select" asp-items="ViewBag.IdEmpresaTelefonica"></select>
                             <span asp-validation-for="OrdenServicio.CompanyaOrigen" class="text-danger" />
                         </div>
                     </div>

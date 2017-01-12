@@ -18,3 +18,10 @@ var config = {
 for (var selector in config) {
     $(selector).chosen(config[selector]);
 }
+
+if ($("#pd2").is(':checked')) {
+    $("#pd1").removeAttr('checked');
+}
+if ($("#pd2").is(':checked')) {
+    $("#pd1").removeAttr('checked');
+}
