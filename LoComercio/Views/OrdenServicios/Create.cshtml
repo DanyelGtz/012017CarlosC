@@ -20,11 +20,12 @@
     $(".chosen-select").chosen();
 
 </script>
+
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Orden de Servicio</h3>
     </div>
-    <form asp-action="Create">
+    <form asp-controller="OrdenServicios" asp-action="Create" method="post">
         <div class="panel-body">
             <div class="container">
                 <h2 class="titulo">Datos Generales</h2>
@@ -34,7 +35,9 @@
                         <div class="form-group">
                             <div asp-validation-summary="All" class="text-danger"></div>
                             <label asp-for="IdCliente" class="control-label">Cliente</label>
-                            <select asp-for="IdCliente" class="form-control chosen-select" asp-items="ViewBag.IdCliente"></select>
+                            <select asp-for="IdCliente" class="form-control chosen-select" asp-items="ViewBag.IdCliente">
+                                <option value="Seleccionar">Seleccionar</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -58,20 +61,23 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="IdMarca" class="control-label">Marca</label>
-                            <select asp-for="IdMarca" class="form-control chosen-select" asp-items="ViewBag.IdMarca"></select>
+                            <select asp-for="IdMarca" class="form-control chosen-select"  onchange="BuscarModeloTecnico(IdMarca.value)" asp-items="ViewBag.IdMarca">
+                               <option value="Seleccionar">Seleccionar</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="IdModelo" class="control-label">Modelo Tecnico</label>
-                            <select asp-for="IdModelo" class="form-control chosen-select" asp-items="ViewBag.IdModelo"></select>
+                            <select id="opcModelo" name="opcModelo" class="form-control" onchange="BuscarModelo(opcModelo.value)" disabled>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="control-label">Modelo</label>
-                            <input type="text" class="form-control" readonly />
+                            <input id="IdModeloT" type="text" class="form-control" readonly />
                         </div>
                     </div>
 
@@ -79,14 +85,18 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="IdEdoDispositivo" class="control-label">Estado de Dispositivo</label>
-                            <select asp-for="IdEdoDispositivo" class="form-control chosen-select" asp-items="ViewBag.IdEdoDispositivo"></select>
+                            <select asp-for="IdEdoDispositivo" class="form-control chosen-select" asp-items="ViewBag.IdEdoDispositivo">
+                                <option value="Seleccionar">Seleccionar</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="CompanyaOrigen" class="control-label"></label>
-                            <select asp-for="CompanyaOrigen" class="form-control chosen-select" asp-items="ViewBag.IdEmpresaTelefonica"></select>
+                            <select asp-for="CompanyaOrigen" class="form-control chosen-select" asp-items="ViewBag.IdEmpresaTelefonica">
+                                <option value="Seleccionar">Seleccionar</option>
+                            </select>
                             <span asp-validation-for="CompanyaOrigen" class="text-danger" />
                         </div>
                     </div>
@@ -98,7 +108,9 @@
                     <div class="col-md-8">
                         <div class="form-group">
                             <label asp-for="IdTipoServicio" class="control-label">Tipo de Servicio</label>
-                            <select asp-for="IdTipoServicio" class="form-control chosen-select" asp-items="ViewBag.IdTipoServicio"></select>
+                            <select id="IdTipoServicio" asp-for="IdTipoServicio" class="form-control chosen-select" asp-items="ViewBag.IdTipoServicio" onchange="ValidarColorPieza()">
+                                <option value="Seleccionar">Seleccionar</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -118,17 +130,17 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="ColorPieza" class="control-label"></label>
-                            <input asp-for="ColorPieza" class="form-control" />
+                            <input id="ColorPieza" asp-for="ColorPieza" class="form-control" disabled/>
                             <span asp-validation-for="ColorPieza" class="text-danger" />
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
                             <div class="checkbox">
-                                <input asp-for="DejaAccesorios" />
+                                <input type="checkbox" id="DejaAccesorios" asp-for="DejaAccesorios" onchange="VerificaAccesorios()"/>
                                 <label asp-for="DejaAccesorios"></label>
                             </div>
-                            <input asp-for="DescripcionAccesorios" class="form-control" disabled />
+                            <input id="DescripcionAccesorios" asp-for="DescripcionAccesorios" class="form-control" disabled />
                             <span asp-validation-for="DescripcionAccesorios" class="text-danger" />
                         </div>
                     </div>
@@ -178,9 +190,9 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-md-10">
                             <div class="checkbox">
-                                <input asp-for="RevisionAdicional" />
+                                <input id="RevisionAdicional" asp-for="RevisionAdicional"  onchange="VerificaRevisionAdicional()"/>
                                 <label asp-for="RevisionAdicional"></label>
-                                <input asp-for="DescripcionRevisionAdicional" class="form-control" disabled />
+                                <input id="DescripcionRevisionAdicional" asp-for="DescripcionRevisionAdicional" class="form-control" disabled />
                                 <span asp-validation-for="DescripcionRevisionAdicional" class="text-danger" />
                             </div>
                         </div>
@@ -188,16 +200,16 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="PasswordDesbloqueo" class="control-label"></label>
-                            <input id="pd1" type="checkbox" />
-                            <input asp-for="PasswordDesbloqueo" class="form-control" />
+                            <input id="pd1" type="checkbox" onchange="Desbloqueo()"/>
+                            <input id="PasswordDesbloqueo" asp-for="PasswordDesbloqueo" class="form-control" disabled />
                             <span asp-validation-for="PasswordDesbloqueo" class="text-danger" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label asp-for="PatronDesbloqueo" class="control-label"></label>
-                            <input id="pd2" type="checkbox" />
-                            <input asp-for="PatronDesbloqueo" class="form-control" />
+                            <input id="pd2" type="checkbox" onchange="Desbloqueo()" />
+                            <input id="PatronDesbloqueo" asp-for="PatronDesbloqueo" class="form-control" disabled/>
                             <span asp-validation-for="PatronDesbloqueo" class="text-danger" />
                         </div>
                     </div>
@@ -208,7 +220,9 @@
                     <div class="col-md-5">
                         <div class="form-group">
                             <label asp-for="IdLugarAlmacenamiento" class="control-label">Lugar de Almacenamiento</label>
-                            <select asp-for="IdLugarAlmacenamiento" class="form-control chosen-select" asp-items="ViewBag.IdLugarAlmacenamiento"></select>
+                            <select asp-for="IdLugarAlmacenamiento" class="form-control chosen-select" asp-items="ViewBag.IdLugarAlmacenamiento">
+                                <option value="Seleccionar">Seleccionar</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -246,7 +260,7 @@
             <a asp-controller="OrdenServicios" asp-action="Index" class="btn btn-default">Regresar</a>
             <input type="submit" class="btn btn-primary" value="Guardar" />
         </div>
-</div>
+
     </form>
 </div>
 @section Scripts {

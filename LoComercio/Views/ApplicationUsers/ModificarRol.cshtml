@@ -1,6 +1,6 @@
 ﻿@model LoDesbloqueo.Models.AccountViewModels.ModificarRolViewModel
 
-<h1>Modificar Rol de Usuario</h1>
+<h1 class="titulo">Modificar Rol de Usuario</h1>
 
 <form asp-controller="Account" asp-action="ModificarRol" method="post" class="form-horizontal">
     <h4>Ingresa el Email del Usuario a Modificar.</h4>
@@ -9,7 +9,7 @@
     <div class="form-group">
         <label asp-for="Email" class="control-label"></label>
         <div class="col-md-12">
-            <input asp-for="Email" class="form-control" />
+            <input asp-for="Email" class="form-control" placeholder="Introduce el Email del Usuario a Modificar" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
     </div>

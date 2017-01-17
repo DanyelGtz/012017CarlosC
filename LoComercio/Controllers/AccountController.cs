@@ -48,63 +48,6 @@ namespace LoDesbloqueo.Controllers
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            if (!_roleManager.RoleExistsAsync("Usuario").Result)
-            {
-                var Rol = new IdentityRole();
-                Rol.Name = "Usuario";
-                Rol.NormalizedName = "Usuario";
-                await _roleManager.CreateAsync(Rol);
-
-            }
-            if (!_roleManager.RoleExistsAsync("Supervisor").Result)
-            {
-                var Rol = new IdentityRole();
-                Rol.Name = "Supervisor";
-                Rol.NormalizedName = "Supervisor";
-                await _roleManager.CreateAsync(Rol);
-
-            }
-            if (!_roleManager.RoleExistsAsync("Administrador").Result)
-            {
-                var Rol = new IdentityRole();
-                Rol.Name = "Administrador";
-                Rol.NormalizedName = "Administrador";
-                await _roleManager.CreateAsync(Rol);
-
-            }
-            
-            if (!_roleManager.RoleExistsAsync("AtnClientes").Result)
-            {
-                var Rol = new IdentityRole();
-                Rol.Name = "AtnClientes";
-                Rol.NormalizedName = "Atención a Clientes";
-                await _roleManager.CreateAsync(Rol);
-
-            }
-            if (!_roleManager.RoleExistsAsync("TecnicoLibera").Result)
-            {
-                var Rol = new IdentityRole();
-                Rol.Name = "TecnicoLibera";
-                Rol.NormalizedName = "Técnico de Liberaciones";
-                await _roleManager.CreateAsync(Rol);
-
-            }
-            if (!_roleManager.RoleExistsAsync("TecnicoRepara").Result)
-            {
-                var Rol = new IdentityRole();
-                Rol.Name = "TecnicoRepara";
-                Rol.NormalizedName = "Técnico de Reparaciones";
-                await _roleManager.CreateAsync(Rol);
-
-            }
-            if (!_roleManager.RoleExistsAsync("TecnicoMicroComponentes").Result)
-            {
-                var Rol = new IdentityRole();
-                Rol.Name = "TecnicoMicroComponentes";
-                Rol.NormalizedName = "Técnico de MicroComponentes";
-                await _roleManager.CreateAsync(Rol);
-
-            }
             return View();
         }
 

@@ -19,9 +19,81 @@ for (var selector in config) {
     $(selector).chosen(config[selector]);
 }
 
-if ($("#pd2").is(':checked')) {
-    $("#pd1").removeAttr('checked');
+
+
+function VerificaAccesorios() {
+    if ($("#DejaAccesorios").is(":checked")) {
+        $("#DescripcionAccesorios").prop("disabled", false);
+    }
+    else {
+        $("#DescripcionAccesorios").prop("disabled", true);
+    }
+};
+
+function VerificaRevisionAdicional() {
+    if ($("#RevisionAdicional").is(":checked")) {
+        $("#DescripcionRevisionAdicional").prop("disabled", false);
+    }
+    else {
+        $("#DescripcionRevisionAdicional").prop("disabled", true);
+    }
+};
+
+function Desbloqueo()
+{
+    if($("#pd1").is(":checked"))
+    {
+        $("#PasswordDesbloqueo").prop("disabled", false);
+    }else
+    {
+        $("#PasswordDesbloqueo").prop("disabled", true);
+    }
+    
+    if ($("#pd2").is(":checked")) {
+        $("#PatronDesbloqueo").prop("disabled", false);
+    } else {
+        $("#PatronDesbloqueo").prop("disabled", true);
+    }
+    
 }
-if ($("#pd2").is(':checked')) {
-    $("#pd1").removeAttr('checked');
+
+function ValidarColorPieza() {
+    //Validar color de pieza
+    var tipoServicio = document.getElementById("IdTipoServicio").value;
+    if (tipoServicio == 1) {
+        $("#ColorPieza").prop("disabled", false);
+        $("#ColorPieza").prop("required", true);
+    }else
+    {
+        $("#ColorPieza").prop("disabled", true);
+        $("#ColorPieza").prop("required", false);
+    }
+};
+function BuscarModeloTecnico(id) {
+    $.post("../../OrdenServicios/BuscarModeloTecnico/" + id, function (data) {
+        // extract values from data object and assign ut to your controls
+        console.log('Post invocado /OrdenServicios/BuscarModeloTecnico/' + id + '?');
+        console.log(data);
+        $('#opcModelo').prop("disabled", false);
+
+        $('#opcModelo').find('option').remove().end();
+        $('#opcModelo').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+        $.each(data, function (i, item) {
+            $('#opcModelo').append($('<option>', {
+                value: item.id,
+                text: item.modeloTecnico
+            }));
+        });
+    });
+
+};
+
+
+function BuscarModelo(id) {
+    $.post("../../OrdenServicios/BuscarModelo/" + id, function (data) {
+        // extract values from data object and assign ut to your controls
+        console.log('Post invocado /OrdenServicios/BuscarModelo/' + id + '?')
+        console.log(data);
+        $('#IdModeloT').val(data.nombre);
+    });
 }

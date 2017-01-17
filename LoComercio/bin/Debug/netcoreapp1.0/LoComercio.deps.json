@@ -14,7 +14,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v1.0": {
-      "LocOMERCIO/1.0.0": {
+      "LoComercio/1.0.0": {
         "dependencies": {
           "Microsoft.NETCore.App": "1.0.1",
           "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
@@ -39,10 +39,10 @@
           "SapientGuardian.EntityFrameworkCore.MySql": "7.1.15"
         },
         "runtime": {
-          "LocOMERCIO.dll": {}
+          "LoComercio.dll": {}
         },
         "compile": {
-          "LocOMERCIO.dll": {}
+          "LoComercio.dll": {}
         }
       },
       "Microsoft.ApplicationInsights/2.1.0": {
@@ -3901,7 +3901,7 @@
     }
   },
   "libraries": {
-    "LocOMERCIO/1.0.0": {
+    "LoComercio/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
