@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplication1.Data.Migrations
 {
-    public partial class ModeloData : Migration
+    public partial class DataModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -161,22 +161,6 @@ namespace WebApplication1.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Refaccion",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
-                    CantMax = table.Column<int>(nullable: false),
-                    CantMin = table.Column<int>(nullable: false),
-                    Existencia = table.Column<int>(nullable: false),
-                    Nombre = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Refaccion", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TipoCambio",
                 columns: table => new
                 {
@@ -301,35 +285,6 @@ namespace WebApplication1.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SolicitudRefaccion",
-                columns: table => new
-                {
-                    Id = table.Column<long>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
-                    Cantidad = table.Column<int>(nullable: false),
-                    Fecha = table.Column<DateTime>(nullable: false),
-                    IdEdoRefaccion = table.Column<long>(nullable: true),
-                    IdRefaccion = table.Column<long>(nullable: true),
-                    IdUsuario = table.Column<long>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SolicitudRefaccion", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SolicitudRefaccion_EstadoRefaccion_IdEdoRefaccion",
-                        column: x => x.IdEdoRefaccion,
-                        principalTable: "EstadoRefaccion",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_SolicitudRefaccion_Refaccion_IdRefaccion",
-                        column: x => x.IdRefaccion,
-                        principalTable: "Refaccion",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BitacoraEstados",
                 columns: table => new
                 {
@@ -376,6 +331,29 @@ namespace WebApplication1.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Servicio",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    IdTipoServicio = table.Column<long>(nullable: true),
+                    Nombre = table.Column<string>(nullable: false),
+                    PrecioMaximo = table.Column<float>(nullable: false),
+                    PrecioMinimo = table.Column<float>(nullable: false),
+                    PrecioSugerido = table.Column<float>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Servicio", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Servicio_TipoServicio_IdTipoServicio",
+                        column: x => x.IdTipoServicio,
+                        principalTable: "TipoServicio",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tecnico",
                 columns: table => new
                 {
@@ -396,31 +374,53 @@ namespace WebApplication1.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Servicio",
+                name: "Refaccion",
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
+                    CantMax = table.Column<int>(nullable: false),
+                    CantMin = table.Column<int>(nullable: false),
+                    Existencia = table.Column<int>(nullable: false),
                     IdModelo = table.Column<long>(nullable: true),
-                    IdTipoServicio = table.Column<long>(nullable: true),
-                    Nombre = table.Column<string>(nullable: false),
-                    PrecioMaximo = table.Column<float>(nullable: false),
-                    PrecioMinimo = table.Column<float>(nullable: false),
-                    PrecioSugerido = table.Column<float>(nullable: false)
+                    Nombre = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Servicio", x => x.Id);
+                    table.PrimaryKey("PK_Refaccion", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Servicio_Modelo_IdModelo",
+                        name: "FK_Refaccion_Modelo_IdModelo",
                         column: x => x.IdModelo,
                         principalTable: "Modelo",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SolicitudRefaccion",
+                columns: table => new
+                {
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    Cantidad = table.Column<int>(nullable: false),
+                    Fecha = table.Column<DateTime>(nullable: false),
+                    IdEdoRefaccion = table.Column<long>(nullable: true),
+                    IdRefaccion = table.Column<long>(nullable: true),
+                    IdUsuario = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SolicitudRefaccion", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Servicio_TipoServicio_IdTipoServicio",
-                        column: x => x.IdTipoServicio,
-                        principalTable: "TipoServicio",
+                        name: "FK_SolicitudRefaccion_EstadoRefaccion_IdEdoRefaccion",
+                        column: x => x.IdEdoRefaccion,
+                        principalTable: "EstadoRefaccion",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SolicitudRefaccion_Refaccion_IdRefaccion",
+                        column: x => x.IdRefaccion,
+                        principalTable: "Refaccion",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -689,8 +689,8 @@ namespace WebApplication1.Data.Migrations
                 column: "IdFormaPago");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Servicio_IdModelo",
-                table: "Servicio",
+                name: "IX_Refaccion_IdModelo",
+                table: "Refaccion",
                 column: "IdModelo");
 
             migrationBuilder.CreateIndex(
@@ -781,9 +781,6 @@ namespace WebApplication1.Data.Migrations
                 name: "SolicitudRefaccion");
 
             migrationBuilder.DropTable(
-                name: "Modelo");
-
-            migrationBuilder.DropTable(
                 name: "TipoServicio");
 
             migrationBuilder.DropTable(
@@ -803,6 +800,9 @@ namespace WebApplication1.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Refaccion");
+
+            migrationBuilder.DropTable(
+                name: "Modelo");
 
             migrationBuilder.DropTable(
                 name: "Marca");

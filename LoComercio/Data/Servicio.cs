@@ -13,7 +13,6 @@ namespace LoDesbloqueo.Data
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
-        public long? IdModelo { get; set; }
         public long? IdTipoServicio { get; set; }
         [Required(ErrorMessage = "Campo obligatorio")]
         public string Nombre { get; set; }
@@ -27,8 +26,5 @@ namespace LoDesbloqueo.Data
 
         [ForeignKey("IdTipoServicio")]
         public TipoServicio TipoServicio { get; set; }
-
-        [ForeignKey("IdModelo")]
-        public Modelo Modelo { get; set; }
     }
 }

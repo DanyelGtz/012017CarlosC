@@ -21,7 +21,7 @@ namespace LoDesbloqueo.Controllers
         // GET: Servicios
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Servicios.Include(s => s.Modelo).Include(s => s.TipoServicio);
+            var applicationDbContext = _context.Servicios.Include(s => s.TipoServicio);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -63,7 +63,6 @@ namespace LoDesbloqueo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", servicio.IdModelo);
             ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre", servicio.IdTipoServicio);
             return View(servicio);
         }
@@ -81,7 +80,6 @@ namespace LoDesbloqueo.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", servicio.IdModelo);
             ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre", servicio.IdTipoServicio);
             return View(servicio);
         }
@@ -118,7 +116,6 @@ namespace LoDesbloqueo.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", servicio.IdModelo);
             ViewData["IdTipoServicio"] = new SelectList(_context.TiposServicio, "Id", "Nombre", servicio.IdTipoServicio);
             return View(servicio);
         }

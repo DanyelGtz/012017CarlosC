@@ -8,8 +8,8 @@ using LoDesbloqueo.Data;
 namespace WebApplication1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170111203950_ModeloData")]
-    partial class ModeloData
+    [Migration("20170118024904_DataModel")]
+    partial class DataModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -428,10 +428,14 @@ namespace WebApplication1.Data.Migrations
 
                     b.Property<int>("Existencia");
 
+                    b.Property<long?>("IdModelo");
+
                     b.Property<string>("Nombre")
                         .IsRequired();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdModelo");
 
                     b.ToTable("Refaccion");
                 });
@@ -440,8 +444,6 @@ namespace WebApplication1.Data.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<long?>("IdModelo");
 
                     b.Property<long?>("IdTipoServicio");
 
@@ -455,8 +457,6 @@ namespace WebApplication1.Data.Migrations
                     b.Property<float>("PrecioSugerido");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdModelo");
 
                     b.HasIndex("IdTipoServicio");
 
@@ -837,12 +837,15 @@ namespace WebApplication1.Data.Migrations
                         .HasForeignKey("IdFormaPago");
                 });
 
-            modelBuilder.Entity("LoDesbloqueo.Data.Servicio", b =>
+            modelBuilder.Entity("LoDesbloqueo.Data.Refaccion", b =>
                 {
                     b.HasOne("LoDesbloqueo.Data.Modelo", "Modelo")
                         .WithMany()
                         .HasForeignKey("IdModelo");
+                });
 
+            modelBuilder.Entity("LoDesbloqueo.Data.Servicio", b =>
+                {
                     b.HasOne("LoDesbloqueo.Data.TipoServicio", "TipoServicio")
                         .WithMany()
                         .HasForeignKey("IdTipoServicio");

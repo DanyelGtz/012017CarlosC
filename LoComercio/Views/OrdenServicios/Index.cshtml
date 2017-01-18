@@ -19,6 +19,11 @@
 
     </div>
     <br />
+    @if(Model.Count()==0)
+    {
+        <p>Enhorabuena!!, Por el momento no contamos con Ordenes de Servicio Activas</p>
+
+    }
     @foreach (var item in Model)
     {
         <div class="row">
@@ -105,7 +110,7 @@
                                     @Html.DisplayFor(modelItem => item.TipoServicio.Nombre)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Modelo.Nombre)
+                                    @Html.DisplayFor(modelItem => item.Modelo.ModeloTecnico)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.FechaPosibleSalida)

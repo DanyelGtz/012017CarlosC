@@ -74,12 +74,12 @@ function BuscarModeloTecnico(id) {
         // extract values from data object and assign ut to your controls
         console.log('Post invocado /OrdenServicios/BuscarModeloTecnico/' + id + '?');
         console.log(data);
-        $('#opcModelo').prop("disabled", false);
+        $('#IdModelo').prop("disabled", false);
 
-        $('#opcModelo').find('option').remove().end();
-        $('#opcModelo').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+        $('#IdModelo').find('option').remove().end();
+        $('#IdModelo').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
         $.each(data, function (i, item) {
-            $('#opcModelo').append($('<option>', {
+            $('#IdModelo').append($('<option>', {
                 value: item.id,
                 text: item.modeloTecnico
             }));
