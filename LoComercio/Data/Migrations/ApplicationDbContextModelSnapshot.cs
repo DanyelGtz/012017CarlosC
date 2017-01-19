@@ -515,6 +515,9 @@ namespace WebApplication1.Data.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Email")
+                        .IsRequired();
+
                     b.Property<long?>("IdTipoTecnico");
 
                     b.Property<string>("Nombre")

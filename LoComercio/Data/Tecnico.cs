@@ -18,6 +18,10 @@ namespace LoDesbloqueo.Data
         [Required(ErrorMessage = "Campo obligatorio")]
         public string Nombre { get; set; }
 
+        [Required(ErrorMessage ="Campo obligatorio")]
+        [EmailAddress]
+        public string Email { get; set; }
+
         [ForeignKey("IdTipoTecnico")]
         public TipoTecnico TipoTecnico { get; set; }
     }

@@ -8,7 +8,7 @@ using LoDesbloqueo.Data;
 namespace WebApplication1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170118024904_DataModel")]
+    [Migration("20170120160634_DataModel")]
     partial class DataModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -515,6 +515,9 @@ namespace WebApplication1.Data.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email")
+                        .IsRequired();
 
                     b.Property<long?>("IdTipoTecnico");
 

@@ -86,11 +86,6 @@ namespace LoComercio.Controllers
                 ordenServicioServicio.IdOrdenServicio = id;
                 return View(ordenServicioServicio);
             }
-                    
-            ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre", ordenServicioServicio.IdEdoServicio);
-            ViewData["IdOrdenServicio"] = new SelectList(_context.OrdenesServicio, "Id", "Id", ordenServicioServicio.IdOrdenServicio);
-            ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre", ordenServicioServicio.IdServicio);
-            return View(ordenServicioServicio);
         }
 
         // GET: OrdenServicioServicios/Edit/5

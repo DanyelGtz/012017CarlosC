@@ -144,35 +144,11 @@ namespace LoDesbloqueo.Controllers
                     await _roleManager.CreateAsync(Rol);
 
                 }
-                if (!_roleManager.RoleExistsAsync("TecnicoLiberaciones").Result)
+                if (!_roleManager.RoleExistsAsync("Tecnico").Result)
                 {
                     var Rol = new IdentityRole();
-                    Rol.Name = "TecnicoLiberaciones";
-                    Rol.NormalizedName = "Tecnico de Liberaciones";
-                    await _roleManager.CreateAsync(Rol);
-
-                }
-                if (!_roleManager.RoleExistsAsync("TecnicoReparaciones").Result)
-                {
-                    var Rol = new IdentityRole();
-                    Rol.Name = "TecnicoReparaciones";
-                    Rol.NormalizedName = "TecnicoReparaciones";
-                    await _roleManager.CreateAsync(Rol);
-
-                }
-                if (!_roleManager.RoleExistsAsync("TecnicoMicroComponente").Result)
-                {
-                    var Rol = new IdentityRole();
-                    Rol.Name = "TecnicoMicroComponente";
-                    Rol.NormalizedName = "Tecnico de MicroComponente";
-                    await _roleManager.CreateAsync(Rol);
-
-                }
-                if (!_roleManager.RoleExistsAsync("TecnicoSoftware").Result)
-                {
-                    var Rol = new IdentityRole();
-                    Rol.Name = "TecnicoSoftware";
-                    Rol.NormalizedName = "Tecnico de Software";
+                    Rol.Name = "Tecnico";
+                    Rol.NormalizedName = "Tecnico";
                     await _roleManager.CreateAsync(Rol);
 
                 }

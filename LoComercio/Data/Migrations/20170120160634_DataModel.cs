@@ -359,6 +359,7 @@ namespace WebApplication1.Data.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
+                    Email = table.Column<string>(nullable: false),
                     IdTipoTecnico = table.Column<long>(nullable: true),
                     Nombre = table.Column<string>(nullable: false)
                 },

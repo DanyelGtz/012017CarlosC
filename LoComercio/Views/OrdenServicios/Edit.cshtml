@@ -205,11 +205,13 @@
                     <hr />
 
                     @Html.Partial("_OrdenServicioServicio", Model.OrdenServicioServicios)
+                    
                     <div>
                         <form asp-controller="OrdenServicioServicios" asp-action="Create" asp-route-id="@Model.OrdenServicio.Id" method="post">
                             <input type="submit" class="btn btn-primary" value="Agregar">
                         </form>
                     </div>
+                    
                 </div>
                 <div class="row">
                     <h2 class="titulo">Control Interno</h2>

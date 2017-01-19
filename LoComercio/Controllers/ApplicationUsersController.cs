@@ -8,7 +8,6 @@ using LoDesbloqueo.Models;
 using LoDesbloqueo.Models.AccountViewModels;
 using Microsoft.EntityFrameworkCore;
 using LoDesbloqueo.Data;
-using LoDesbloqueo.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 

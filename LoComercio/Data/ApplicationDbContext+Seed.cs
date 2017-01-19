@@ -154,11 +154,11 @@ namespace LoDesbloqueo.Data
             if (!EstadosServicios.Any())
             {
                 EstadosServicios.AddRange(
-                    new EstadoServicio { Id = 0, Nombre = "En Espera" },
-                    new EstadoServicio { Id = 1, Nombre = "En Proceso" },
-                    new EstadoServicio { Id = 2, Nombre = "Completado" },
-                    new EstadoServicio { Id = 3, Nombre = "Completado Parcialmente" },
-                    new EstadoServicio { Id = 4, Nombre = "No Completado" }
+                    new EstadoServicio { Id = 1, Nombre = "En Espera" },
+                    new EstadoServicio { Id = 2, Nombre = "En Proceso" },
+                    new EstadoServicio { Id = 3, Nombre = "Completado" },
+                    new EstadoServicio { Id = 4, Nombre = "Completado Parcialmente" },
+                    new EstadoServicio { Id = 5, Nombre = "No Completado" }
                 );
                 SaveChanges();
             }
