@@ -87,7 +87,7 @@ namespace LoDesbloqueo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Email,Nombre,RFC,TelefonoActual,TelefonoContacto,WhatssApp,WhatssApp2,Calle,NumInt,NumExt,Colonia,Estado")] Cliente cliente)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Email,Nombre,RFC,TelefonoActual,TelefonoContacto,WhatssApp,WhatssApp2,Calle,NumInt,NumExt,Colonia,Estado,HoraContacto")] Cliente cliente)
         {
             if (id != cliente.Id)
             {

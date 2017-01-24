@@ -4,30 +4,79 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-@if (SignInManager.IsSignedIn(User))
-{
-    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav">
-            <li><a asp-controller="Clientes" asp-action="Index">Clientes</a></li>
-            <li><a asp-controller="OrdenServicios" asp-action="Index">Ordenes de Servicio</a></li>
-            <li><a asp-controller="Tecnicos" asp-action="Index">Tecnicos</a></li>
-            <li><a asp-action="index" asp-controller="Manage">Administración</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a><span class="icon-user"></span>@UserManager.GetUserName(User)!</a>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-sm btn-danger" style="margin-top:6px; margin-left:1rem">Salir</button>
-            </li>
-        </ul>
-    </form>
-}
-else
+@if (!SignInManager.IsSignedIn(User))
 {
     <ul class="nav navbar-nav navbar-right">
         <li><a class="btn btn-primary" asp-controller="Account" asp-action="Login"> INICIAR SESION </a></li>
         <li><a class="" asp-controller="Account" asp-action="Register"> REGISTRAR </a></li>
     </ul>
+}
+else
+{
+    @if (User.IsInRole("Administrador"))
+    {
+        <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+
+            <ul class="nav navbar-nav">
+                <li><a asp-controller="Clientes" asp-action="Index">Clientes</a></li>
+                <li><a asp-controller="OrdenServicios" asp-action="Index">Ordenes de Servicio</a></li>
+                <li><a asp-controller="Tecnicos" asp-action="Index">Tecnicos</a></li>
+                <li><a asp-action="index" asp-controller="Manage">Administración</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a><span class="icon-user"></span>@UserManager.GetUserName(User)!</a>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-sm btn-danger" style="margin-top:6px; margin-left:1rem">Salir</button>
+                </li>
+            </ul>
+        </form>
+    }
+    @if (User.IsInRole("AtencionCliente"))
+    {
+        <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+            <ul class="nav navbar-nav">
+                <li><a asp-controller="Clientes" asp-action="Index">Clientes</a></li>
+                <li><a asp-controller="OrdenServicios" asp-action="Index">Ordenes de Servicio</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a><span class="icon-user"></span>@UserManager.GetUserName(User)!</a>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-sm btn-danger" style="margin-top:6px; margin-left:1rem">Salir</button>
+                </li>
+            </ul>
+        </form>
+    }
+    @if (User.IsInRole("Tecnico"))
+    {
+        <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+            <ul class="nav navbar-nav">
+                <li><a asp-controller="OrdenServicios" asp-action="Index">Ordenes de Servicio</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a><span class="icon-user"></span>@UserManager.GetUserName(User)!</a>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-sm btn-danger" style="margin-top:6px; margin-left:1rem">Salir</button>
+                </li>
+            </ul>
+        </form>
+    }
+
+    @if (User.IsInRole("Usuario"))
+    {
+        <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button type="submit" class="btn btn-sm btn-danger" style="margin-top:6px; margin-left:1rem">Salir</button>
+                </li>
+            </ul>
+        </form>
+    }
 }
 
