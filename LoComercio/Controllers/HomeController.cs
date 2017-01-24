@@ -10,7 +10,22 @@ namespace LoDesbloqueo.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            if (User.IsInRole("Administrador"))
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+            if (User.IsInRole("Tecnico") || (User.IsInRole("AtencionCliente")) || (User.IsInRole("Supervisor")))
+            {
+                return RedirectToAction("Index", "OrdenServicios");
+            }
+            if (User.IsInRole("Usuario"))
+            {
+                return View();
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult About()
