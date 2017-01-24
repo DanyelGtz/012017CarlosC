@@ -8,7 +8,7 @@ using LoDesbloqueo.Data;
 namespace WebApplication1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170120160634_DataModel")]
+    [Migration("20170124173116_DataModel")]
     partial class DataModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,11 +89,22 @@ namespace WebApplication1.Data.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Calle");
+
+                    b.Property<string>("Colonia");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Estado");
+
+                    b.Property<string>("HoraContacto");
 
                     b.Property<string>("Nombre")
                         .IsRequired();
+
+                    b.Property<string>("NumExt");
+
+                    b.Property<string>("NumInt");
 
                     b.Property<string>("RFC");
 
@@ -211,6 +222,8 @@ namespace WebApplication1.Data.Migrations
                     b.Property<string>("Nombre")
                         .IsRequired();
 
+                    b.Property<bool>("estaOcupado");
+
                     b.HasKey("Id");
 
                     b.ToTable("LugarAlmacenamiento");
@@ -326,6 +339,9 @@ namespace WebApplication1.Data.Migrations
                     b.Property<long?>("IdTipoServicio");
 
                     b.Property<bool>("ImplicaRiesgo");
+
+                    b.Property<string>("NoSerie")
+                        .IsRequired();
 
                     b.Property<string>("NotasReparaciones");
 
@@ -819,7 +835,7 @@ namespace WebApplication1.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("LoDesbloqueo.Data.OrdenServicio", "OrdenServicio")
-                        .WithMany()
+                        .WithMany("ServiciosProgramados")
                         .HasForeignKey("IdOrdenServicio")
                         .OnDelete(DeleteBehavior.Cascade);
 

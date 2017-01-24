@@ -30,6 +30,11 @@ function VerificaAccesorios() {
     }
 };
 
+function CopiarTelefonoCliente() {
+    var valor = $('#tel').val();
+    $('#tel0').val(valor);
+};
+
 function VerificaRevisionAdicional() {
     if ($("#RevisionAdicional").is(":checked")) {
         $("#DescripcionRevisionAdicional").prop("disabled", false);

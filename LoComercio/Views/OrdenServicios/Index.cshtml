@@ -19,7 +19,7 @@
 
     </div>
     <br />
-    @if(Model.Count()==0)
+    @if (Model.Count() == 0)
     {
         <p>Enhorabuena!!, Por el momento no contamos con Ordenes de Servicio Activas</p>
 
@@ -73,8 +73,8 @@
             }
 
 
-            </div>
-            <div class="row">
+        </div>
+        <div class="row">
             <div class="panel panel-default">
                 <div class="panel-body table-responsive">
                     <table class="table table-striped">
@@ -122,13 +122,65 @@
                                     @Html.DisplayFor(modelItem => item.DejaAccesorios)
                                 </td>
                                 <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn-primary btn-sm">Finalizar Servicio</a>
-
+                                    @if (User.IsInRole("Tecnico"))
+                                    {
+                                        @switch (item.IdEdoDispositivo)
+                                        {
+                                            case 1:
+                                                {
+                                                    <form asp-controller="OrdenServicios" asp-action="EnProceso" asp-route-id="@item.Id" method="post">
+                                                        <input type="submit" class="btn-primary btn-sm" value="En Proceso" />
+                                                    </form>
+                                                    break;
+                                                }
+                                            case 2:
+                                                {
+                                                    <form asp-controller="OrdenServicios" asp-action="DarEntrada" asp-route-id="@item.Id" method="post">
+                                                        <input type="submit" class="btn-primary btn-sm" value="Dar Entrada" />
+                                                    </form>
+                                                    <form asp-controller="OrdenServicios" asp-action="Finalizado" asp-route-id="@item.Id" method="post">
+                                                        <input type="submit" class="btn-warning btn-sm" value="Finalizar" />
+                                                    </form>
+                                                    break;
+                                                }
+                                            
+                                        }
+                                    }
+                                    @if (User.IsInRole("AtencionCliente"))
+                                    {
+                                        @switch (item.IdEdoDispositivo)
+                                        {
+                                            case 4:
+                                                {
+                                                    <form asp-controller="OrdenServicios" asp-action="Entregado" asp-route-id="@item.Id" method="post">
+                                                        <input type="submit" class="btn-danger btn-sm" value="Finalizar Servicio" />
+                                                    </form>
+                                                    break;
+                                                }
+                                            case 5:
+                                                {
+                                                    <form asp-controller="OrdenServicios" asp-action="EnProceso" asp-route-id="@item.Id" method="post">
+                                                        <input type="submit" class="btn-primary btn-sm" value="En Proceso" />
+                                                    </form>
+                                                    <form asp-controller="OrdenServicios" asp-action="Notificado" asp-route-id="@item.Id" method="post">
+                                                        <input type="submit" class="btn-warning btn-sm" value="Notificado" />
+                                                    </form>
+                                                    break;
+                                                }
+                                            
+                                        }
+                                    }
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
+                    @if (User.IsInRole("Tecnico"))
+                {
+                        @if (item.ServiciosProgramados.Count > 0)
+                        {
+                            @Html.Partial("_OrdenServicioServicio", item.ServiciosProgramados)
+                        }
+                    }
                 </div>
                 <div class="panel-footer text-right">
 
@@ -137,6 +189,7 @@
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm">Eliminar</a>
 
                 </div>
+
             </div>
         </div>
     }

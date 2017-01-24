@@ -16,16 +16,14 @@
     </div>
     <form asp-action="Create">
         <div class="panel-body">
-
             <div class="container">
-
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <h2 class="titulo">Registrar Cliente</h2>
                 <div class="row">
 
                     <div class="col-sm-8">
                         <div class="form-group">
-                            <label asp-for="Nombre"></label>
+                            <label asp-for="Nombre">Nombre *</label>
                             <input asp-for="Nombre" class="form-control" />
                             <span asp-validation-for="Nombre" class="text-danger" />
                         </div>
@@ -48,8 +46,8 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label asp-for="TelefonoActual"></label>
-                            <input asp-for="TelefonoActual" id="tel" type="tel" class="form-control" />
+                            <label asp-for="TelefonoActual">Telefono Actual *</label>
+                            <input asp-for="TelefonoActual" id="tel" type="tel" class="form-control" onblur="CopiarTelefonoCliente()"/>
                             <div id="txtwhatss1" class="checkbox">
                                 <input asp-for="WhatssApp" />
                                 <label asp-for="WhatssApp"></label>
@@ -59,7 +57,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label asp-for="TelefonoContacto"></label>
+                            <label asp-for="TelefonoContacto">Telefono de Contacto *</label>
                             <input asp-for="TelefonoContacto" id="tel0" type="tel" class="form-control" />
                             <div id="txtwhatss2" class="checkbox">
                                 <input asp-for="WhatssApp2" />
@@ -68,6 +66,50 @@
                             <span asp-validation-for="TelefonoContacto" class="text-danger" />
                         </div>
                     </div>
+
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label asp-for="Calle"></label>
+                            <input asp-for="Calle" class="form-control" />
+                            <span asp-validation-for="Calle" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label asp-for="NumExt"></label>
+                            <input asp-for="NumExt" class="form-control" />
+                            <span asp-validation-for="NumExt" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label asp-for="NumInt"></label>
+                            <input asp-for="NumInt" class="form-control" />
+                            <span asp-validation-for="NumInt" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label asp-for="Colonia"></label>
+                            <input asp-for="Colonia" class="form-control" />
+                            <span asp-validation-for="Colonia" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label asp-for="Estado"></label>
+                            <input asp-for="Estado" class="form-control" />
+                            <span asp-validation-for="Estado" class="text-danger" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label asp-for="HoraContacto"></label>
+                            <input asp-for="HoraContacto" class="form-control" />
+                            <span asp-validation-for="HoraContacto" class="text-danger" />
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

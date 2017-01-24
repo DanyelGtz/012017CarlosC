@@ -19,11 +19,65 @@ namespace LoDesbloqueo.Controllers
             _context = context;    
         }
 
+        public async Task<IActionResult> EnProceso(long id)
+        {
+            var ordenServicio = await _context.OrdenesServicio.SingleOrDefaultAsync(m => m.Id == id);
+            ordenServicio.IdEdoDispositivo = 2;
+            _context.Update(ordenServicio);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> DarEntrada(long id)
+        {
+            var ordenServicio = await _context.OrdenesServicio.SingleOrDefaultAsync(m => m.Id == id);
+            ordenServicio.IdEdoDispositivo = 1;
+            _context.Update(ordenServicio);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Finalizado(long id)
+        {
+            var ordenServicio = await _context.OrdenesServicio.SingleOrDefaultAsync(m => m.Id == id);
+            ordenServicio.IdEdoDispositivo = 5;
+            _context.Update(ordenServicio);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Notificado(long id)
+        {
+            var ordenServicio = await _context.OrdenesServicio.SingleOrDefaultAsync(m => m.Id == id);
+            ordenServicio.IdEdoDispositivo = 4;
+            _context.Update(ordenServicio);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+       
+        public async Task<IActionResult> Entregado(long id)
+        {
+            var ordenServicio = await _context.OrdenesServicio.SingleOrDefaultAsync(m => m.Id == id);
+            ordenServicio.IdEdoDispositivo = 6;
+            _context.Update(ordenServicio);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
         // GET: OrdenServicios
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.OrdenesServicio.Include(o => o.Cliente).Include(o => o.EstadoDispositivo).Include(o => o.LugarAlmacenamiento).Include(o => o.Pago).Include(o => o.SolicitudAccesorio).Include(o => o.SolicitudRefaccion).Include(o=>o.TipoServicio).Include(o=>o.Modelo);
-            return View(await applicationDbContext.ToListAsync());
+
+            if (User.IsInRole("Tecnico"))
+            {
+                var OrdenesServicio = _context.OrdenesServicio.Include(o => o.EstadoDispositivo).Include(o => o.LugarAlmacenamiento).Include(o => o.TipoServicio).Include(o => o.Modelo).Include(o=>o.ServiciosProgramados);
+                ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");
+                ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
+                ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
+                return View(await OrdenesServicio.ToListAsync());
+            }
+            else
+            {
+             var OrdenesServicio = _context.OrdenesServicio.Include(o => o.Cliente).Include(o => o.EstadoDispositivo).Include(o => o.LugarAlmacenamiento).Include(o => o.Pago).Include(o => o.SolicitudAccesorio).Include(o => o.SolicitudRefaccion).Include(o => o.TipoServicio).Include(o => o.Modelo);
+                return View(await OrdenesServicio.ToListAsync());
+            }
         }
 
         // GET: OrdenServicios/Details/5
@@ -58,8 +112,10 @@ namespace LoDesbloqueo.Controllers
             ViewData["IdSolAccesorio"] = new SelectList(_context.SolicitudAccesorios, "Id", "Id");
             ViewData["IdSolRefaccion"] = new SelectList(_context.SolicitudRefacciones, "Id", "Id");
             ViewData["IdTecnico"] = new SelectList(_context.Tecnicos, "Id", "Nombre");
-
-            return View();
+            OrdenServicio os = new OrdenServicio();
+            os.UsuarioRecibe = User.Identity.Name;
+            os.FechaPosibleSalida = System.DateTime.Now.Date;
+            return View(os);
         }
 
         // POST: OrdenServicios/Create
@@ -67,11 +123,16 @@ namespace LoDesbloqueo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AceptaRiesgo,ColorDispositivo,ColorPieza,CompanyaOrigen,DejaAccesorios,DesactivoICloud,DescripcionAccesorios,DescripcionFalla,DescripcionRevisionAdicional,EquipoApagado,EquipoMojado,FechaLlegada,FechaPosibleSalida,FechaSalida,IMEI,IdCliente,IdEdoDispositivo,IdEdoNotificacion,IdLugarAlmacenamiento,IdModelo,IdMarca,IdPago,IdPersonalEntrega,IdSolAccesorio,IdSolRefaccion,IdTecnico,IdTipoServicio,ImplicaRiesgo,NotasReparaciones,Observaciones,PasswordDesbloqueo,PatronDesbloqueo,ReparadoAnteriormente,RevisionAdicional,UsuarioRecibe")] OrdenServicio ordenServicio)
+        public async Task<IActionResult> Create([Bind("Id,AceptaRiesgo,ColorDispositivo,ColorPieza,CompanyaOrigen,DejaAccesorios,DesactivoICloud,DescripcionAccesorios,DescripcionFalla,DescripcionRevisionAdicional,EquipoApagado,EquipoMojado,FechaLlegada,FechaPosibleSalida,FechaSalida,IMEI,IdCliente,IdEdoDispositivo,IdEdoNotificacion,IdLugarAlmacenamiento,IdModelo,IdMarca,IdPago,IdPersonalEntrega,IdSolAccesorio,IdSolRefaccion,IdTecnico,IdTipoServicio,ImplicaRiesgo,NotasReparaciones,Observaciones,PasswordDesbloqueo,PatronDesbloqueo,ReparadoAnteriormente,RevisionAdicional,UsuarioRecibe,NoSerie")] OrdenServicio ordenServicio)
         {
             ordenServicio.FechaLlegada = System.DateTime.Now;
             if (ModelState.IsValid)
             {
+                if(ordenServicio.IMEI!=null)
+                    ordenServicio.IMEI = ordenServicio.IMEI.ToUpper();
+                if(ordenServicio.NoSerie!=null)
+                    ordenServicio.NoSerie = ordenServicio.NoSerie.ToUpper();
+                
                 _context.Add(ordenServicio);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -129,7 +190,7 @@ namespace LoDesbloqueo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,AceptaRiesgo,ColorDispositivo,ColorPieza,CompanyaOrigen,DejaAccesorios,DesactivoICloud,DescripcionAccesorios,DescripcionFalla,DescripcionRevisionAdicional,EquipoApagado,EquipoMojado,FechaLlegada,FechaPosibleSalida,FechaSalida,IMEI,IdCliente,IdEdoDispositivo,IdEdoNotificacion,IdLugarAlmacenamiento,IdModelo,IdMarca,IdPago,IdPersonalEntrega,IdSolAccesorio,IdSolRefaccion,IdTecnico,IdTipoServicio,ImplicaRiesgo,NotasReparaciones,Observaciones,PasswordDesbloqueo,PatronDesbloqueo,ReparadoAnteriormente,RevisionAdicional,UsuarioRecibe")] OrdenServicio ordenServicio)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,AceptaRiesgo,ColorDispositivo,ColorPieza,CompanyaOrigen,DejaAccesorios,DesactivoICloud,DescripcionAccesorios,DescripcionFalla,DescripcionRevisionAdicional,EquipoApagado,EquipoMojado,FechaLlegada,FechaPosibleSalida,FechaSalida,IMEI,IdCliente,IdEdoDispositivo,IdEdoNotificacion,IdLugarAlmacenamiento,IdModelo,IdMarca,IdPago,IdPersonalEntrega,IdSolAccesorio,IdSolRefaccion,IdTecnico,IdTipoServicio,ImplicaRiesgo,NotasReparaciones,Observaciones,PasswordDesbloqueo,PatronDesbloqueo,ReparadoAnteriormente,RevisionAdicional,UsuarioRecibe,NoSerie")] OrdenServicio ordenServicio)
         {
             var OrdenS = _context.OrdenesServicio.SingleOrDefault(o => o.Id == id);
             if (id != OrdenS.Id)
@@ -152,6 +213,7 @@ namespace LoDesbloqueo.Controllers
                     os.IdLugarAlmacenamiento = ordenServicio.IdLugarAlmacenamiento;
                     os.FechaPosibleSalida = ordenServicio.FechaPosibleSalida;
                     os.Observaciones = ordenServicio.Observaciones;
+                    os.NoSerie = ordenServicio.NoSerie;
                     os.UsuarioRecibe = ordenServicio.UsuarioRecibe;
                     _context.Update(os);
                     await _context.SaveChangesAsync();

@@ -35,7 +35,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <div asp-validation-summary="All" class="text-danger"></div>
-                            <label asp-for="OrdenServicio.IdCliente" class="control-label ">Cliente</label>
+                            <label asp-for="OrdenServicio.IdCliente" class="control-label ">Cliente *</label>
                             <select asp-for="OrdenServicio.IdCliente" class="form-control chosen-select" asp-items="ViewBag.IdCliente" disabled></select>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label asp-for="OrdenServicio.IdEdoDispositivo" class="control-label">Estado de Dispositivo</label>
+                            <label asp-for="OrdenServicio.IdEdoDispositivo" class="control-label">Estado de Dispositivo *</label>
                             <select asp-for="OrdenServicio.IdEdoDispositivo" class="form-control chosen-select" asp-items="ViewBag.IdEdoDispositivo"></select>
                         </div>
                     </div>
@@ -66,19 +66,19 @@
                     <hr />
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="OrdenServicio.IdMarca" class="control-label">Marca</label>
+                            <label asp-for="OrdenServicio.IdMarca" class="control-label">Marca *</label>
                             <select asp-for="OrdenServicio.IdMarca" class="form-control chosen-select" asp-items="ViewBag.IdMarca" disabled></select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="OrdenServicio.IdModelo" class="control-label">Modelo Tecnico</label>
+                            <label asp-for="OrdenServicio.IdModelo" class="control-label">Modelo Tecnico *</label>
                             <select asp-for="OrdenServicio.IdModelo" class="form-control chosen-select" asp-items="ViewBag.IdModelo"></select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="control-label">Modelo</label>
+                            <label class="control-label">Modelo *</label>
                             <input type="text" class="form-control" readonly />
                         </div>
                     </div>
@@ -90,6 +90,13 @@
                             <span asp-validation-for="OrdenServicio.CompanyaOrigen" class="text-danger" />
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="OrdenServicio.NoSerie" class="control-label"></label>
+                            <input asp-for="OrdenServicio.NoSerie" class="form-control" />
+                            <span asp-validation-for="OrdenServicio.NoSerie" class="text-danger" />
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <br />
@@ -97,7 +104,7 @@
                     <hr />
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label asp-for="OrdenServicio.IdTipoServicio" class="control-label">Tipo de Servicio</label>
+                            <label asp-for="OrdenServicio.IdTipoServicio" class="control-label">Tipo de Servicio *</label>
                             <select asp-for="OrdenServicio.IdTipoServicio" class="form-control chosen-select" asp-items="ViewBag.IdTipoServicio"></select>
                         </div>
                     </div>

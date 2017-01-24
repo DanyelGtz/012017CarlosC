@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LoDesbloqueo.Data;
 
-namespace LoDesbloqueo.Controllers
+namespace LoComercio.Controllers
 {
     public class RefaccionesController : Controller
     {
@@ -21,7 +21,8 @@ namespace LoDesbloqueo.Controllers
         // GET: Refacciones
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Refacciones.ToListAsync());
+            var applicationDbContext = _context.Refacciones.Include(r => r.Modelo);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Refacciones/Details/5
@@ -44,6 +45,7 @@ namespace LoDesbloqueo.Controllers
         // GET: Refacciones/Create
         public IActionResult Create()
         {
+            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico");
             return View();
         }
 
@@ -52,7 +54,7 @@ namespace LoDesbloqueo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CantMax,CantMin,Existencia,Nombre")] Refaccion refaccion)
+        public async Task<IActionResult> Create([Bind("Id,CantMax,CantMin,Existencia,IdModelo,Nombre")] Refaccion refaccion)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +62,7 @@ namespace LoDesbloqueo.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", refaccion.IdModelo);
             return View(refaccion);
         }
 
@@ -76,6 +79,7 @@ namespace LoDesbloqueo.Controllers
             {
                 return NotFound();
             }
+            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", refaccion.IdModelo);
             return View(refaccion);
         }
 
@@ -84,7 +88,7 @@ namespace LoDesbloqueo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,CantMax,CantMin,Existencia,Nombre")] Refaccion refaccion)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,CantMax,CantMin,Existencia,IdModelo,Nombre")] Refaccion refaccion)
         {
             if (id != refaccion.Id)
             {
@@ -111,6 +115,7 @@ namespace LoDesbloqueo.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            ViewData["IdModelo"] = new SelectList(_context.Modelos, "Id", "ModeloTecnico", refaccion.IdModelo);
             return View(refaccion);
         }
 

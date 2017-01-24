@@ -7,25 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LoDesbloqueo.Data;
 
-namespace LoDesbloqueo.Controllers
+namespace LoComercio.Controllers
 {
-    public class ClientesController : Controller
+    public class EmpresaTelefonicasController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ClientesController(ApplicationDbContext context)
+        public EmpresaTelefonicasController(ApplicationDbContext context)
         {
             _context = context;    
         }
 
-        // GET: Clientes
+        // GET: EmpresaTelefonicas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Clientes.ToListAsync());
-
+            return View(await _context.EmpresasTelefonicas.ToListAsync());
         }
 
-        // GET: Clientes/Details/5
+        // GET: EmpresaTelefonicas/Details/5
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -33,40 +32,38 @@ namespace LoDesbloqueo.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes.SingleOrDefaultAsync(m => m.Id == id);
-            if (cliente == null)
+            var empresaTelefonica = await _context.EmpresasTelefonicas.SingleOrDefaultAsync(m => m.Id == id);
+            if (empresaTelefonica == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(empresaTelefonica);
         }
 
-        // GET: Clientes/Create
+        // GET: EmpresaTelefonicas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Clientes/Create
+        // POST: EmpresaTelefonicas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,Nombre,RFC,TelefonoActual,TelefonoContacto,WhatssApp,WhatssApp2,Calle,NumInt,NumExt,Colonia,Estado")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("Id,Nombre")] EmpresaTelefonica empresaTelefonica)
         {
             if (ModelState.IsValid)
             {
-                if(cliente.RFC!=null)
-                    cliente.RFC = cliente.RFC.ToUpper();
-                _context.Add(cliente);
+                _context.Add(empresaTelefonica);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(cliente);
+            return View(empresaTelefonica);
         }
 
-        // GET: Clientes/Edit/5
+        // GET: EmpresaTelefonicas/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -74,22 +71,22 @@ namespace LoDesbloqueo.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes.SingleOrDefaultAsync(m => m.Id == id);
-            if (cliente == null)
+            var empresaTelefonica = await _context.EmpresasTelefonicas.SingleOrDefaultAsync(m => m.Id == id);
+            if (empresaTelefonica == null)
             {
                 return NotFound();
             }
-            return View(cliente);
+            return View(empresaTelefonica);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: EmpresaTelefonicas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Email,Nombre,RFC,TelefonoActual,TelefonoContacto,WhatssApp,WhatssApp2,Calle,NumInt,NumExt,Colonia,Estado")] Cliente cliente)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Nombre")] EmpresaTelefonica empresaTelefonica)
         {
-            if (id != cliente.Id)
+            if (id != empresaTelefonica.Id)
             {
                 return NotFound();
             }
@@ -98,12 +95,12 @@ namespace LoDesbloqueo.Controllers
             {
                 try
                 {
-                    _context.Update(cliente);
+                    _context.Update(empresaTelefonica);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteExists(cliente.Id))
+                    if (!EmpresaTelefonicaExists(empresaTelefonica.Id))
                     {
                         return NotFound();
                     }
@@ -114,10 +111,10 @@ namespace LoDesbloqueo.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(cliente);
+            return View(empresaTelefonica);
         }
 
-        // GET: Clientes/Delete/5
+        // GET: EmpresaTelefonicas/Delete/5
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -125,29 +122,29 @@ namespace LoDesbloqueo.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Clientes.SingleOrDefaultAsync(m => m.Id == id);
-            if (cliente == null)
+            var empresaTelefonica = await _context.EmpresasTelefonicas.SingleOrDefaultAsync(m => m.Id == id);
+            if (empresaTelefonica == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(empresaTelefonica);
         }
 
-        // POST: Clientes/Delete/5
+        // POST: EmpresaTelefonicas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var cliente = await _context.Clientes.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Clientes.Remove(cliente);
+            var empresaTelefonica = await _context.EmpresasTelefonicas.SingleOrDefaultAsync(m => m.Id == id);
+            _context.EmpresasTelefonicas.Remove(empresaTelefonica);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool ClienteExists(long id)
+        private bool EmpresaTelefonicaExists(long id)
         {
-            return _context.Clientes.Any(e => e.Id == id);
+            return _context.EmpresasTelefonicas.Any(e => e.Id == id);
         }
     }
 }

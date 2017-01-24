@@ -30,8 +30,14 @@ namespace WebApplication1.Data.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
-                    Email = table.Column<string>(nullable: false),
+                    Calle = table.Column<string>(nullable: true),
+                    Colonia = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Estado = table.Column<string>(nullable: true),
+                    HoraContacto = table.Column<string>(nullable: true),
                     Nombre = table.Column<string>(nullable: false),
+                    NumExt = table.Column<string>(nullable: true),
+                    NumInt = table.Column<string>(nullable: true),
                     RFC = table.Column<string>(nullable: true),
                     TelefonoActual = table.Column<string>(nullable: false),
                     TelefonoContacto = table.Column<string>(nullable: false),
@@ -140,7 +146,8 @@ namespace WebApplication1.Data.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
-                    Nombre = table.Column<string>(nullable: false)
+                    Nombre = table.Column<string>(nullable: false),
+                    estaOcupado = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -457,6 +464,7 @@ namespace WebApplication1.Data.Migrations
                     IdSolRefaccion = table.Column<long>(nullable: true),
                     IdTipoServicio = table.Column<long>(nullable: true),
                     ImplicaRiesgo = table.Column<bool>(nullable: false),
+                    NoSerie = table.Column<string>(nullable: false),
                     NotasReparaciones = table.Column<string>(nullable: true),
                     Observaciones = table.Column<string>(nullable: true),
                     PasswordDesbloqueo = table.Column<string>(nullable: true),

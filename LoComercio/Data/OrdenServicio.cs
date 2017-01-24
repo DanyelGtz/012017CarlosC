@@ -26,8 +26,13 @@ namespace LoDesbloqueo.Data
 
         //[Required(ErrorMessage = "Campo obligatorio")]
         public string IMEI { get; set; }
-        [Display(Name = "Descripción de la Falla")]
-        //[Required(ErrorMessage = "Campo obligatorio")]
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name = "No de Serie *")]
+        public string NoSerie { get; set; }
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name = "Descripción de la Falla *")]
         public string DescripcionFalla { get; set; }
         [Display(Name = "Deja Accesorios?")]
         public bool DejaAccesorios { get; set; }
@@ -35,12 +40,12 @@ namespace LoDesbloqueo.Data
         public string DescripcionAccesorios { get; set; }
         [Display(Name = "Color de Pieza")]
         public string ColorPieza { get; set; }
-        [Display(Name = "Compañía Origen")]
-        //[Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name = "Compañía Origen *")]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string CompanyaOrigen { get; set; }
         [Display(Name = "Patrón de Desbloqueo")]
         public string PatronDesbloqueo { get; set; }
-        [Display(Name = "Password de Desbloqueo")]
+        [Display(Name = "Código de Desbloqueo")]
         public string PasswordDesbloqueo { get; set; }
         [Display(Name = "Desactivó ICloud?")]
         public bool DesactivoICloud { get; set; }
@@ -76,6 +81,9 @@ namespace LoDesbloqueo.Data
         [ForeignKey("IdCliente")]
         public Cliente Cliente { get; set; }
         
+        [ForeignKey("IdOrdenServicio")]
+        public List<OrdenServicioServicio> ServiciosProgramados { get; set; }
+
         [ForeignKey("IdLugarAlmacenamiento")]
         public LugarAlmacenamiento LugarAlmacenamiento { get; set; }
         [ForeignKey("IdPago")]

@@ -53,8 +53,6 @@ namespace LoComercio.Controllers
         // GET: OrdenServicioServicios/Create
         public IActionResult Create()
         {
-            ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");
-            ViewData["IdServicio"] = new SelectList(_context.Servicios, "Id", "Nombre");
             OrdenServicioServicio os = new OrdenServicioServicio();
                 //os.IdOrdenServicio = long.Parse(Request.["IdOrdenServicio"]);
                 ViewData["IdEdoServicio"] = new SelectList(_context.EstadosServicios, "Id", "Nombre");

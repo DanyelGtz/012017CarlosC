@@ -15,5 +15,6 @@ namespace LoDesbloqueo.Data
         public long Id { get; set; }
         [Required(ErrorMessage = "Campo obligatorio")]
         public string Nombre { get; set; }
+        public bool estaOcupado { get; set; } 
     }
 }

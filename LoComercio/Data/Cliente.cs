@@ -15,11 +15,9 @@ namespace LoDesbloqueo.Data
         public long Id { get; set; }
         [Required(ErrorMessage = "Campo obligatorio")]
         public string Nombre { get; set; }
-        
         public string RFC { get; set; }
         [Display(Name = "e-Mail")]
         [EmailAddress]
-        [Required(ErrorMessage = "Campo obligatorio")]
         public string Email { get; set; }
         [Display(Name = "Teléfono Actual")]
         [Required(ErrorMessage = "Campo obligatorio")]
@@ -29,5 +27,14 @@ namespace LoDesbloqueo.Data
         public string TelefonoContacto { get; set; }
         public bool WhatssApp { get; set; }
         public bool WhatssApp2 { get; set; }
+
+        public string Calle { get; set; }
+        public string NumInt { get; set; }
+        public string NumExt { get; set; }
+        public string Colonia { get; set; }
+        public string Estado { get; set; }
+        [Display(Name = "Hora de Contacto *")]
+        [Required (ErrorMessage ="La Hora de Contacto es Requerida")]
+        public string HoraContacto { get; set; } 
     }
 }

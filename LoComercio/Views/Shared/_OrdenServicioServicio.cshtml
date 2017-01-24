@@ -38,26 +38,39 @@
                                     <tr>
                                         @foreach (var servicio in ViewBag.IdServicio)
                                         {
-                                            if (int.Parse(servicio.Value)==item.IdServicio)
+                                            if (int.Parse(servicio.Value) == item.IdServicio)
                                             {
                                                 <td>
                                                     @servicio.Text
                                                 </td>
                                             }
                                         }
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.EstadoServicio.Nombre)
-                                        </td>
-
+                                        @foreach (var estadoServicio in ViewBag.IdEdoServicio)
+                                        {
+                                            if (int.Parse(estadoServicio.Value) == item.IdServicio)
+                                            {
+                                                <td>
+                                                    @estadoServicio.Text
+                                                </td>
+                                            }
+                                        }
                                         <td>
                                             @Html.DisplayFor(modelItem => item.PrecioServicio)
                                         </td>
+                                        @foreach (var tecnico in ViewBag.IdTecnico)
+                                        {
+                                            if (int.Parse(tecnico.Value) == item.IdServicio)
+                                            {
+                                                <td>
+                                                    @tecnico.Text
+                                                </td>
+                                            }
+                                        }
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Tecnico.Nombre)
+                                            <a asp-controller="OrdenServicioServicios" asp-action="Details" asp-route-id="@item.Id" class="btn btn-xs btn-primary">Ver</a> |
+                                            <a asp-controller="OrdenServicioServicios" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-xs btn-warning">Modificar</a> |
+                                            <a asp-controller="OrdenServicioServicios" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-xs btn-danger">Eliminar</a>
                                         </td>
-                                        <td><a asp-controller="OrdenServicioServicios" asp-action="Details" asp-route-id="@item.Id" class="btn btn-xs btn-primary">Ver</a> |
-                                        <a asp-controller="OrdenServicioServicios" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-xs btn-warning">Modificar</a> |
-                                            <a asp-controller="OrdenServicioServicios" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-xs btn-danger">Eliminar</a></td>
                                     </tr>
                                 }
                             </tbody>

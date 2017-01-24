@@ -27,6 +27,7 @@ namespace LoDesbloqueo.Data
 
         [ForeignKey("IdServicio")]
         public Servicio Servicio { get; set; }
+
         [ForeignKey("IdOrdenServicio")]
         public OrdenServicio OrdenServicio { get; set; }
 

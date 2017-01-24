@@ -34,7 +34,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <div asp-validation-summary="All" class="text-danger"></div>
-                            <label asp-for="IdCliente" class="control-label">Cliente</label>
+                            <label asp-for="IdCliente" class="control-label">Cliente *</label>
                             <select asp-for="IdCliente" class="form-control chosen-select" asp-items="ViewBag.IdCliente">
                                 <option value="Seleccionar">Seleccionar</option>
                             </select>
@@ -60,7 +60,7 @@
                     <hr />
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label asp-for="IdMarca" class="control-label">Marca</label>
+                            <label asp-for="IdMarca" class="control-label">Marca *</label>
                             <select asp-for="IdMarca" class="form-control chosen-select"  onchange="BuscarModeloTecnico(IdMarca.value)" asp-items="ViewBag.IdMarca">
                                <option value="Seleccionar">Seleccionar</option>
                             </select>
@@ -69,14 +69,14 @@
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label  class="control-label">Modelo Tecnico</label>
+                            <label  class="control-label">Modelo Tecnico *</label>
                             <select asp-for="IdModelo" id="IdModelo" name="IdModelo" class="form-control" onchange="BuscarModelo(IdModelo.value)" disabled>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label class="control-label">Modelo</label>
+                            <label class="control-label">Modelo *</label>
                             <input id="IdModeloT" type="text" class="form-control" readonly />
                         </div>
                     </div>
@@ -84,13 +84,12 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label asp-for="IdEdoDispositivo" class="control-label">Estado de Dispositivo</label>
+                            <label asp-for="IdEdoDispositivo" class="control-label">Estado de Dispositivo *</label>
                             <select asp-for="IdEdoDispositivo" class="form-control chosen-select" asp-items="ViewBag.IdEdoDispositivo">
                                 <option value="Seleccionar">Seleccionar</option>
                             </select>
                         </div>
                     </div>
-
                     <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="CompanyaOrigen" class="control-label"></label>
@@ -100,6 +99,13 @@
                             <span asp-validation-for="CompanyaOrigen" class="text-danger" />
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="NoSerie" class="control-label"></label>
+                            <input asp-for="NoSerie" class="form-control" />
+                            <span asp-validation-for="NoSerie" class="text-danger" />
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <br />
@@ -107,7 +113,7 @@
                     <hr />
                     <div class="col-md-8">
                         <div class="form-group">
-                            <label asp-for="IdTipoServicio" class="control-label">Tipo de Servicio</label>
+                            <label asp-for="IdTipoServicio" class="control-label">Tipo de Servicio *</label>
                             <select id="IdTipoServicio" asp-for="IdTipoServicio" class="form-control chosen-select" asp-items="ViewBag.IdTipoServicio" onchange="ValidarColorPieza()">
                                 <option value="Seleccionar">Seleccionar</option>
                             </select>
