@@ -151,5 +151,11 @@ namespace LoDesbloqueo.Controllers
         {
             return _context.Tecnicos.Any(e => e.Id == id);
         }
+
+        public IActionResult ObtenerTecnicosJson()
+        {
+            var Tecnicos = _context.Tecnicos.ToList();
+            return Json(Tecnicos);
+        }
     }
 }

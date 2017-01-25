@@ -17,21 +17,31 @@ namespace LoDesbloqueo.Data
         public long? IdOrdenServicio { get; set; }
         [Required(ErrorMessage = "El Servicio es requerido")]
         public long? IdServicio { get; set; }
+
         [Required(ErrorMessage = "El Estado del Servicio es requerido")]
+        [Display(Name ="Estado del Servicio *")]
         public long? IdEdoServicio { get; set; }
+
+        [Display(Name = "Tecnico *")]
+        [Required(ErrorMessage = "El Técnico es requerido")]
         public long? IdTecnico { get; set; }
+
         public string Observaciones { get; set; }
 
         [ForeignKey("IdTecnico")]
+        [Display(Name = "Tecnico *")]
         public Tecnico Tecnico { get; set; }
 
         [ForeignKey("IdServicio")]
+        [Display(Name = "Servicio *")]
         public Servicio Servicio { get; set; }
 
         [ForeignKey("IdOrdenServicio")]
+        [Display(Name = "Orden de Servicio *")]
         public OrdenServicio OrdenServicio { get; set; }
 
         [ForeignKey("IdEdoServicio")]
+        [Display(Name = "Estado del Servicio *")]
         public EstadoServicio EstadoServicio { get; set; }
         public float PrecioServicio { get; set; }
     }

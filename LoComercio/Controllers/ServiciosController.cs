@@ -152,5 +152,17 @@ namespace LoDesbloqueo.Controllers
         {
             return _context.Servicios.Any(e => e.Id == id);
         }
+
+        public IActionResult ObtenerServiciosJson()
+        {
+            var Servicios = _context.Servicios.ToList();
+            return Json(Servicios);
+        }
+
+        public IActionResult ObtenerCostosServicioJson(long id)
+        {
+            var Servicio = _context.Servicios.SingleOrDefault(s=>s.Id==id);
+            return Json(Servicio);
+        }
     }
 }

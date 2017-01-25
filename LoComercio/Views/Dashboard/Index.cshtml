@@ -4,6 +4,9 @@
 <h1 class="titulo">Dashboard</h1>
 <p>Bienvenido a la Plataforma de Control de LoDesbloqueo.</p>
 <hr />
-<i class="glyphicon glyphicon-warning-sign text-center" style="font-size: 3rem"></i>
-<h4>El Usuario se encuentra en proceso de Autorizaci&oacute;n, pongase en contacto con el Administrador del Sistema.</h4>
-<br />
+@if (!User.IsInRole("Administrador"))
+{
+    <i class="glyphicon glyphicon-warning-sign text-center" style="font-size: 3rem"></i>
+    <h4>El Usuario se encuentra en proceso de Autorizaci&oacute;n, pongase en contacto con el Administrador del Sistema.</h4>
+    <br />
+}

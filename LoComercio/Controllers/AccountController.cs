@@ -67,7 +67,7 @@ namespace LoDesbloqueo.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    return RedirectToAction("Index", "Dashboard");
+                    return RedirectToAction("Index", "Home");
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -134,7 +134,16 @@ namespace LoDesbloqueo.Controllers
                     Rol.Name = "Administrador";
                     Rol.NormalizedName = "Administrador";
                     await _roleManager.CreateAsync(Rol);
+                    //CREA USUARIO ADMINISTRADOR
+                    var usuario = new ApplicationUser()
+                    {
+                        UserName = "admin@lodesbloqueo.mx",
+                        Email = "admin@lodesbloqueo.mx",
+                    };
+                    var resultado = await _userManager.CreateAsync(usuario, "123456Gg.");
 
+                    //ASIGNA ROL ADMINISTRADOR A USUARIO
+                    resultado = await _userManager.AddToRoleAsync(usuario, "Administrador");
                 }
                 if (!_roleManager.RoleExistsAsync("Supervisor").Result)
                 {
@@ -168,7 +177,7 @@ namespace LoDesbloqueo.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
-                    return RedirectToAction("Index", "Dashboard");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }

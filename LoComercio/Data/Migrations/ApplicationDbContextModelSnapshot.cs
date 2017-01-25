@@ -96,7 +96,8 @@ namespace WebApplication1.Data.Migrations
 
                     b.Property<string>("Estado");
 
-                    b.Property<string>("HoraContacto");
+                    b.Property<string>("HoraContacto")
+                        .IsRequired();
 
                     b.Property<string>("Nombre")
                         .IsRequired();
@@ -293,7 +294,8 @@ namespace WebApplication1.Data.Migrations
 
                     b.Property<string>("ColorPieza");
 
-                    b.Property<string>("CompanyaOrigen");
+                    b.Property<string>("CompanyaOrigen")
+                        .IsRequired();
 
                     b.Property<bool>("DejaAccesorios");
 
@@ -301,7 +303,8 @@ namespace WebApplication1.Data.Migrations
 
                     b.Property<string>("DescripcionAccesorios");
 
-                    b.Property<string>("DescripcionFalla");
+                    b.Property<string>("DescripcionFalla")
+                        .IsRequired();
 
                     b.Property<string>("DescripcionRevisionAdicional");
 

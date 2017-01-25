@@ -10,11 +10,6 @@ namespace LoDesbloqueo.Controllers
     {
         public IActionResult Index()
         {
-            if(User.IsInRole("Administrador"))
-            {
-                return RedirectToAction("Index", "Manage");
-            }
-
             return View();
         }
     }

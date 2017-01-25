@@ -14,15 +14,16 @@ namespace LoDesbloqueo.Data
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         [Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name ="Nombre *")]
         public string Nombre { get; set; }
         public string RFC { get; set; }
-        [Display(Name = "e-Mail")]
+        [Display(Name = "EMail *")]
         [EmailAddress]
         public string Email { get; set; }
-        [Display(Name = "Teléfono Actual")]
+        [Display(Name = "Teléfono Actual *")]
         [Required(ErrorMessage = "Campo obligatorio")]
         public string TelefonoActual { get; set; }
-        [Display(Name = "Teléfono de Contacto")]
+        [Display(Name = "Teléfono de Contacto *")]
         [Required(ErrorMessage = "Campo obligatorio")]
         public string TelefonoContacto { get; set; }
         public bool WhatssApp { get; set; }

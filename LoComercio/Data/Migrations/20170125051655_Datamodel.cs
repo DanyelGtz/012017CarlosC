@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApplication1.Data.Migrations
 {
-    public partial class DataModel : Migration
+    public partial class Datamodel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,7 +34,7 @@ namespace WebApplication1.Data.Migrations
                     Colonia = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Estado = table.Column<string>(nullable: true),
-                    HoraContacto = table.Column<string>(nullable: true),
+                    HoraContacto = table.Column<string>(nullable: false),
                     Nombre = table.Column<string>(nullable: false),
                     NumExt = table.Column<string>(nullable: true),
                     NumInt = table.Column<string>(nullable: true),
@@ -441,11 +441,11 @@ namespace WebApplication1.Data.Migrations
                         .Annotation("MySQL:AutoIncrement", true),
                     AceptaRiesgo = table.Column<bool>(nullable: false),
                     ColorPieza = table.Column<string>(nullable: true),
-                    CompanyaOrigen = table.Column<string>(nullable: true),
+                    CompanyaOrigen = table.Column<string>(nullable: false),
                     DejaAccesorios = table.Column<bool>(nullable: false),
                     DesactivoICloud = table.Column<bool>(nullable: false),
                     DescripcionAccesorios = table.Column<string>(nullable: true),
-                    DescripcionFalla = table.Column<string>(nullable: true),
+                    DescripcionFalla = table.Column<string>(nullable: false),
                     DescripcionRevisionAdicional = table.Column<string>(nullable: true),
                     EquipoApagado = table.Column<bool>(nullable: false),
                     EquipoMojado = table.Column<bool>(nullable: false),

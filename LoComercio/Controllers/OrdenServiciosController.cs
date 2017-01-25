@@ -309,5 +309,12 @@ namespace LoDesbloqueo.Controllers
             return Json(ModeloTecnico);
 
         }
+
+        public IActionResult BuscarModeloComercial(string id)
+        {
+            var ModeloTecnico = _context.Modelos.Where(mt => mt.Nombre.Equals(id)).ToList();
+            return Json(ModeloTecnico);
+
+        }
     }
 }

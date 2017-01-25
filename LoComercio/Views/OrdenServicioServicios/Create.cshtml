@@ -4,67 +4,85 @@
     ViewData["Title"] = "Create";
 }
 
-<h2 class="titulo">Agregar Servicio a Orden</h2>
 
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="IdOrdenServicio" class="form-control" readonly/>
-        
-        <div class="form-group">
-            <label asp-for="IdServicio" class="col-md-2 control-label">Servicio</label>
-            <div class="col-md-10">
-                <select asp-for="IdServicio" class="form-control" asp-items="ViewBag.IdServicio" required></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="IdTecnico" class="col-md-2 control-label">Tecnico</label>
-            <div class="col-md-10">
-                <select asp-for="IdTecnico" class="form-control" asp-items="ViewBag.IdTecnico" required></select>
-            </div>
-        </div>
-        
-        
-        <div class="form-group">
-            <label class="col-md-2 control-label">Precio Sugerido</label>
-            <div class="col-md-10">
-                <input id="precioSugerido" class="form-control" readonly />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="PrecioServicio" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="PrecioServicio" class="form-control" required/>
-                <span asp-validation-for="PrecioServicio" class="text-danger" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="IdEdoServicio" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="IdEdoServicio" class="form-control" asp-items="ViewBag.IdEdoServicio"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Observaciones" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Observaciones" class="form-control" />
-                <span asp-validation-for="Observaciones" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Registrar" class="btn btn-default" />
-            </div>
-        </div>
+<link href="~/css/chosen.css" rel="stylesheet" />
+<style type="text/css" media="all">
+    /* fix rtl for demo */
+    .chosen-rtl .chosen-drop {
+        left: -9000px;
+    }
+</style>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">Agregar Servicio a Orden</h2>
     </div>
-</form>
+    <form asp-action="Create">
+        <div class="panel-body">
+            <div class="container">
+                <h2 class="titulo">Agregar Servicio a Orden</h2>
+                <hr />
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="IdOrdenServicio" class="form-control" readonly />
 
-<div>
-    <a asp-controller="OrdenServicio" asp-action="Edit">Regresar a la Orden de Servicio</a>
+                        <div class="form-group">
+
+                            <div class="col-md-6">
+                                <label asp-for="IdServicio" class="control-label">Servicio</label>
+                                <select id="IdServicio" asp-for="IdServicio" class="form-control chosen-select" onchange="ObtenerCostosServicioJson(IdServicio.value)" asp-items="ViewBag.IdServicio" required>
+                                    <option value="Seleccionar">Seleccionar</option>
+                                </select>
+                                <a asp-controller="Servicios" asp-action="Index" class="btn btn-sm btn-primary " target="_blank">Agregar Servicio</a>
+                                <a class="btn btn-xs btn-warning" onclick="ObtenerServiciosJson()" target="_blank">Actualizar</a>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="IdTecnico" class="control-label">Tecnico</label>
+                                <select id="idTecnico" asp-for="IdTecnico" class="form-control chosen-select" asp-items="ViewBag.IdTecnico" required>
+                                    <option value="Seleccionar">Seleccionar</option>
+                                </select>
+                                <a asp-controller="Tecnicos" asp-action="Index" class="btn btn-sm btn-primary" target="_blank">Agregar T&eacute;cnico</a>
+                                <a class="btn btn-xs btn-warning" onclick="ObtenerTecnicosJson()" target="_blank">Actualizar</a>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label">Precio Sugerido</label>
+                                <input id="precioSugerido" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label">Precio Minimo</label>
+                                <input id="precioMinimo" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label">Precio Maximo</label>
+                                <input id="precioMaximo" class="form-control" readonly />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="PrecioServicio" class="control-label"></label>
+                                <input asp-for="PrecioServicio" class="form-control" required />
+                                <span asp-validation-for="PrecioServicio" class="text-danger" />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="IdEdoServicio" class="control-label"></label>
+                                <select asp-for="IdEdoServicio" class="form-control" asp-items="ViewBag.IdEdoServicio"></select>
+                            </div>
+                            <div class="col-md-12">
+                                <label asp-for="Observaciones" class="control-label"></label>
+                                <input asp-for="Observaciones" class="form-control" />
+                                <span asp-validation-for="Observaciones" class="text-danger" />
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-footer text-right">
+            <input type="submit" value="Agregar" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<script type="text/javascript">
+    ConfigurarSelects();
+</script>

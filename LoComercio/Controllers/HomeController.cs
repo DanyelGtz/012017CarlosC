@@ -12,7 +12,7 @@ namespace LoDesbloqueo.Controllers
         {
             if (User.IsInRole("Administrador"))
             {
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("Index", "Manage");
             }
             if (User.IsInRole("Tecnico") || (User.IsInRole("AtencionCliente")) || (User.IsInRole("Supervisor")))
             {

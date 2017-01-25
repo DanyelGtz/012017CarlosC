@@ -1,4 +1,5 @@
-﻿// Write your Javascript code.
+﻿
+// Write your Javascript code.
 function Mayusculas() {
     javascript: this.value = this.value.toUpperCase();
 };
@@ -7,18 +8,6 @@ jQuery(function ($) {
     $("#tel").mask("(999)999-9999");
     $("#tel0").mask("(999)999-9999");
 });
-
-var config = {
-    '.chosen-select': {},
-    '.chosen-select-deselect': { allow_single_deselect: true },
-    '.chosen-select-no-single': { disable_search_threshold: 10 },
-    '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
-    '.chosen-select-width': { width: "95%" }
-}
-for (var selector in config) {
-    $(selector).chosen(config[selector]);
-}
-
 
 
 function VerificaAccesorios() {
@@ -44,22 +33,19 @@ function VerificaRevisionAdicional() {
     }
 };
 
-function Desbloqueo()
-{
-    if($("#pd1").is(":checked"))
-    {
+function Desbloqueo() {
+    if ($("#pd1").is(":checked")) {
         $("#PasswordDesbloqueo").prop("disabled", false);
-    }else
-    {
+    } else {
         $("#PasswordDesbloqueo").prop("disabled", true);
     }
-    
+
     if ($("#pd2").is(":checked")) {
         $("#PatronDesbloqueo").prop("disabled", false);
     } else {
         $("#PatronDesbloqueo").prop("disabled", true);
     }
-    
+
 }
 
 function ValidarColorPieza() {
@@ -68,8 +54,7 @@ function ValidarColorPieza() {
     if (tipoServicio == 1) {
         $("#ColorPieza").prop("disabled", false);
         $("#ColorPieza").prop("required", true);
-    }else
-    {
+    } else {
         $("#ColorPieza").prop("disabled", true);
         $("#ColorPieza").prop("required", false);
     }
@@ -94,6 +79,26 @@ function BuscarModeloTecnico(id) {
 };
 
 
+function BuscarModeloComercial(id) {
+    $.post("../../OrdenServicios/BuscarModeloComercial/" + id, function (data) {
+        // extract values from data object and assign ut to your controls
+        console.log('Post invocado /OrdenServicios/BuscarModeloComercial/' + id + '?');
+        console.log(data);
+        $('#IdModelo').prop("disabled", false);
+
+        $('#IdModelo').find('option').remove().end();
+        $('#IdModelo').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+        $.each(data, function (i, item) {
+            $('#IdModelo').append($('<option>', {
+                value: item.id,
+                text: item.modeloTecnico
+            }));
+        });
+    });
+
+};
+
+
 function BuscarModelo(id) {
     $.post("../../OrdenServicios/BuscarModelo/" + id, function (data) {
         // extract values from data object and assign ut to your controls
@@ -102,3 +107,68 @@ function BuscarModelo(id) {
         $('#IdModeloT').val(data.nombre);
     });
 }
+
+
+function ObtenerTecnicosJson() {
+    $.post("../../Tecnicos/ObtenerTecnicosJson/", function (data) {
+        // extract values from data object and assign ut to your controls
+        console.log('Post invocado /Tecnicos/ObtenerTecnicosJson/?');
+        console.log(data);
+        $('#idTecnico').prop("disabled", false);
+
+        $('#idTecnico').find('option').remove().end();
+        $('#idTecnico').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+        $.each(data, function (i, item) {
+            $('#idTecnico').append($('<option>', {
+                value: item.id,
+                text: item.nombre
+            }));
+        });
+    });
+
+};
+
+function ConfigurarSelects() {
+    $(".chosen-select").chosen({
+        search_contains: true
+    });
+    
+}
+
+
+function ObtenerServiciosJson() {
+    $.post("../../Servicios/ObtenerServiciosJson/", function (data) {
+        // extract values from data object and assign ut to your controls
+        console.log('Post invocado /Servicios/ObtenerServiciosJson/?');
+        
+        $('#IdServicio').find('option').remove().end();
+        $('#IdServicio').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+
+        $.each(data, function (i, item) {
+            $('#IdServicio').append($('<option>', {
+                value: item.id,
+                text: item.nombre
+            }));
+        });
+        $(".chosen-select").trigger('chosen:updated');
+        console.log(data);
+    });
+};
+
+function ObtenerCostosServicioJson(id) {
+    $.post("../../Servicios/ObtenerCostosServicioJson/" + id, function (data) {
+        // extract values from data object and assign ut to your controls
+        console.log('Post invocado /Servicios/ObtenerCostosServicioJson/' + id + '?');
+        console.log(data);
+        if (data != null) {
+            $('#precioSugerido').val(data.precioSugerido);
+            $('#precioMinimo').val(data.precioMinimo);
+            $('#precioMaximo').val(data.precioMaximo);
+        } else {
+            $('#precioSugerido').val('0');
+            $('#precioMinimo').val('0');
+            $('#precioMaximo').val('0');
+        }
+    });
+
+};
