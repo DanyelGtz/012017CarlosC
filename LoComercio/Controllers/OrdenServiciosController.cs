@@ -300,21 +300,49 @@ namespace LoDesbloqueo.Controllers
         {
             var ModeloTecnico = _context.Modelos.Where(mt => mt.IdMarca == id).ToList();
             return Json(ModeloTecnico);
-            
         }
 
         public IActionResult BuscarModelo(long id)
         {
             var ModeloTecnico = _context.Modelos.SingleOrDefault(mt => mt.Id==id);
             return Json(ModeloTecnico);
-
         }
 
         public IActionResult BuscarModeloComercial(string id)
         {
             var ModeloTecnico = _context.Modelos.Where(mt => mt.Nombre.Equals(id)).ToList();
             return Json(ModeloTecnico);
-
         }
+
+        public IActionResult ObtenerClientesJson()
+        {
+            var Clientes = _context.Clientes.ToList();
+            return Json(Clientes);
+        }
+
+        public IActionResult ObtenerMarcasJson()
+        {
+            var Marcas = _context.Marcas.ToList();
+            return Json(Marcas);
+        }
+
+        public IActionResult ObtenerEmpresasTelefonicasJson()
+        {
+            var EmpresasTelefonicas = _context.EmpresasTelefonicas.ToList();
+            return Json(EmpresasTelefonicas);
+        }
+
+        public IActionResult ObtenerTiposServiciosJson()
+        {
+            var TiposServicios = _context.TiposServicio.ToList();
+            return Json(TiposServicios);
+        }
+
+        public IActionResult ObtenerLugaresAlmacenamientosJson()
+        {
+            var LugaresAlmacenamiento = _context.LugaresAlmacenamiento.ToList();
+            return Json(LugaresAlmacenamiento);
+        }
+
     }
 }

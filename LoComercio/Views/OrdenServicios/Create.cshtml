@@ -35,9 +35,11 @@
                         <div class="form-group">
                             <div asp-validation-summary="All" class="text-danger"></div>
                             <label asp-for="IdCliente" class="control-label">Cliente *</label>
-                            <select asp-for="IdCliente" class="form-control chosen-select" asp-items="ViewBag.IdCliente">
+                            <select id="IdCliente" asp-for="IdCliente" class="form-control chosen-select" asp-items="ViewBag.IdCliente">
                                 <option value="Seleccionar">Seleccionar</option>
                             </select>
+                            <a asp-controller="Clientes" asp-action="Create" class="btn btn-xs btn-primary " target="_blank">Agregar Cliente</a>
+                            <a class="btn btn-xs btn-warning" onclick="ObtenerClientesJson()" target="_blank">Actualizar</a>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -64,6 +66,8 @@
                             <select asp-for="IdMarca" class="form-control chosen-select"  onchange="BuscarModeloTecnico(IdMarca.value)" asp-items="ViewBag.IdMarca">
                                <option value="Seleccionar">Seleccionar</option>
                             </select>
+                            <a asp-controller="Marcas" asp-action="Create" class="btn btn-xs btn-primary " target="_blank">Agregar Marca</a>
+                            <a class="btn btn-xs btn-warning" onclick="ObtenerMarcasJson()" target="_blank">Actualizar</a>
                         </div>
                     </div>
 
@@ -72,6 +76,7 @@
                             <label  class="control-label">Modelo Tecnico *</label>
                             <select asp-for="IdModelo" id="IdModelo" name="IdModelo" class="form-control" onchange="BuscarModelo(IdModelo.value)" disabled>
                             </select>
+                            <a asp-controller="Modelos" asp-action="Create" class="btn btn-xs btn-primary " target="_blank">Agregar Modelo</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -93,9 +98,11 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label asp-for="CompanyaOrigen" class="control-label"></label>
-                            <select asp-for="CompanyaOrigen" class="form-control chosen-select" asp-items="ViewBag.IdEmpresaTelefonica">
+                            <select id="IdEmpresa" asp-for="CompanyaOrigen" class="form-control chosen-select" asp-items="ViewBag.IdEmpresaTelefonica">
                                 <option value="Seleccionar">Seleccionar</option>
                             </select>
+                            <a asp-controller="EmpresaTelefonicas" asp-action="Create" class="btn btn-xs btn-primary " target="_blank">Agregar Compa&ntilde;&iacute;a</a>
+                            <a class="btn btn-xs btn-warning" onclick="ObtenerEmpresasTelefonicasJson()" target="_blank">Actualizar</a>
                             <span asp-validation-for="CompanyaOrigen" class="text-danger" />
                         </div>
                     </div>
@@ -117,6 +124,8 @@
                             <select id="IdTipoServicio" asp-for="IdTipoServicio" class="form-control chosen-select" asp-items="ViewBag.IdTipoServicio" onchange="ValidarColorPieza()">
                                 <option value="Seleccionar">Seleccionar</option>
                             </select>
+                            <a asp-controller="TipoServicios" asp-action="Create" class="btn btn-xs btn-primary " target="_blank">Agregar Tipo De Servicio</a>
+                            <a class="btn btn-xs btn-warning" onclick="ObtenerTiposServiciosJson()" target="_blank">Actualizar</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -226,9 +235,11 @@
                     <div class="col-md-5">
                         <div class="form-group">
                             <label asp-for="IdLugarAlmacenamiento" class="control-label">Lugar de Almacenamiento</label>
-                            <select asp-for="IdLugarAlmacenamiento" class="form-control chosen-select" asp-items="ViewBag.IdLugarAlmacenamiento">
+                            <select id="IdLugarAlmacenamiento" asp-for="IdLugarAlmacenamiento" class="form-control chosen-select" asp-items="ViewBag.IdLugarAlmacenamiento">
                                 <option value="Seleccionar">Seleccionar</option>
                             </select>
+                            <a asp-controller="LugarAlmacenamientos" asp-action="Create" class="btn btn-xs btn-primary " target="_blank">Agregar Lugar</a>
+                            <a class="btn btn-xs btn-warning" onclick="ObtenerLugaresAlmacenamientosJson()" target="_blank">Actualizar</a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -247,28 +258,17 @@
                         </div>
                     </div>
                 </div>
-                <script type="text/javascript">
-                    var config = {
-                        '.chosen-select': {},
-                        '.chosen-select-deselect': { allow_single_deselect: true },
-                        '.chosen-select-no-single': { disable_search_threshold: 10 },
-                        '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
-                        '.chosen-select-width': { width: "95%" }
-                    }
-                    for (var selector in config) {
-                        $(selector).chosen(config[selector]);
-                    }
-
-                </script>
             </div>
         </div>
         <div class="panel-footer text-right">
             <a asp-controller="OrdenServicios" asp-action="Index" class="btn btn-default">Regresar</a>
             <input type="submit" class="btn btn-primary" value="Guardar" />
         </div>
-
     </form>
 </div>
+<script type="text/javascript">
+    ConfigurarSelects();
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
