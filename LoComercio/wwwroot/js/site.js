@@ -137,10 +137,7 @@ function ConfigurarSelects() {
 
 
 function ObtenerServiciosJson() {
-    $.post("../../Servicios/ObtenerServiciosJson/", function (data) {
-        // extract values from data object and assign ut to your controls
-        console.log('Post invocado /Servicios/ObtenerServiciosJson/?');
-        
+    $.post("../../Servicios/ObtenerServiciosJson/", function (data) {        
         $('#IdServicio').find('option').remove().end();
         $('#IdServicio').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
 
@@ -151,9 +148,99 @@ function ObtenerServiciosJson() {
             }));
         });
         $(".chosen-select").trigger('chosen:updated');
-        console.log(data);
     });
 };
+
+function ObtenerClientesJson() {
+    $.post("../../OrdenServicios/ObtenerClientesJson/", function (data) {
+        $('#IdCliente').find('option').remove().end();
+        $('#IdCliente').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+
+        $.each(data, function (i, item) {
+            $('#IdCliente').append($('<option>', {
+                value: item.id,
+                text: item.nombre
+            }));
+        });
+        $(".chosen-select").trigger('chosen:updated');
+    });
+};
+
+function ObtenerMarcasJson() {
+    $.post("../../OrdenServicios/ObtenerMarcasJson/", function (data) {
+        $('#IdMarca').find('option').remove().end();
+        $('#IdMarca').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+
+        $.each(data, function (i, item) {
+            $('#IdMarca').append($('<option>', {
+                value: item.id,
+                text: item.nombre
+            }));
+        });
+        $(".chosen-select").trigger('chosen:updated');
+    });
+};
+
+function ObtenerEmpresasTelefonicasJson() {
+    $.post("../../OrdenServicios/ObtenerEmpresasTelefonicasJson/", function (data) {
+        $('#IdEmpresa').find('option').remove().end();
+        $('#IdEmpresa').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+
+        $.each(data, function (i, item) {
+            $('#IdEmpresa').append($('<option>', {
+                value: item.id,
+                text: item.nombre
+            }));
+        });
+        $(".chosen-select").trigger('chosen:updated');
+    });
+};
+
+function ObtenerTiposServiciosJson() {
+    $.post("../../OrdenServicios/ObtenerTiposServiciosJson/", function (data) {
+        $('#IdTipoServicio').find('option').remove().end();
+        $('#IdTipoServicio').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+
+        $.each(data, function (i, item) {
+            $('#IdTipoServicio').append($('<option>', {
+                value: item.id,
+                text: item.nombre
+            }));
+        });
+        $(".chosen-select").trigger('chosen:updated');
+    });
+};
+
+function ObtenerLugaresAlmacenamientosJson() {
+    $.post("../../OrdenServicios/ObtenerLugaresAlmacenamientosJson/", function (data) {
+        $('#IdLugarAlmacenamiento').find('option').remove().end();
+        $('#IdLugarAlmacenamiento').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+
+        $.each(data, function (i, item) {
+            $('#IdLugarAlmacenamiento').append($('<option>', {
+                value: item.id,
+                text: item.nombre
+            }));
+        });
+        $(".chosen-select").trigger('chosen:updated');
+    });
+};
+
+function ObtenerLugaresAlmacenamientosJson() {
+    $.post("../../OrdenServicios/ObtenerLugaresAlmacenamientosJson/", function (data) {
+        $('#IdLugarAlmacenamiento').find('option').remove().end();
+        $('#IdLugarAlmacenamiento').append('<option value="Seleccionar">Seleccionar</option>').val('Seleccionar');
+
+        $.each(data, function (i, item) {
+            $('#IdLugarAlmacenamiento').append($('<option>', {
+                value: item.id,
+                text: item.nombre
+            }));
+        });
+        $(".chosen-select").trigger('chosen:updated');
+    });
+};
+
 
 function ObtenerCostosServicioJson(id) {
     $.post("../../Servicios/ObtenerCostosServicioJson/" + id, function (data) {
